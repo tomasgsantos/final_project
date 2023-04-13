@@ -5,7 +5,7 @@ export default function Education(){
   return(
     <div className=''>
       <Navbar className="navbar" />
-      <h1>Education</h1>
+      <h1>Education asf</h1>
     </div>
   )
 }
