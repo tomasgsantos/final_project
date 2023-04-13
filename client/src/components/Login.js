@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../css/Login.css";
-import logo from "../images/copdeck_logo.png";
+import "../assets/css/Login.css";
+import logo from "../assets/images/copdeck_logo.png";
 import {useNavigate} from "react-router-dom";
 
 
@@ -27,6 +27,7 @@ export default function Login() {
       const data = await response.json();
       setToken(data.token);
       setError("");
+      localStorage.setItem('user',username );
       navigate('/home');
     } else {
       setError('Invalid credentials');
@@ -42,7 +43,6 @@ export default function Login() {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data.message);
     } else {
       setError('Authentication failed');
     }

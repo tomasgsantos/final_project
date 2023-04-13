@@ -1,0 +1,17 @@
+.main-content{
+  display: grid;
+  gap: 50px;
+}
+.line{
+  display: flex;
+  gap:400px
+  
+}
+.graph{
+  width: 200px;
+  background-color: white;
+  text-align: center;
+  align-self: center;
+  color: black;
+  padding: 100px 20px;
+}

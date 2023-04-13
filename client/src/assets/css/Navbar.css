@@ -1,0 +1,14 @@
+.navbar{
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.nav-icon{
+  margin-top: 20px;
+  padding: 18px;
+  height: 35px;
+}
+.home-icon{
+  height: 50px;
+}

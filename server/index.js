@@ -28,7 +28,6 @@ app.listen(5001, () => {
 
 app.post('/api/login', async (req, res) => {
   const {username,password} = req.body;
-  console.log(req.body);
   const user = await pool.query('SELECT * FROM patient WHERE username = $1', [username]);
   if (user.rows.length === 0) {
     return res.status(401).json({
