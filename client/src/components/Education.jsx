@@ -1,10 +1,8 @@
 import React from 'react';
-import Navbar from './Navbar';
 
 export default function Education(){
   return(
-    <div className=''>
-      <Navbar className="navbar" />
+    <div className='page'>
       <h1>Education</h1>
     </div>
   )

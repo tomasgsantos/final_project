@@ -1,25 +1,28 @@
-import React from 'react';
-import './assets/css/App.css';
-import {Route, Routes} from "react-router-dom"
-import Login from './components/Login';
-import Homepage from './components/Homepage';
-import Register from './components/Register';
-import Vitals from './components/Vitals';
-import Education from './components/Education';
-
-
+import React from "react";
+import { ColorModeContext, useMode } from "./theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import "./assets/css/App.css";
+import { Route, Routes } from "react-router-dom";
+import Login from "./components/Login.jsx";
+import Homepage from "./Homepage/Homepage.jsx";
+import Register from "./components/Register.jsx";
 
 function App() {
+  const [theme, colorMode] = useMode();
+
   return (
-    <div className="app">
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Homepage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/vitals" element={<Vitals />} />
-        <Route path="/education" element={<Education />} />
-      </Routes>
-    </div>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="app">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Homepage />}/>
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </div>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 

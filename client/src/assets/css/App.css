@@ -1,7 +1,17 @@
 .page{
   display: flex;
-  gap: 100px;
 }
 .red{
   color:red
+}
+.homepage-content{
+  padding:50px
+}
+.login-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 75vh;
+  gap: 10px;
+
 }
