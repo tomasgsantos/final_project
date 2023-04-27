@@ -17,6 +17,9 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import ViewListIcon from '@mui/icons-material/ViewList';
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -134,15 +137,22 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Test Results"
-              to="/vitals"
+              to="/home/records"
               icon={<MonitorHeartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Medical Records"
-              to="/records"
+              to="/home/vitals"
               icon={<FolderOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Your Charts"
+              to="/home/bar"
+              icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -155,37 +165,51 @@ const Sidebar = () => {
               Pages
             </Typography>
             <Item
+              title="Patients Data"
+              to="/home/patients"
+              icon={<ViewListIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
               title="Education"
-              to="/education"
+              to="/home/education"
               icon={<SchoolOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Messages"
-              to="/messages"
+              to="/home/messages"
               icon={<EmailOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Emergency"
-              to="/emergency"
-              icon={<LocalHospitalOutlinedIcon sx={{color:"red"}}/>}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Your Charts"
-              to="/charts"
-              icon={<TimelineOutlinedIcon />}
+              to="/home/emergency"
+              icon={<LocalHospitalOutlinedIcon sx={{ color: "red" }} />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="FAQ"
-              to="/faq"
+              to="/home/faq"
               icon={<HelpOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Contacts"
+              to="/home/contacts"
+              icon={<AlternateEmailIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Form"
+              to="/home/form"
+              icon={<FormatAlignLeftIcon />}
               selected={selected}
               setSelected={setSelected}
             />

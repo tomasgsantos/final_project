@@ -2,11 +2,23 @@
 
 ### Done tasks
 
+[x]Main setup
+[x]Login
+[x]Nav
+[x]Data Tables
+
+
+
 
 ### Working on it
-[]Login
+
 []Register
+[]Homepage
+[]Bar Charts
+
 
 #### Todo list
 
-[]Rest of the stuff
+[]Main data display widgets
+[]Bd
+[]CRUD Routes

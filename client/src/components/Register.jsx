@@ -41,98 +41,86 @@ export default function Register(){
     navigate('/home');
   }
 }
-  return(
-    <form className='register-form'>
-      <h1>Register</h1>
-       < input
-       className='text-input'
-       type ='text'
-       placeholder='First Name'
-       name = 'firstName'
-       value={firstName}
-       onChange = {
-         (e) => setFirstName(e.target.value)
-       }
-       />
-       < input
-       className='text-input'
-       type ='text'
-       placeholder='Last Name'
-       name = 'lastName'
-       value={lastName}
-       onChange = {
-         (e) => setLastName(e.target.value)
-       }/>
-       <input
-       className='text-input'
-       type ='text'
-       placeholder='Email'
-       name = 'email'
-       value={email}
-       onChange = {
-         (e) => setEmail(e.target.value)
-       }/>
-       < input
-       className='text-input'
-       type ='date'
-       placeholder='Date of Birth'
-       name = 'dateOfBirth'
-       value={dateOfBirth}
-       onChange = {
-         (e) => setDateOfBirth(e.target.value)
-       }/>
-       < input
-       className='text-input'
-       type ='text'
-       placeholder='Gender'  
-       name = 'gender'
-       value={gender}
-       onChange = {
-         (e) => setGender(e.target.value)
-       }/>
-       <input
-       className='text-input'
-       type ='text'
-       placeholder='Address'
-       name = 'address'
-       value={address}
-       onChange = {
-         (e) => setAddress(e.target.value)
-       }/>
-       <input
-       className='text-input'
-       type ='text'
-       placeholder='Phone Number'
-       name = 'phoneNumber'
-       value={phoneNumber}
-       onChange = {
-         (e) => setPhoneNumber(e.target.value)
-       }/>
-       < input
-       className = "text-input"
-       type = "text"
-       placeholder = "Username"
-       name = "username"
-       value = {
-         username
-       }
-       onChange = {
-         (e) => setUsername(e.target.value)
-       }
-       />
-       <input
-       className = "text-input"
-       type = "password"
-       placeholder = "Password"
-       name = "password"
-       value = {
-         password
-       }
-       onChange = {
-         (e) => setPassword(e.target.value)
-       }
-       />
-       <button className='register-button' onClick = {handleRegister}>Register</button>
-    </form>
-  )
+  return (
+    <div className="register-page">
+      <form className="register-form">
+        <h1>Register</h1>
+        <input
+          className="text-input"
+          type="text"
+          placeholder="First Name"
+          name="firstName"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Last Name"
+          name="lastName"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          className="text-input"
+          type="date"
+          placeholder="Date of Birth"
+          name="dateOfBirth"
+          value={dateOfBirth}
+          onChange={(e) => setDateOfBirth(e.target.value)}
+        />
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Gender"
+          name="gender"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+        />
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Address"
+          name="address"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Phone Number"
+          name="phoneNumber"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Username"
+          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="text-input"
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="register-button" onClick={handleRegister}>
+          Register
+        </button>
+      </form>
+    </div>
+  );
 }

@@ -12,11 +12,10 @@ export default function Dashboard(){
   };
 
   return (
-    <>
-      <Header title={"DASHBOARD"} subtitle={"welcome to your dashboard"} />
+    <div>
+      <Header title={"Dashboard"} subtitle={"welcome to your dashboard"} />
       <h1>Homepage</h1>
       <button onClick={handleLogout}>Logout</button>
-      {/* <MainContent /> Render the main content */}
-    </>
+    </div>
   );
 }

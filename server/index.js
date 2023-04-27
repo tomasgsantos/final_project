@@ -34,8 +34,6 @@ app.post('/api/login', async (req, res) => {
       message: 'Invalid credentials'
     });
   }
-  console.log(user.rows[0].password);
-  console.log(password);
   const isValidPassword = await bcrypt.compare(password, user.rows[0].password);
 
   if (!isValidPassword) {

@@ -2,8 +2,14 @@
   display: flex ;
   flex-direction: column;
   align-items: center;
+  align-content: center;
   gap: 20px;
 }
 .text-input{
   width: 200px;
+}
+.register-page{
+  display:flex;
+  text-align: center;
+  margin-left: 40vw;
 }
