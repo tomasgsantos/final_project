@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import '../assets/css/Register.css';
+import {Button} from '@mui/material';
 
 
 export default function Register(){
@@ -44,7 +45,7 @@ export default function Register(){
   return (
     <div className="register-page">
       <form className="register-form">
-        <h1>Register</h1>
+        <h1 className="title">Register</h1>
         <input
           className="text-input"
           type="text"
@@ -70,7 +71,7 @@ export default function Register(){
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          className="text-input"
+          className="date-input"
           type="date"
           placeholder="Date of Birth"
           name="dateOfBirth"
@@ -117,9 +118,20 @@ export default function Register(){
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="register-button" onClick={handleRegister}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleRegister}
+        >
           Register
-        </button>
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => navigate("/")}
+        >
+          Back to Login
+        </Button>
       </form>
     </div>
   );

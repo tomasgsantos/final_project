@@ -11,7 +11,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 75vh;
+  justify-content: center;
+  width: 100%;
   gap: 10px;
+
+}
+
+.chart-box{
+  background-color: white;
+  border: 1px solid var(--gray-20);
+  border-radius: 7px;
+  padding: 10px
+}
+.dashboard-box{
+  max-width: 500px;
+  display: flex;
+  gap: 50px;
+  padding: 10px;
 
 }

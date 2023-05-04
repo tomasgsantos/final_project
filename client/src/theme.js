@@ -156,7 +156,7 @@ export const themeSettings = (mode) =>{
           main:colors.primary[500],
         },
         secondary:{
-          main:colors.green[500],
+          main:colors.primary[100],
         },
         neutral:{
           dark:colors.grey[700],
@@ -168,10 +168,10 @@ export const themeSettings = (mode) =>{
         }
       }:{
         primary: {
-          main:colors.primary[100],
+          main:colors.primary[500],
         },
         secondary:{
-          main:colors.primary[500],
+          main:colors.primary[300],
         },
         neutral:{
           dark:colors.grey[700],

@@ -12,6 +12,7 @@ import Contacts from "../scenes/Contacts";
 import Form from "../scenes/form";
 import FAQ from "../scenes/faq";
 import Bar from "../scenes/bar";
+import Profile from "../scenes/profile";
 
 export default function Homepage() {
   return (
@@ -29,6 +30,7 @@ export default function Homepage() {
           <Route path="/faq" element={<FAQ />}/>
           <Route path="/bar" element={<Bar />}/>
           <Route path="/form" element={<Form />}/>
+          <Route path="/profile" element={<Profile />}/>
         </Routes>
       </main>
     </div>

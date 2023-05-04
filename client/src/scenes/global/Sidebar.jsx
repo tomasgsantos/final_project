@@ -3,9 +3,10 @@ import "../../assets/css/Sidebar.css";
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
+import { useNavigate } from "react-router-dom";
 import Home from "../../assets/images/copdeck_logo.png"
 import profileLogo from "../../assets/images/profile.jpeg"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -20,10 +21,21 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
+import { logout } from "../../AuthService";
+
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const dbPort = 'http://localhost:5001';
+  let name =""
+
+  async function getName(){
+    const name = localStorage.getItem("user");
+    await fetch(`${dbPort}/api/patient/${name}`)
+    .then((response) => response.json())
+    .then((data) => name = data.username);
+  }
 
   return (
     <MenuItem
@@ -42,10 +54,15 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <Box
@@ -97,6 +114,9 @@ const Sidebar = () => {
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
+                  onClick={() => {
+                    navigate("/home/profile");
+                  }}
                   alt="profile-user"
                   width="100px"
                   height="100px"
@@ -119,7 +139,10 @@ const Sidebar = () => {
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box
+            className="nav-menu"
+            paddingLeft={isCollapsed ? undefined : "10%"}
+          >
             <Item
               title="Dashboard"
               to="/home"
@@ -213,6 +236,14 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{mt: 4, mr: 7}}
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
           </Box>
         </Menu>
       </ProSidebar>

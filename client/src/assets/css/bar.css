@@ -1,0 +1,8 @@
+.chart-box{
+  display: flex;
+  margin-bottom: 40px;
+  width: 1000px;
+}
+.content-box{
+  padding : 50px
+}

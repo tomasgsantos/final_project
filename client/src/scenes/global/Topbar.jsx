@@ -9,8 +9,10 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import { useNavigate } from 'react-router-dom';
 
 const Topbar = ()=>{
+  const navigate = useNavigate();
   const theme = useTheme()
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
@@ -45,10 +47,10 @@ const Topbar = ()=>{
           )}
         </IconButton>
         <IconButton>
-          <SettingsOutlinedIcon type="button"/>
+          <SettingsOutlinedIcon type="button" />
         </IconButton>
         <IconButton>
-            <PersonOutlineOutlinedIcon type="button" />
+          <PersonOutlineOutlinedIcon onClick={()=>{navigate("/home/profile")}}type="button" />
         </IconButton>
         <Box display="flex" sx={{ flexDirection: "column", maxHeight: 40 }}>
           <p className="topbar-text">name last_name</p>

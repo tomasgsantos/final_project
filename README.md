@@ -6,19 +6,25 @@
 [x]Login
 [x]Nav
 [x]Data Tables
+[x]Charts
+[x]Register
+[x]FAQ Section
+
 
 
 
 
 ### Working on it
-
-[]Register
 []Homepage
-[]Bar Charts
+[]Bd
+[]Profile Editor
+[]New CRUD Routes
+
+
+
 
 
 #### Todo list
 
 []Main data display widgets
-[]Bd
-[]CRUD Routes
+

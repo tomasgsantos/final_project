@@ -3,6 +3,7 @@ import "../assets/css/Login.css";
 import logo from "../assets/images/copdeck_logo.png";
 import { useNavigate } from "react-router-dom";
 import { login } from "../AuthService";
+import { Button } from "@mui/material";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -16,6 +17,7 @@ export default function Login() {
     try {
       await login(username, password);
       setError("");
+      localStorage.setItem("user", username)
       navigate("/home");
     } catch (err) {
       setError("Invalid credentials");
@@ -37,37 +39,55 @@ export default function Login() {
   };
 
   return (
-    <div className="login-form">
+    <div className="register-page">
       <img className="logo" src={logo} alt="logo" />
-      <h1 className="h1">Login</h1>
-      <input
-        className="text-input"
-        type="text"
-        placeholder="Username"
-        name="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        className="text-input"
-        type="password"
-        placeholder="Password"
-        name="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button className="login-button" onClick={handleLogin}>
-        Login
-      </button>
-      <button className="register-button" onClick={() => navigate("/register")}>
-        Register
-      </button>
+      <form className="register-form">
+        <h1 className="login-title">Login</h1>
+        <label htmlFor="username" className="login-label">
+          Username
+        </label>
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Username"
+          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <label htmlFor="password" className="login-label">
+          Password
+        </label>
+        <input
+          className="text-input"
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          className="login-B"
+          onClick={handleLogin}
+        >
+          Login
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          className="registBr-button"
+          onClick={() => navigate("/register")}
+        >
+          Register
+        </Button>
 
-      {token && (
-        <button onClick={handleProtectedRoute}>Access protected route</button>
-      )}
+        {token && (
+          <button onClick={handleProtectedRoute}>Access protected route</button>
+        )}
 
-      {error && <p className="error">{error}</p>}
+        {error && <p className="error">{error}</p>}
+      </form>
     </div>
   );
 }
