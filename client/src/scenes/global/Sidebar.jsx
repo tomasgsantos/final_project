@@ -28,7 +28,6 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const dbPort = 'http://localhost:5001';
-  let name =""
 
   async function getName(){
     const name = localStorage.getItem("user");

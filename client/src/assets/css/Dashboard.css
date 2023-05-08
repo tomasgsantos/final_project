@@ -1,0 +1,13 @@
+@import "vars.css";
+
+
+.dashboard-box{
+  max-width: 500px;
+  display: flex;
+  gap: 50px;
+  padding: 10px;
+  margin-top: 50px;
+} 
+
+
+

@@ -6,3 +6,22 @@
 .content-box{
   padding : 50px
 }
+.learn-more{
+  display: flex;
+  text-align: center;
+  justify-content: center;;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 7rem;
+}
+.learn-text{
+  padding: 10px;
+  
+}
+.widgets{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 100px;
+  margin: auto;
+}
