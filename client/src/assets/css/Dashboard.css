@@ -1,13 +1,25 @@
 @import "vars.css";
 
-
-.dashboard-box{
-  max-width: 500px;
+.dashboard-row{
   display: flex;
+  gap: 40px;
+}
+.dashboard-box{
+  background-color: var(--body-background-color-20);
+  border-radius: 8px;
+  display: flex;
+  width: 520px;
   gap: 50px;
   padding: 10px;
   margin-top: 50px;
 } 
+.widgets{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 100px;
+  margin: auto;
+}
 
 
 

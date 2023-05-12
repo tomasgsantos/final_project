@@ -7,6 +7,8 @@
   --gray-40: hsl(0, 0%, 35%);
   --gray-50: hsl(0, 0%, 25%);
   --body-background-color: #382E4B;
+  --body-background-color-20: #60586f;
+  --body-background-color-30: #888293;
   --green-20: #74b676; 
 
   --input-border: 1px solid var(var(--gray-20));

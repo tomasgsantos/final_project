@@ -101,7 +101,7 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <img src={Home} alt="Home_logo" height="70px" />
+                <img src={Home} alt="Home_logo" width="95px" height="70px" />
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>

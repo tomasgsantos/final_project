@@ -1,7 +1,13 @@
+@import "vars.css";
+
 .chart-box{
   display: flex;
   margin-bottom: 40px;
   width: 1000px;
+  background-color: var(--body-background-color-30);
+  border: 1px solid var(--gray-20);
+  border-radius: 7px;
+  padding: 10px
 }
 .content-box{
   padding : 50px

@@ -10,6 +10,7 @@ import LineChart from '../../components/LineChart';
 import "../../assets/css/Dashboard.css";
 import ValueWidget from '../../components/ValueWidget';
 
+
 export default function Dashboard(){
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -37,21 +38,27 @@ export default function Dashboard(){
   return (
     <div>
       <Header title={"Dashboard"} subtitle={"welcome to your dashboard"} />
-      <ValueWidget name="Wellness Value" value="90" />
+      <div className="widgets">
+        <ValueWidget name="Wellness Value" value="90" />
+      </div>
       <Typography className="dashboard-typography" variant="h4" color="white">
         Your Charts
       </Typography>
+      <Box className="dashboard-row">
       <Box className="dashboard-box">
         <BarChart
           className="dasboard-content"
           chartData={userData}
           onClick={handleBarClick}
         />
+      </Box>
+      <Box className="dashboard-box">
         <LineChart
           className="dashboard-content"
           chartData={userData}
           onClick={handleBarClick}
         />
+      </Box>
       </Box>
     </div>
   );

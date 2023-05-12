@@ -54,7 +54,7 @@ export default function Bar() {
       </div>
       <div className="widgets">
         <ValueWidget name="Wellness Value" value="90" />
-        <ValueWidget name="PaCo2" value="72" />
+        <ValueWidget name="PaCO2" value="72" />
         <ValueWidget name="PaO2" value="60" />
         <ValueWidget name="Test result" value="46" />
       </div>
