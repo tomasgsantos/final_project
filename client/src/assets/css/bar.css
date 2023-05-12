@@ -1,8 +1,33 @@
+@import "vars.css";
+
 .chart-box{
   display: flex;
   margin-bottom: 40px;
   width: 1000px;
+  background-color: var(--body-background-color-30);
+  border: 1px solid var(--gray-20);
+  border-radius: 7px;
+  padding: 10px
 }
 .content-box{
   padding : 50px
+}
+.learn-more{
+  display: flex;
+  text-align: center;
+  justify-content: center;;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 7rem;
+}
+.learn-text{
+  padding: 10px;
+  
+}
+.widgets{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 100px;
+  margin: auto;
 }

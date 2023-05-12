@@ -28,7 +28,6 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const dbPort = 'http://localhost:5001';
-  let name =""
 
   async function getName(){
     const name = localStorage.getItem("user");
@@ -102,7 +101,7 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <img src={Home} alt="Home_logo" height="70px" />
+                <img src={Home} alt="Home_logo" width="95px" height="70px" />
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
