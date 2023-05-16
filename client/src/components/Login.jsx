@@ -16,7 +16,6 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       await login(username, password);
-      setError("");
       localStorage.setItem("user", username)
       navigate("/home");
     } catch (err) {

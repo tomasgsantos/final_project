@@ -19,6 +19,12 @@
   justify-content: center;
   gap: 100px;
   margin: auto;
+  background-color: var(--body-background-color-20);
+  border-radius: 16px;
+  margin-bottom: 50px;
+}
+.dashboard-typography{
+  margin-top: 50px;
 }
 
 
