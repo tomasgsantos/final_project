@@ -1,6 +1,12 @@
 :root{
 
   --main-color: #50097a;
+  --main-color-10: #dccee4;
+  --main-color-20: #b99dca;
+  --main-color-30: #966baf;
+  --main-color-60: #400762;
+  --main-color-70: #300549;
+  --main-color-80: #200431;
   --gray-10: #f5f5f5;
   --gray-20: hsl(0, 0%, 75%);
   --gray-30: hsl(0, 0%, 55%);
