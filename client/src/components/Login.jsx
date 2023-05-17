@@ -2,38 +2,22 @@ import React, { useState } from "react";
 import "../assets/css/Login.css";
 import logo from "../assets/images/copdeck_logo.png";
 import { useNavigate } from "react-router-dom";
-import { login } from "../AuthService";
+import { login, getUserData } from "../AuthService";
 import { Button } from "@mui/material";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
   const [error, setError] = useState("");
-  const dbPort = "http://localhost:5001";
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       await login(username, password);
-      localStorage.setItem("user", username)
+      setError("");
       navigate("/home");
     } catch (err) {
       setError("Invalid credentials");
-    }
-  };
-
-  const handleProtectedRoute = async () => {
-    const response = await fetch(`${dbPort}/api/protected`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-    } else {
-      setError("Authentication failed");
     }
   };
 
@@ -80,11 +64,6 @@ export default function Login() {
         >
           Register
         </Button>
-
-        {token && (
-          <button onClick={handleProtectedRoute}>Access protected route</button>
-        )}
-
         {error && <p className="error">{error}</p>}
       </form>
     </div>

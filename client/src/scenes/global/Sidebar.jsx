@@ -3,7 +3,7 @@ import "../../assets/css/Sidebar.css";
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Button, IconButton, Typography, capitalize, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +52,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 };
 
 
-const Sidebar = () => {
+const Sidebar = ({userData}) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -125,14 +125,14 @@ const Sidebar = () => {
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h3"
+                  variant="h4"
                   color={colors.grey[100]}
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  {userData && userData.firstName + " " + userData.lastName}
                 </Typography>
                 <Typography variant="h6" color={colors.green[300]}>
-                  VP Fancy Admin
+                  {userData && capitalize(userData.role)}
                 </Typography>
               </Box>
             </Box>
@@ -238,7 +238,7 @@ const Sidebar = () => {
             <Button
               variant="contained"
               color="secondary"
-              sx={{mt: 4, mr: 7}}
+              sx={{ mt: 4, mr: 7 }}
               onClick={handleLogout}
             >
               Logout

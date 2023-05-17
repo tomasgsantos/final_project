@@ -5,181 +5,120 @@ const pool = require("./db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-// Test the database connection
-pool.query("SELECT NOW()", (err, res) => {
-  if (err) {
-    console.error("Error connecting to the database", err.stack);
-  } else {
-    console.log("Successfully connected to the database:", res.rows[0].now);
-  }
-});
-
-//Midleware
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Start the Express server
-app.listen(5001, () => {
-  console.log("Server is running on port 5001");
+// Routes
+app.post("/api/register", async (req, res) => {
+  try {
+    const { name, email, username, password } = req.body;
+
+    // Check if username or email already exists
+    const existingUser = await pool.query(
+      "SELECT * FROM patient WHERE username = $1 OR email = $2",
+      [username, email]
+    );
+
+    if (existingUser.rows.length > 0) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    // Hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    // Insert the new user into the database
+    const newUser = await pool.query(
+      "INSERT INTO patient (name, email, username, password) VALUES ($1, $2, $3, $4) RETURNING *",
+      [name, email, username, hashedPassword]
+    );
+
+    res.json(newUser.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server Error" });
+  }
 });
 
 app.post("/api/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await pool.query("SELECT * FROM patient WHERE username = $1", [
-    username,
-  ]);
-  if (user.rows.length === 0) {
-    return res.status(401).json({
-      message: "Invalid credentials",
-    });
-  }
-  const isValidPassword = await bcrypt.compare(password, user.rows[0].password);
-
-  if (!isValidPassword) {
-    return res.status(401).json({
-      message: "Invalid credentials",
-    });
-  }
-
-  const token = jwt.sign(
-    {
-      userId: user.rows[0].id,
-    },
-    "secretkey",
-    {
-      expiresIn: "1h",
-    }
-  );
-
-  res.json({
-    token,
-  });
-});
-
-// Middleware to protect routes that require authentication
-const authenticateUser = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) {
-    return res.status(401).json({
-      message: "Authorization header missing",
-    });
-  }
-
-  const token = authHeader.split(" ")[1];
-
   try {
-    const decodedToken = jwt.verify(token, "secretkey");
-    req.userId = decodedToken.userId;
-    next();
-  } catch (err) {
-    return res.status(401).json({
-      message: "Invalid or expired token",
-    });
-  }
-};
+    const { username, password } = req.body;
 
-app.get("/api/protected", authenticateUser, (req, res) => {
-  res.json({
-    message: "This is a protected route",
-  });
-});
-
-// GET all patients
-app.get("/api/patient", async (req, res) => {
-  try {
-    const patient = await pool.query("SELECT * FROM patient");
-    res.json(patient.rows);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-//Get one patient by id
-app.get("/api/patient/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const patient = await pool.query("SELECT * FROM patient WHERE id = $1", [
-      id,
+    // Check if the user exists
+    const user = await pool.query("SELECT * FROM patient WHERE username = $1", [
+      username,
     ]);
-    res.json(patient.rows[0]);
+
+    if (user.rows.length === 0) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    // Check if the password is correct
+    const isValidPassword = await bcrypt.compare(
+      password,
+      user.rows[0].password
+    );
+
+    if (!isValidPassword) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    // Generate a JWT token
+    const token = jwt.sign(
+      {
+        userId: user.rows[0].id,
+      },
+      "secretkey",
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    res.json({ token });
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
-//Get one patient by username
-app.get("/api/patient/:username", async (req, res) => {
-  const { username } = req.body;
+app.get("/api/userData", authenticateUser, async (req, res) => {
   try {
-    const patient = await pool.query(
-      "SELECT * FROM patient WHERE username = $1",
-      [username]
+    const userId = req.userId;
+
+    // Retrieve user data from the database
+    const user = await pool.query(
+      "SELECT first_name, last_name, date_of_birth, email, phone_number, address, username, role FROM patient WHERE id = $1",
+      [userId]
     );
+
+    res.json(user.rows[0]);
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
-//Insert a patient
-app.post("/api/patient", async (req, res) => {
-  try {
-    // Hash the password
-    const saltRounds = 10;
+// Middleware to authenticate the user
+function authenticateUser(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
 
-    const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
-
-    const patient = await pool.query(
-      "INSERT INTO patient (first_name, last_name, date_of_birth, email, phone_number, address, doctor_id, gender, username, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
-      [
-        req.body.firstName,
-        req.body.lastName,
-        req.body.dateOfBirth,
-        req.body.email,
-        req.body.phoneNumber,
-        req.body.address,
-        req.body.doctor_id,
-        req.body.gender,
-        req.body.username,
-        hashedPassword,
-      ]
-    );
-    res.json(patient.rows);
-  } catch (error) {
-    console.error(error.message);
+  if (token == null) {
+    return res.sendStatus(401);
   }
-});
 
-//Update a patient
-app.put("/api/patient/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const patient = await pool.query(
-      "UPDATE patient SET first_name = $1, last_name = $2, date_of_birth = $3, email = $4, phone_number = $5, address = $6, doctor_id = $7, gender = $8 WHERE id = $9",
-      [
-        req.body.first_name,
-        req.body.last_name,
-        req.body.date_of_birth,
-        req.body.email,
-        req.body.phone_number,
-        req.body.address,
-        req.body.doctor_id,
-        req.body.gender,
-        id,
-      ]
-    );
-    res.json("patient updated");
-  } catch (error) {
-    console.error(error.message);
-  }
-});
+  jwt.verify(token, "secretkey", (err, user) => {
+    if (err) {
+      return res.sendStatus(403);
+    }
 
-//Delete a patient
-app.delete("/api/patient/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const patient = await pool.query("DELETE FROM patient WHERE id = $1", [id]);
-    res.json("patient deleted");
-  } catch (error) {
-    console.error(error.message);
-  }
+    req.userId = user.userId;
+    next();
+  });
+}
+
+// Start the server
+app.listen(5001, () => {
+  console.log("Server listening on port 5001");
 });

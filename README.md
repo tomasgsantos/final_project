@@ -19,6 +19,7 @@
 []Bd
 []Profile Editor
 []New CRUD Routes
+[]Main data display widgets
 
 
 
@@ -26,5 +27,5 @@
 
 #### Todo list
 
-[]Main data display widgets
+
 

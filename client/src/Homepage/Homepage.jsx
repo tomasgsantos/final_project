@@ -1,9 +1,8 @@
-import React from "react";
-import "../assets/css/Homepage.css";
-import Dashboard from "../scenes/Dashboard";
-import Topbar from "../scenes/global/Topbar";
-import Sidebar from "../scenes/global/Sidebar";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { getUserData } from "../AuthService";
+import { convertUser } from "../userConverter";
+import Dashboard from "../scenes/Dashboard";
 import Vitals from "../scenes/Vitals";
 import Records from "../scenes/Records";
 import Education from "../scenes/Education";
@@ -13,24 +12,42 @@ import Form from "../scenes/form";
 import FAQ from "../scenes/faq";
 import Bar from "../scenes/bar";
 import Profile from "../scenes/profile";
+import Sidebar from "../scenes/global/Sidebar";
+import Topbar from "../scenes/global/Topbar";
 
 export default function Homepage() {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getUserData();
+        const convertedData = convertUser(data);
+        setUserData(convertedData);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="app">
-      <Sidebar />
+      <Sidebar userData={userData} />
       <main className="content">
-        <Topbar />
+        <Topbar userData={userData} />
         <Routes>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Dashboard userData={userData} />} />
           <Route path="/vitals" element={<Vitals />} />
           <Route path="/records" element={<Records />} />
           <Route path="/education" element={<Education />} />
           <Route path="/patients" element={<PatientData />} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route path="/faq" element={<FAQ />}/>
-          <Route path="/bar" element={<Bar />}/>
-          <Route path="/form" element={<Form />}/>
-          <Route path="/profile" element={<Profile />}/>
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/bar" element={<Bar />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
     </div>
