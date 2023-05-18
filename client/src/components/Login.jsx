@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../assets/css/Register.css";
 import "../assets/css/Login.css";
 import logo from "../assets/images/copdeck_logo.png";
 import { useNavigate } from "react-router-dom";
@@ -6,14 +7,14 @@ import { login, getUserData } from "../AuthService";
 import { Button } from "@mui/material";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      await login(username, password);
+      await login(email, password);
       setError("");
       navigate("/home");
     } catch (err) {
@@ -23,19 +24,19 @@ export default function Login() {
 
   return (
     <div className="register-page">
-      <img className="logo" src={logo} alt="logo" />
+      <img className="logo" src={logo} alt="logo" width={300}/>
       <form className="register-form">
         <h1 className="login-title">Login</h1>
-        <label htmlFor="username" className="login-label">
-          Username
+        <label htmlFor="email" className="login-label">
+          E-mail
         </label>
         <input
           className="text-input"
           type="text"
-          placeholder="Username"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="e-mail"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor="password" className="login-label">
           Password
@@ -64,7 +65,7 @@ export default function Login() {
         >
           Register
         </Button>
-        {error && <p className="error">{error}</p>}
+        {error && <p className="error" sx={{color: "black"}}>{error}</p>}
       </form>
     </div>
   );

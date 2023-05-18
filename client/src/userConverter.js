@@ -1,26 +1,44 @@
-// userConverter.js
 export const convertUser = (data) => {
   if (!data) return null;
 
   const {
-    first_name,
-    last_name,
-    date_of_birth,
     email,
-    phone_number,
-    address,
-    username,
-    role,
+    password,
+    name,
+    date_birth_mmddaaaa,
+    copd_severity,
+    heightincm,
+    weightinkg,
   } = data;
 
   return {
-    firstName: first_name,
-    lastName: last_name,
-    dateOfBirth: new Date(date_of_birth),
     email,
-    phoneNumber: phone_number,
-    address,
-    username,
-    role,
+    password,
+    name,
+    dateOfBirth: new Date(date_birth_mmddaaaa),
+    copdSeverity: copd_severity,
+    heightInCm: heightincm,
+    weightInKg: weightinkg,
   };
+};
+
+export const convertRecords = (data) =>{
+  if(!data) return null;
+
+  const {
+    paco2, 
+    pao2,
+    respiratory_freq,
+    temperature,
+    timestamp,
+
+  } = data;
+
+  return {
+    paco2 : paco2,
+    pao2 : pao2,
+    temperature : temperature,
+    respiratory_freq : respiratory_freq,
+    timestamp : timestamp,
+  }
 };

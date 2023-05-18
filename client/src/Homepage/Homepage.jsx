@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { getUserData } from "../AuthService";
-import { convertUser } from "../userConverter";
+import { getUserData, getRecords } from "../AuthService";
+import { convertUser, convertRecords } from "../userConverter";
 import Dashboard from "../scenes/Dashboard";
 import Vitals from "../scenes/Vitals";
 import Records from "../scenes/Records";
@@ -17,6 +17,7 @@ import Topbar from "../scenes/global/Topbar";
 
 export default function Homepage() {
   const [userData, setUserData] = useState(null);
+  const [userRecords, setUserRecords] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,9 +28,21 @@ export default function Homepage() {
       } catch (error) {
         console.error(error.message);
       }
-    };
+    }
+    const fetchRecords = async () =>{
+      try{
+        const data = await getRecords();
+        console.log("Records data: " + JSON.stringify(data));
+        const convertedRecords = convertRecords(data);
+        console.log("Converted records: " + convertedRecords)
+        setUserRecords(convertedRecords);
+      }catch (error){
+        console.error(error.message);
+      }
+    }
 
     fetchData();
+    fetchRecords();
   }, []);
 
   return (
@@ -45,7 +58,7 @@ export default function Homepage() {
           <Route path="/patients" element={<PatientData />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/bar" element={<Bar />} />
+          <Route path="/bar" element={<Bar userRecords={userRecords} />} />
           <Route path="/form" element={<Form />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>

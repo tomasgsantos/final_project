@@ -29,13 +29,6 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   const colors = tokens(theme.palette.mode);
   const dbPort = 'http://localhost:5001';
 
-  async function getName(){
-    const name = localStorage.getItem("user");
-    await fetch(`${dbPort}/api/patient/${name}`)
-    .then((response) => response.json())
-    .then((data) => name = data.username);
-  }
-
   return (
     <MenuItem
       active={selected === title}
@@ -129,10 +122,10 @@ const Sidebar = ({userData}) => {
                   color={colors.grey[100]}
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  {userData && userData.firstName + " " + userData.lastName}
+                  {userData && userData.name}
                 </Typography>
                 <Typography variant="h6" color={colors.green[300]}>
-                  {userData && capitalize(userData.role)}
+                  Admin
                 </Typography>
               </Box>
             </Box>
