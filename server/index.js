@@ -12,12 +12,21 @@ app.use(express.json());
 // Routes
 app.post("/api/register", async (req, res) => {
   try {
-    const { name, email, username, password } = req.body;
+    const {
+      email,
+      password,
+      salt,
+      name,
+      dateOfBirth,
+      copdSeverity,
+      heightInCm,
+      weightInKg,
+    } = req.body;
 
-    // Check if username or email already exists
+    // Check if email already exists
     const existingUser = await pool.query(
-      "SELECT * FROM patient WHERE username = $1 OR email = $2",
-      [username, email]
+      "SELECT * FROM patient WHERE email = $1",
+      [email]
     );
 
     if (existingUser.rows.length > 0) {
@@ -30,24 +39,44 @@ app.post("/api/register", async (req, res) => {
 
     // Insert the new user into the database
     const newUser = await pool.query(
-      "INSERT INTO patient (name, email, username, password) VALUES ($1, $2, $3, $4) RETURNING *",
-      [name, email, username, hashedPassword]
+      "INSERT INTO patient (email, password, salt, name, date_birth_mmddaaaa, copd_severity, heightincm, weightinkg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+      [
+        email,
+        hashedPassword,
+        salt,
+        name,
+        dateOfBirth,
+        copdSeverity,
+        heightInCm,
+        weightInKg,
+      ]
+    );
+    const token = jwt.sign(
+      {
+        userId: user.rows[0].id,
+      },
+      "secretkey",
+      {
+        expiresIn: "1h",
+      }
     );
 
+    res.json({ token });
     res.json(newUser.rows[0]);
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ message: "Server Error" });
   }
+
 });
 
 app.post("/api/login", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     // Check if the user exists
-    const user = await pool.query("SELECT * FROM patient WHERE username = $1", [
-      username,
+    const user = await pool.query("SELECT * FROM patient WHERE email = $1", [
+      email,
     ]);
 
     if (user.rows.length === 0) {
@@ -88,7 +117,7 @@ app.get("/api/userData", authenticateUser, async (req, res) => {
 
     // Retrieve user data from the database
     const user = await pool.query(
-      "SELECT first_name, last_name, date_of_birth, email, phone_number, address, username, role FROM patient WHERE id = $1",
+      "SELECT name, email, date_birth_mmddaaaa, copd_severity, heightincm, weightinkg FROM patient WHERE id = $1",
       [userId]
     );
 
@@ -98,6 +127,22 @@ app.get("/api/userData", authenticateUser, async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
+app.get("/api/records", authenticateUser, async (req, res) => {
+  try {
+    const userId = req.userId;
+
+    const records = await pool.query(
+      "SELECT paco2, pao2, respiratory_freq, temperature, timestamp FROM dailyrecords WHERE idpatient = $1 ORDER BY timestamp DESC",
+      [userId]
+    ); 
+
+    res.json(records.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 
 // Middleware to authenticate the user
 function authenticateUser(req, res, next) {

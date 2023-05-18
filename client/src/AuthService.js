@@ -1,11 +1,11 @@
-export const login = async (username, password) => {
+export const login = async (email, password) => {
   const response = await fetch("http://localhost:5001/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username: username,
+      email: email,
       password: password,
     }),
   });
@@ -33,9 +33,25 @@ export const getUserData = async () => {
   });
   if (response.ok) {
     const data = await response.json();
-    console.log("AuthService getUserData data:", data);
     return data;
   } else {
     throw new Error("Failed to fetch user data");
   }
 };
+
+export const getRecords = async ()=>{
+  const token = localStorage.getItem("token");
+  const response = await fetch("http://localhost:5001/api/records", {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+  console.log(response);
+  if(response.ok){
+    const data = await response.json();
+    console.log("AuthService getRecords : ", data);
+    return data;
+  }else{
+    throw new Error("Failed to fetch records");
+  }
+}

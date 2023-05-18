@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import Header from "../../components/Header";
 import BarChart from "../../components/BarChart";
@@ -12,10 +12,14 @@ import { useNavigate } from "react-router-dom";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import ValueWidget from "../../components/ValueWidget";
 
-export default function Bar() {
+export default function Bar({userRecords}) {
+  console.log("Bar userRecords: ", userRecords);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const [paco2, setPaco2] = useState(null);
+  const [pao2, setPao2] = useState(null);
+  const [respiratoryFreq, setRespiratoryFreq] = useState(null);
+  const [temperature, setTemperature] = useState(null);
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({
@@ -31,6 +35,15 @@ export default function Bar() {
       },
     ],
   });
+
+  useEffect(() => {
+    if(userRecords){
+    setPaco2(userRecords.paco2);
+    setPao2(userRecords.pao2);
+    setRespiratoryFreq(userRecords.respiratory_freq);
+    setTemperature(userRecords.temperature);
+    }
+  }, [userRecords]);
 
   return (
     <Box className="content-box">
@@ -54,9 +67,23 @@ export default function Bar() {
       </div>
       <div className="widgets">
         <ValueWidget name="Wellness Value" value="90" />
-        <ValueWidget name="PaCO2" value="72" />
-        <ValueWidget name="PaO2" value="60" />
-        <ValueWidget name="Test result" value="46" />
+        {paco2 ? (
+          <ValueWidget name="PaCO2" value={paco2} />
+        ) : (
+          <Typography>Loading PaCO2...</Typography>
+        )}
+
+        {pao2 ? (
+          <ValueWidget name="PaO2" value={pao2} />
+        ) : (
+          <Typography>Loading PaO2...</Typography>
+        )}
+
+        {temperature ? (
+          <ValueWidget name="Temperature" value={temperature} />
+        ) : (
+          <Typography>Loading Temperature...</Typography>
+        )}
       </div>
       <Box className="chart-box" height="75vh">
         <BarChart chartData={userData} />
