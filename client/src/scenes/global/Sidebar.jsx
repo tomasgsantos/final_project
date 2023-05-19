@@ -125,7 +125,7 @@ const Sidebar = ({userData}) => {
                   {userData && userData.name}
                 </Typography>
                 <Typography variant="h6" color={colors.green[300]}>
-                  Admin
+                  {userData && (capitalize(userData.role))}
                 </Typography>
               </Box>
             </Box>
