@@ -9,7 +9,6 @@ export const convertUser = (data) => {
     copd_severity,
     heightincm,
     weightinkg,
-    role,
   } = data;
 
   return {
@@ -20,7 +19,6 @@ export const convertUser = (data) => {
     copdSeverity: copd_severity,
     heightInCm: heightincm,
     weightInKg: weightinkg,
-    role,
   };
 };
 
