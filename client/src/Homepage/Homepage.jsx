@@ -19,7 +19,7 @@ export default function Homepage() {
   const [userData, setUserData] = useState(null);
   const [userRecords, setUserRecords] = useState(null);
 
-  useEffect(() => {
+  useEffect(() => { 
     const fetchData = async () => {
       try {
         const data = await getUserData();
