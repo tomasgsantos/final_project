@@ -28,11 +28,11 @@ code {
   width: 10px;
 }
 ::-webkit-scrollbar-track{
-  background: #e0e0e0;
+  background: #310057;
 }
 ::-webkit-scrollbar-thumb{
-  background:#81edfbb8;
+  background:#05001db8;
 }
 ::-webkit-scrollbar-thumb:hover{
-  background: #6a6868;
+  background: #653682;
 }

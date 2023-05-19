@@ -70,6 +70,40 @@ app.post("/api/register", async (req, res) => {
 
 });
 
+
+app.post("/api/updateProfile", authenticateUser, async (req, res) => {
+  try {
+    const userId = req.userId
+    const {
+      email,    
+      name,
+      dateOfBirth,
+      heightInCm,
+      weightInKg,
+    } = req.body;
+
+    // Perform the necessary operations to update the user's profile in the database
+    // Replace the SQL query and parameters with your own logic
+    const updatedUser = await pool.query(
+      "UPDATE patient SET email = $1, name = $2, date_birth_mmddaaaa = $3, heightincm = $4, weightinkg = $5 WHERE id = $6 RETURNING *",
+      [
+        email,
+        name,
+        dateOfBirth,
+        heightInCm,
+        weightInKg,
+        userId, // Assuming you have user authentication and the user ID is available in the request object
+      ]
+    );
+
+    // Return the updated user data
+    res.json(updatedUser.rows[0]);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 app.post("/api/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -117,7 +151,7 @@ app.get("/api/userData", authenticateUser, async (req, res) => {
 
     // Retrieve user data from the database
     const user = await pool.query(
-      "SELECT name, email, date_birth_mmddaaaa, copd_severity, heightincm, weightinkg FROM patient WHERE id = $1",
+      "SELECT name, email, date_birth_mmddaaaa, copd_severity, heightincm, weightinkg, role FROM patient WHERE id = $1",
       [userId]
     );
 

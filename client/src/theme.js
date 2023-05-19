@@ -178,6 +178,12 @@ export const themeSettings = (mode) =>{
           main:colors.grey[500],
           light:colors.grey[100]
         },
+        white:{
+          main: colors.grey[100]
+        },
+        black:{
+          main:colors.grey[900]
+        },
         background:{
           default:"#fcfcfc",
         },

@@ -25,6 +25,7 @@ export default function Homepage() {
         const data = await getUserData();
         const convertedData = convertUser(data);
         setUserData(convertedData);
+        console.log("userData : ",  userData)
       } catch (error) {
         console.error(error.message);
       }
@@ -55,12 +56,12 @@ export default function Homepage() {
           <Route path="/vitals" element={<Vitals />} />
           <Route path="/records" element={<Records />} />
           <Route path="/education" element={<Education />} />
-          <Route path="/patients" element={<PatientData />} />
+          {userData && (userData.role == "patient" ? null : <Route path="/patients" element={<PatientData />} />)}
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/bar" element={<Bar userRecords={userRecords} />} />
           <Route path="/form" element={<Form />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile userData={userData} />} />
         </Routes>
       </main>
     </div>

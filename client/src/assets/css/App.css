@@ -4,8 +4,8 @@
 .red{
   color:red
 }
-.homepage-content{
-  padding:50px
+.content{
+  padding:30px
 }
 .login-form{
   display: flex;

@@ -3,7 +3,7 @@ import "../assets/css/Register.css";
 import "../assets/css/Login.css";
 import logo from "../assets/images/copdeck_logo.png";
 import { useNavigate } from "react-router-dom";
-import { login, getUserData } from "../AuthService";
+import { login } from "../AuthService";
 import { Button } from "@mui/material";
 
 export default function Login() {

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/Register.css";
 import { Button } from "@mui/material";
+import { register } from "../AuthService";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -12,52 +13,18 @@ export default function Register() {
   const [copdSeverity, setCopdSeverity] = React.useState("");
   const [heightInCm, setHeightInCm] = React.useState("");
   const [weightInKg, setWeightInKg] = React.useState("");
-  const dbPort = "http://localhost:5001";
+  
+  const [error, setError] = useState("");
     
 
-  function handleRegister() {
-    const crypto = require("crypto");
-
-    // Generate a random salt value
-    const generateSalt = () => {
-      return crypto.randomBytes(16).toString("hex");
-    };
-
-    // Example usage
-    const salt = generateSalt();
-    if (
-      email.length === 0 ||
-      password.length === 0 ||
-      name.length === 0 ||
-      dateOfBirth.length === 0 ||
-      copdSeverity.length === 0 ||
-      heightInCm.length === 0 ||
-      weightInKg.length === 0
-    ) {
-      alert("Please fill in all fields");
-    } else {
-      fetch(`${dbPort}/api/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          salt: salt,
-          name: name,
-          dateOfBirth: dateOfBirth,
-          copdSeverity: copdSeverity,
-          heightInCm: heightInCm,
-          weightInKg: weightInKg,
-        }),
-      })
-        .then((res) => res.json())
-        .then(() => navigate("/home"))
-        .catch((err) => {
-          console.error(err);
-          alert("Error occurred during registration");
-        });
+  const handleRegister = async () => {
+    try{
+      await register(email, password, name, dateOfBirth, copdSeverity, heightInCm, weightInKg)
+      setError("")
+      navigate("/")
+    }catch(err){
+      console.log(err)
+      alert("An error has occurred while Registering")
     }
   }
 

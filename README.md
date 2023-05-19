@@ -2,16 +2,16 @@
 
 ### Done tasks
 
-[X]Main setup
-[X]Login
-[X]Nav
-[X]Data Tables
-[X]Charts
-[X]Register
-[X]FAQ Section
-[X]Bd
-[X]Interactabilty
-
+- [X]Main setup
+- [X]Login
+- [X]Nav
+- [X]Data Tables
+- [X]Charts
+- [X]Register
+- [X]FAQ Section
+- [X]Bd
+- [X]Interactabilty
+- [X]Profile Editor
 
 
 
@@ -19,11 +19,13 @@
 
 
 ### Working on it
-[]Homepage
-[]Main data display widgets 70%
-[]Profile Editor
-[]New CRUD Routes 65%
-[]tables connected to db
+- Homepage [25%]
+- Main data display widgets [70%]
+- New CRUD Routes [65%]
+- Tables connected to db 
+- Different access roles [50%]
+- Education
+- Test Results
 
 
 
@@ -33,7 +35,6 @@
 ### Todo list
 - Design Choices
 - Css
-- Different access roles
-- 
+- Setting
 
 

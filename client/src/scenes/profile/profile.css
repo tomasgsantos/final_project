@@ -1,0 +1,14 @@
+.profile-form{
+  display: grid ;
+  gap: 20px;
+  padding:2rem;
+  border-radius: 2rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+}
+.profile-save{
+  width: 200px;
+}
+.profile-text-input{
+  width: 700px;
+}

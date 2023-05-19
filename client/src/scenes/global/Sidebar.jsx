@@ -13,7 +13,6 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MonitorHeartOutlinedIcon from "@mui/icons-material/MonitorHeartOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
@@ -125,7 +124,7 @@ const Sidebar = ({userData}) => {
                   {userData && userData.name}
                 </Typography>
                 <Typography variant="h6" color={colors.green[300]}>
-                  Admin
+                  {userData && userData.role}
                 </Typography>
               </Box>
             </Box>
@@ -179,24 +178,17 @@ const Sidebar = ({userData}) => {
             >
               Pages
             </Typography>
-            <Item
+            {userData && (userData.role == "patient" ? null : <Item
               title="Patients Data"
               to="/home/patients"
               icon={<ViewListIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            />)}
             <Item
               title="Education"
               to="/home/education"
               icon={<SchoolOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Messages"
-              to="/home/messages"
-              icon={<EmailOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -221,13 +213,13 @@ const Sidebar = ({userData}) => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Form"
               to="/home/form"
               icon={<FormatAlignLeftIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
             <Button
               variant="contained"
               color="secondary"
