@@ -172,7 +172,7 @@ export const mockDataContacts = [
   },
   {
     id: 11,
-    name: "Saul Goodman",
+    name: "Steve Goodman",
     email: "stevegoodmane@gmail.com",
     age: 11,
     phone: "(444)555-6239",

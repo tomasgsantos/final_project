@@ -117,7 +117,7 @@ app.get("/api/userData", authenticateUser, async (req, res) => {
 
     // Retrieve user data from the database
     const user = await pool.query(
-      "SELECT name, email, date_birth_mmddaaaa, copd_severity, heightincm, weightinkg, role FROM patient WHERE id = $1",
+      "SELECT name, email, date_birth_mmddaaaa, copd_severity, heightincm, weightinkg FROM patient WHERE id = $1",
       [userId]
     );
 

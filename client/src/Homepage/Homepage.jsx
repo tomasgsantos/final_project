@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { getUserData, getRecords } from "../getData";
+import { getUserData, getRecords } from "../AuthService";
 import { convertUser, convertRecords } from "../userConverter";
 import Dashboard from "../scenes/Dashboard";
 import Vitals from "../scenes/Vitals";
