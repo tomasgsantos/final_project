@@ -2,16 +2,16 @@
 
 ### Done tasks
 
-- [X]Main setup
-- [X]Login
-- [X]Nav
-- [X]Data Tables
-- [X]Charts
-- [X]Register
-- [X]FAQ Section
-- [X]Bd
-- [X]Interactabilty
-- [X]Profile Editor
+- [x]Main setup
+- [x]Login
+- [x]Nav
+- [x]Data Tables
+- [x]Charts
+- [x]Register
+- [x]FAQ Section
+- [x]Bd
+- [x]Interactabilty
+- [x]Profile Editor
 
 
 

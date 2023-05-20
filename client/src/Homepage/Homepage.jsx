@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { getUserData, getRecords } from "../getData";
+import { getUserData, getRecord } from "../getData";
 import { convertUser, convertRecords } from "../userConverter";
 import Dashboard from "../scenes/Dashboard";
 import Vitals from "../scenes/Vitals";
@@ -25,17 +25,15 @@ export default function Homepage() {
         const data = await getUserData();
         const convertedData = convertUser(data);
         setUserData(convertedData);
-        console.log("userData : ",  userData)
       } catch (error) {
         console.error(error.message);
       }
     }
     const fetchRecords = async () =>{
       try{
-        const data = await getRecords();
-        console.log("Records data: " + JSON.stringify(data));
+        const data = await getRecord();
         const convertedRecords = convertRecords(data);
-        console.log("Converted records: " + convertedRecords)
+        console.log("Converted records: " + JSON.stringify(convertedRecords))
         setUserRecords(convertedRecords);
       }catch (error){
         console.error(error.message);

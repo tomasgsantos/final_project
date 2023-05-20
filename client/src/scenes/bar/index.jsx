@@ -12,14 +12,9 @@ import { useNavigate } from "react-router-dom";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import ValueWidget from "../../components/ValueWidget";
 
-export default function Bar({userRecords}) {
-  console.log("Bar userRecords: ", userRecords);
+export default function Bar({ userRecords }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [paco2, setPaco2] = useState(null);
-  const [pao2, setPao2] = useState(null);
-  const [respiratoryFreq, setRespiratoryFreq] = useState(null);
-  const [temperature, setTemperature] = useState(null);
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({
@@ -37,11 +32,8 @@ export default function Bar({userRecords}) {
   });
 
   useEffect(() => {
-    if(userRecords){
-    setPaco2(userRecords.paco2);
-    setPao2(userRecords.pao2);
-    setRespiratoryFreq(userRecords.respiratory_freq);
-    setTemperature(userRecords.temperature);
+    if (userRecords) {
+      console.log("userRecords Bar: " + userRecords);
     }
   }, [userRecords]);
 
@@ -50,7 +42,7 @@ export default function Bar({userRecords}) {
       <Header title="Your Charts" />
       <Typography variant="h5" sx={{ m: 10 }}>
         This is your Data! Here you have displayed in simple charts your
-        Wellness Value troughout the week.
+        Wellness Value throughout the week.
       </Typography>
 
       <div className="learn-more">
@@ -66,24 +58,38 @@ export default function Bar({userRecords}) {
         </Button>
       </div>
       <div className="widgets">
-        <ValueWidget name="Wellness Value" value="90" />
-        {paco2 ? (
-          <ValueWidget name="PaCO2" value={paco2} />
-        ) : (
-          <Typography>Loading PaCO2...</Typography>
-        )}
+        {userRecords && (userRecords.map((record) => {
+          const { sensorPurpose, value } = record;
 
-        {pao2 ? (
-          <ValueWidget name="PaO2" value={pao2} />
-        ) : (
-          <Typography>Loading PaO2...</Typography>
-        )}
-
-        {temperature ? (
-          <ValueWidget name="Temperature" value={temperature} />
-        ) : (
-          <Typography>Loading Temperature...</Typography>
-        )}
+          switch (sensorPurpose) {
+            case "paco2":
+              return value ? (
+                <ValueWidget name="PaCO2" value={value} />
+              ) : (
+                <Typography>Loading CO2 Blood Pressure...</Typography>
+              );
+            case "pao2":
+              return value ? (
+                <ValueWidget name="PaO2" value={value} />
+              ) : (
+                <Typography>Loading O2 Blood Pressure...</Typography>
+              );
+            case "respiratory rate":
+              return value ? (
+                <ValueWidget name="Respiratory Frequency" value={value} />
+              ) : (
+                <Typography>Loading Respiratory Frequency...</Typography>
+              );
+            case "temperature":
+              return value ? (
+                <ValueWidget name="Temperature" value={value} />
+              ) : (
+                <Typography>Loading Temperature...</Typography>
+              );
+            default:
+              return null;
+          }
+        }))}
       </div>
       <Box className="chart-box" height="75vh">
         <BarChart chartData={userData} />
@@ -91,6 +97,9 @@ export default function Bar({userRecords}) {
       <Box className="chart-box" height="75vh">
         <LineChart chartData={userData} />
       </Box>
+      {/* <Box className="chart-box" height="75vh">
+        <BarChart chartData={} />
+      </Box> */}
     </Box>
   );
 }

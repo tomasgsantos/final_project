@@ -161,7 +161,23 @@ app.get("/api/userData", authenticateUser, async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
-app.get("/api/records", authenticateUser, async (req, res) => {
+app.get("/api/record", authenticateUser, async (req, res) => {
+  try {
+    const userId = req.userId;
+
+    const records = await pool.query(
+      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp DESC",
+      [userId]
+    );
+
+    res.json(records.rows.slice(0, 4));
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+app.get("/api/allRecords", authenticateUser, async (req, res) => {
   try {
     const userId = req.userId;
 
@@ -170,7 +186,7 @@ app.get("/api/records", authenticateUser, async (req, res) => {
       [userId]
     ); 
 
-    res.json(records.rows[0]);
+    res.json(records.rows);
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ message: "Server Error" });
