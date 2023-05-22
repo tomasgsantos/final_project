@@ -1,0 +1,14 @@
+@import "vars.css";
+
+.topbar-text{
+  margin:0px;
+  font-size: small;
+  text-align: center;
+}
+.box-a{
+  display:flex;
+  justify-content: space-between;
+  padding:10px;
+  width: 75vw;
+  background-color: var(--body-background-color) ;
+}

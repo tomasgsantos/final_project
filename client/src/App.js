@@ -5,6 +5,7 @@ import "./assets/css/App.css";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login.jsx";
 import Homepage from "./Homepage/Homepage.jsx";
+import LandingPage from "./components/LandingPage.jsx";
 import Register from "./components/Register.jsx";
 import { isAuthenticated } from "./AuthService";
 import { Navigate } from "react-router-dom";
@@ -27,9 +28,10 @@ function App() {
         <CssBaseline />
         <div className="app">
           <Routes>
-            {!isLoggedIn && <Route path="/" element={<Login />} />}
+            {!isLoggedIn && <Route path="/" element={<LandingPage />} />}
             {isLoggedIn && <Route path="/*" element={<Homepage />} />}
             <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </ThemeProvider>
