@@ -176,22 +176,44 @@ app.get("/api/record", authenticateUser, async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
-
 app.get("/api/allRecords", authenticateUser, async (req, res) => {
   try {
     const userId = req.userId;
 
     const records = await pool.query(
-      "SELECT paco2, pao2, respiratory_freq, temperature, timestamp FROM dailyrecords WHERE idpatient = $1 ORDER BY timestamp DESC",
+      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp DESC",
       [userId]
-    ); 
+    );
 
     res.json(records.rows);
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: "allRecords Server Error" });
   }
 });
+
+app.get("/api/getSensor/:id", authenticateUser, async (req, res) => {
+  try {
+    const userId = req.userId;
+    const sensorId = parseInt(req.params.id);
+
+    if (isNaN(sensorId)) {
+      // Invalid sensorId, return an appropriate error response
+      return res.status(400).json({ message: "Invalid sensorId" });
+    }
+
+    const records = await pool.query(
+      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idsensor = $1 AND sd.idpatient = $2 ORDER BY sd.timestamp DESC",
+      [sensorId, userId]
+    );
+
+    res.json(records.rows.slice(0, 7));
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ message: "getSensor/:id Error" });
+  }
+});
+
 
 
 // Middleware to authenticate the user

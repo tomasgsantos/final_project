@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import "./assets/css/App.css";
@@ -6,9 +6,20 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login.jsx";
 import Homepage from "./Homepage/Homepage.jsx";
 import Register from "./components/Register.jsx";
+import { isAuthenticated } from "./AuthService";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Education from "./scenes/Education";
 
 function App() {
   const [theme, colorMode] = useMode();
+  const isAuthenticado = isAuthenticated();
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsLoggedIn(isAuthenticado);
+  }, []);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -16,8 +27,8 @@ function App() {
         <CssBaseline />
         <div className="app">
           <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/home/*" element={<Homepage />}/>
+            {!isLoggedIn && <Route path="/" element={<Login />} />}
+            {isLoggedIn && <Route path="/*" element={<Homepage />} />}
             <Route path="/register" element={<Register />} />
           </Routes>
         </div>

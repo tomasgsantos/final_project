@@ -28,6 +28,21 @@ export const getRecord = async () => {
   }
 };
 
+export const getChartData = async (id) => {
+  const token = localStorage.getItem("token");
+  const response = await fetch(`http://localhost:5001/api/getSensor/${id}`, {
+    headers:{
+      Authorization: "Bearer " + token,
+    },
+  });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    throw new Error("Failed to fetch Chart data");
+  }
+}
+
 // export const getAllRecords = async () =>{
 //   const token = localStorage.getItem("token")
 //   const response = await fetch("http://localhost:5001/api/allRecords",{

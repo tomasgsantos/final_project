@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { getUserData, getRecord } from "../getData";
+import { getUserData, getRecord  } from "../getData";
 import { convertUser, convertRecords } from "../userConverter";
 import Dashboard from "../scenes/Dashboard";
 import Vitals from "../scenes/Vitals";
@@ -20,6 +20,7 @@ export default function Homepage() {
   const [userRecords, setUserRecords] = useState(null);
 
   useEffect(() => { 
+
     const fetchData = async () => {
       try {
         const data = await getUserData();
@@ -50,7 +51,7 @@ export default function Homepage() {
       <main className="content">
         <Topbar userData={userData} />
         <Routes>
-          <Route index element={<Dashboard userData={userData} />} />
+          <Route path="/" element={<Dashboard userData={userData} />} />
           <Route path="/vitals" element={<Vitals />} />
           <Route path="/records" element={<Records />} />
           <Route path="/education" element={<Education />} />
