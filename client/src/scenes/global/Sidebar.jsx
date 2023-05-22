@@ -26,7 +26,7 @@ import { logout } from "../../AuthService";
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const dbPort = 'http://localhost:5001';
+  const dbPort = 'http:/localhost:5001';
 
   return (
     <MenuItem
@@ -50,9 +50,11 @@ const Sidebar = ({userData}) => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+
   const handleLogout = () => {
     logout();
     navigate("/");
+    navigate(0);
   };
 
   return (
@@ -124,7 +126,7 @@ const Sidebar = ({userData}) => {
                   {userData && userData.name}
                 </Typography>
                 <Typography variant="h6" color={colors.green[300]}>
-                  {userData && userData.role}
+                  {userData && capitalize(userData.role)}
                 </Typography>
               </Box>
             </Box>
@@ -136,7 +138,7 @@ const Sidebar = ({userData}) => {
           >
             <Item
               title="Dashboard"
-              to="/home"
+              to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -151,21 +153,21 @@ const Sidebar = ({userData}) => {
             </Typography>
             <Item
               title="Test Results"
-              to="/home/records"
+              to="/records"
               icon={<MonitorHeartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Medical Records"
-              to="/home/vitals"
+              to="/vitals"
               icon={<FolderOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Your Charts"
-              to="/home/bar"
+              to="/bar"
               icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -180,42 +182,42 @@ const Sidebar = ({userData}) => {
             </Typography>
             {userData && (userData.role == "patient" ? null : <Item
               title="Patients Data"
-              to="/home/patients"
+              to="/patients"
               icon={<ViewListIcon />}
               selected={selected}
               setSelected={setSelected}
             />)}
             <Item
               title="Education"
-              to="/home/education"
+              to="/education"
               icon={<SchoolOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Emergency"
-              to="/home/emergency"
+              to="/emergency"
               icon={<LocalHospitalOutlinedIcon sx={{ color: "red" }} />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="FAQ"
-              to="/home/faq"
+              to="/faq"
               icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Contacts"
-              to="/home/contacts"
+              to="/contacts"
               icon={<AlternateEmailIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             {/* <Item
               title="Form"
-              to="/home/form"
+              to="/form"
               icon={<FormatAlignLeftIcon />}
               selected={selected}
               setSelected={setSelected}

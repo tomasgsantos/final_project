@@ -16,7 +16,8 @@ export default function Login() {
     try {
       await login(email, password);
       setError("");
-      navigate("/home");
+      navigate("/");
+      navigate(0);
     } catch (err) {
       setError("Invalid credentials");
     }
@@ -65,7 +66,7 @@ export default function Login() {
         >
           Register
         </Button>
-        {error && <p className="error" sx={{color: "black"}}>{error}</p>}
+        {error && <p className="error">{error}</p>}
       </form>
     </div>
   );

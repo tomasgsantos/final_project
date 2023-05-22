@@ -94,3 +94,9 @@ export const updateProfile = async (profileData) => {
         console.error("Failed to update profile data");
       }
 }
+
+export const isAuthenticated = () => {
+  // Check if the user is authenticated
+  const token = localStorage.getItem("token");
+  return !!token; // Return true if token exists, false otherwise
+};

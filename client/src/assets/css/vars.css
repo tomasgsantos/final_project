@@ -12,10 +12,17 @@
   --gray-30: hsl(0, 0%, 55%);
   --gray-40: hsl(0, 0%, 35%);
   --gray-50: hsl(0, 0%, 25%);
+  --gray-50: hsl(0, 0%, 2%);
   --body-background-color: #382E4B;
   --body-background-color-20: #60586f;
   --body-background-color-30: #888293;
-  --green-20: #74b676; 
+  --green-10: #eef8f1;
+  --green-20: #cbe9d4;
+  --green-30: #bae2c6;
+  --green-40: #a9dbb8;
+  --green-50: #87af93;
+  --green-60: #44584a;
+ 
 
   --input-border: 1px solid var(var(--gray-20));
 
