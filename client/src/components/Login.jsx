@@ -66,7 +66,7 @@ export default function Login() {
         >
           Register
         </Button>
-        {error && <p className="error" sx={{color: "black"}}>{error}</p>}
+        {error && <p className="error">{error}</p>}
       </form>
     </div>
   );
