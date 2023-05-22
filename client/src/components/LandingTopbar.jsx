@@ -39,7 +39,7 @@ const LandingTopbar = () => {
         <IconButton>
           <SettingsOutlinedIcon type="button" />
         </IconButton>
-        <Button variant="contained" onClick={() => navigate("/login")}>
+        <Button sx={{backgroundColor: colors.green[500], height: 50}} variant="contained" onClick={() => navigate("/login")}>
           Login
         </Button>
       </Box>

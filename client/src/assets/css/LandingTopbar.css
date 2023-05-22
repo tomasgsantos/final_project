@@ -12,3 +12,6 @@
   width: 75vw;
   background-color: var(--body-background-color) ;
 }
+.landing-loginbtn{
+  background: var(--green-40);
+}

@@ -166,7 +166,7 @@ app.get("/api/record", authenticateUser, async (req, res) => {
     const userId = req.userId;
 
     const records = await pool.query(
-      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp DESC",
+      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp ASC",
       [userId]
     );
 
@@ -181,7 +181,7 @@ app.get("/api/allRecords", authenticateUser, async (req, res) => {
     const userId = req.userId;
 
     const records = await pool.query(
-      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp DESC",
+      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp ASC",
       [userId]
     );
 
@@ -203,7 +203,7 @@ app.get("/api/getSensor/:id", authenticateUser, async (req, res) => {
     }
 
     const records = await pool.query(
-      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idsensor = $1 AND sd.idpatient = $2 ORDER BY sd.timestamp DESC",
+      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idsensor = $1 AND sd.idpatient = $2 ORDER BY sd.timestamp ASC",
       [sensorId, userId]
     );
 

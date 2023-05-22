@@ -71,6 +71,7 @@ export default function Bar({ userRecords }) {
         const pao2Data = await getChartData("2");
         const rrData = await getChartData("3");
         const tData = await getChartData("4");
+        // paco2Data.reverse();
         const formattedPaco2Data = paco2Data.map((data) => {
           return {
             ...data,
