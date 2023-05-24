@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/Register.css";
 import { Button } from "@mui/material";
-import { register } from "../AuthService";
+import { register } from "../utils/AuthService";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -96,7 +96,7 @@ export default function Register() {
           color="primary"
           onClick={() => navigate("/")}
         >
-          Back to Login
+          Back to the Landing Page
         </Button>
       </form>
     </div>

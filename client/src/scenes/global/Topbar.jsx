@@ -50,7 +50,7 @@ const Topbar = ({userData})=>{
           <SettingsOutlinedIcon type="button" />
         </IconButton>
         <IconButton>
-          <PersonOutlineOutlinedIcon onClick={()=>{navigate("/home/profile")}}type="button" />
+          <PersonOutlineOutlinedIcon onClick={()=>{navigate("/profile")}}type="button" />
         </IconButton>
         <Box display="flex" sx={{ flexDirection: "column", maxHeight: 40 }}>
           <p className="topbar-text">{userData && userData.name}</p>

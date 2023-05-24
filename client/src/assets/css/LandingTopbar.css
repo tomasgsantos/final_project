@@ -6,12 +6,31 @@
   text-align: center;
 }
 .box-a{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-right: auto;
+}
+.box-b{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 20px;
+}
+.box-c{
+  display: flex;
+  gap: 40px;
+  text-align: justify;
+  width: 400px;
+  align-items: center;
+  text-decoration: underline;
+  margin-right: 400px;
+}
+.landing-topbar{
   display:flex;
   justify-content: space-between;
   padding:10px;
-  width: 75vw;
+  width: 100vw;
   background-color: var(--body-background-color) ;
-}
-.landing-loginbtn{
-  background: var(--green-40);
+  
 }

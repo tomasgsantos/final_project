@@ -1,7 +1,12 @@
 @import "vars.css";
 
-.app
-.content{
+body {   
+  padding: 0 !important;
+}
+
+
+.landing-app
+.landing-main{
   width: 100%;
   height:100%;
   margin: 0;
@@ -11,16 +16,58 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.btn-div{
+  text-align: center;
+  margin-bottom:40px ;
+}
 
 .app{
   display: flex;
   position: relative;
+  padding: 0px;
 }
 
 .landing-content{
-  background-color: var(--gray-10);
+ background: linear-gradient(180deg, rgba(184, 151, 244, 0.94) 0%, rgba(241, 241, 242, 0.868) 100%);
+  backdrop-filter: blur(2px);
   padding: 50px;
 }
 .landing-title{
   color: var(--gray-50);
+  font-family: "Comfortaa";
+}
+.landing-p{
+  color: black;
+  font-family: "Comfortaa";
+  font-size: larger;
+}
+.web-section{
+  display:flex;
+  align-items: center;
+}
+.app-section{
+  background-color: var(--body-background-color) ;
+  padding: 30px;
+  border: 2px solid var(--green-20);
+  border-radius: 10px;
+
+}
+.app-section .landing-p{
+  color: white;
+
+}
+.app-section .landing-title{
+  color: white;
+}
+.start-btn{
+  width: 300px;
+  height: 60px;
+  font-family: "Comfortaa";
+}
+
+.app-section .google-btn{
+  width: 200px;
+  background-color: black ;
+  border: 1px solid white ;
+  margin: 5px ;
 }

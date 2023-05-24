@@ -1,6 +1,7 @@
 @import "vars.css";
 
 .register-page{
+  padding: 30px;
   display:block;
   max-width: 33vw;
   min-width: fit-content;

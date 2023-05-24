@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import "./profile.css"
-import { updateProfile } from "../../AuthService";
+import { updateProfile } from "../../utils/AuthService";
 
 export default function Profile({ userData }) {
   const theme = useTheme();

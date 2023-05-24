@@ -20,7 +20,7 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import { logout } from "../../AuthService";
+import { logout } from "../../utils/AuthService";
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -108,7 +108,7 @@ const Sidebar = ({userData}) => {
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   onClick={() => {
-                    navigate("/home/profile");
+                    navigate("/profile");
                   }}
                   alt="profile-user"
                   width="100px"

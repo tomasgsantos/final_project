@@ -11,7 +11,7 @@ import "../../assets/css/bar.css";
 import { useNavigate } from "react-router-dom";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import ValueWidget from "../../components/ValueWidget";
-import { getChartData } from "../../getData";
+import { getChartData } from "../../utils/getData";
 
 
 export default function Bar({ userRecords }) {

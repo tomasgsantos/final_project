@@ -3,7 +3,7 @@ import "../assets/css/Register.css";
 import "../assets/css/Login.css";
 import logo from "../assets/images/copdeck_logo.png";
 import { useNavigate } from "react-router-dom";
-import { login } from "../AuthService";
+import { login } from "../utils/AuthService";
 import { Button } from "@mui/material";
 
 export default function Login() {
@@ -62,10 +62,11 @@ export default function Login() {
           variant="outlined"
           color="primary"
           className="registBr-button"
-          onClick={() => navigate("/register")}
+          onClick={() => navigate("/")}
         >
-          Register
+          Back to Landing Page
         </Button>
+
         {error && <p className="error">{error}</p>}
       </form>
     </div>

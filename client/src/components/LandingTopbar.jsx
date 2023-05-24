@@ -15,10 +15,37 @@ const LandingTopbar = () => {
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
 
+  const loginButtonSx = {
+    backgroundColor: colors.green[500],
+    color: colors.green[900],
+    height: 50,
+    width: 130,
+    "&:hover":{
+      backgroundColor: colors.green[600],
+      borderColor: colors.green[200],
+      border: 1,
+    }
+  };
+
+  const registerButtonSx = {
+    backgroundColor: colors.grey[100],
+    color: colors.green[900],
+    border: "solid",
+    borderColor: colors.green[500],
+    height: 50,
+    width: 130,
+    "&:hover": {
+      backgroundColor: colors.grey[200],
+      border: 3,
+      borderColor:colors.green[500]
+    },
+  };
+
   return (
-    <Box className="box-a">
-      <Box
-        display="flex"
+    <div className="landing-topbar">
+      <div
+        className="box-a"
+        
         BackgroundColor={
           theme.palette.mode === "dark"
             ? colors.primary[400]
@@ -26,25 +53,32 @@ const LandingTopbar = () => {
         }
       >
         <img src={Home} alt="Home_logo" width="95px" height="70px" />
-      </Box>
+      </div>
+      <div className="box-c">
+        <a className="landing-topbar-a">About us</a>
+        <a className="landing-topbar-a">Contact us</a>
+      </div>
       {/* Icons */}
-      <Box display="flex">
-        <IconButton onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === "dark" ? (
-            <DarkModeOutlinedIcon />
-          ) : (
-            <LightModeOutlinedIcon />
-          )}
-        </IconButton>
-        <IconButton>
-          <SettingsOutlinedIcon type="button" />
-        </IconButton>
-        <Button sx={{backgroundColor: colors.green[500], height: 50}} variant="contained" onClick={() => navigate("/login")}>
+      <div className="box-b">
+        <Button
+          sx={loginButtonSx}
+          variant="contained"
+          onClick={() => navigate("/login")}
+        >
           Login
         </Button>
-      </Box>
-    </Box>
+        <Button
+          variant="contained"
+          sx={registerButtonSx}
+          onClick={() => navigate("/register")}
+        >
+          Register
+        </Button>
+      </div>
+    </div>
   );
 };
+
+
 
 export default LandingTopbar;
