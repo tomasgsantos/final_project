@@ -5,12 +5,25 @@ import logo from "../assets/images/copdeck_logo.png";
 import { useNavigate } from "react-router-dom";
 import { login } from "../utils/AuthService";
 import { Button } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+   const [passwordType, setPasswordType] = useState(true);
+
+  
+  const togglePassword = () => {
+    if (passwordType) {
+      setPasswordType(false);
+      return;
+    }
+    setPasswordType(true);
+  };
+
 
   const handleLogin = async () => {
     try {
@@ -25,7 +38,7 @@ export default function Login() {
 
   return (
     <div className="register-page">
-      <img className="logo" src={logo} alt="logo" width={300}/>
+      <img className="logo" src={logo} alt="logo" width={300} />
       <form className="register-form">
         <h1 className="login-title">Login</h1>
         <label htmlFor="email" className="login-label">
@@ -42,14 +55,27 @@ export default function Login() {
         <label htmlFor="password" className="login-label">
           Password
         </label>
-        <input
-          className="text-input"
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="input-icon">
+          <input
+            className="text-input"
+            type={passwordType ? "password" : "text"}
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {!passwordType ? (
+            <VisibilityIcon
+              sx={{ color: "black"}}
+              onClick={togglePassword}
+            />
+          ) : (
+            <VisibilityOffIcon
+              sx={{ color: "black" }}
+              onClick={togglePassword}
+            />
+          )}
+        </div>
         <Button
           variant="contained"
           color="primary"
@@ -66,7 +92,6 @@ export default function Login() {
         >
           Back to Landing Page
         </Button>
-
         {error && <p className="error">{error}</p>}
       </form>
     </div>

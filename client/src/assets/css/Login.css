@@ -35,6 +35,13 @@ body{
   grid-column: 1/-1;
   color: var(--main-color) ;
 }
+.password-label{
+  position: relative;
+}
+.password-line{
+  justify-content: space-between;
+}
+
 
 .login-form input{
   border: solid 1.5px var(--gray-20);
