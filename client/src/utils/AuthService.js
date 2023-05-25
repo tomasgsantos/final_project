@@ -13,8 +13,6 @@ export const login = async (email, password) => {
   });
   if (response.ok) {
     const data = await response.json();
-    console.log("authService data:", data);
-    console.log("authService data.token:", data.token);
     localStorage.setItem("token", data.token);
   } else {
     throw new Error("Invalid credentials");
