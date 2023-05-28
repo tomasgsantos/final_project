@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import ValueWidget from "../../components/ValueWidget";
 import { getChartData } from "../../utils/getData";
+import { formatDate } from "../../utils/FormatDate";
 
 
 export default function Bar({ userRecords }) {
@@ -29,40 +30,7 @@ export default function Bar({ userRecords }) {
     }
   }, [userRecords]);
 
-  function formatDate(timestamp) {
-    const date = new Date(timestamp);
-
-    const daysOfWeek = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    const monthsOfYear = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    const dayOfWeek = daysOfWeek[date.getDay()];
-    const dayOfMonth = date.getDate();
-    const month = monthsOfYear[date.getMonth()];
-    const year = date.getFullYear();
-
-    return `${dayOfWeek}-${dayOfMonth}-${month}-${year}`;
-  }
+  
 
   useEffect(() => {
     const fetchHealthValues = async () => {
@@ -100,9 +68,6 @@ export default function Bar({ userRecords }) {
         setPao2(formattedPao2Data);
         setRr(formattedRrData);
         setT(formattedTData);
-        console.log("paco2Data1 : " + JSON.stringify(paco2Data[0]))
-        console.log("paco2Data7 : " + JSON.stringify(paco2Data[6]))
-
       } catch (error) {
         console.error(error.message);
       }
@@ -129,8 +94,8 @@ export default function Bar({ userRecords }) {
   //Medical parameter healthy threshold values
   const paco2Threshold = 47 ;//mmHg
   const pao2Threshold = 60 ;//mmHg
-  const rrThreshold = 25 ;//mmHg
-  const tThreshold = 37 ;//mmHg
+  const rrThreshold = 25 ;//bpm
+  const tThreshold = 37 ;// Cº
 
 
   const paco2ChartData = {

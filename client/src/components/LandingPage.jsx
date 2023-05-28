@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import LandingTopbar from "./LandingTopbar";
@@ -6,11 +6,26 @@ import "../assets/css/LandingPage.css"
 import { tokens } from "../theme";
 import { useTheme, Button } from "@mui/material";
 import doctor from "../assets/images/doctor_dashboard.png"
+import { gsap} from "gsap";
 
 export default function LandingPage(){
   const navigate = useNavigate();
   const theme = useTheme();
-  const color = tokens(theme.palette.mode)
+  const colors = tokens(theme.palette.mode)
+  const [showDiv, setShowDiv] = useState(false);
+
+  useEffect(() =>{
+      if(showDiv){
+        gsap.to(".gsap-div" , {duration: 2, y: 10, background: colors.green[500], width: "100%", height: 50, opacity: 1});
+      }else{
+         gsap.to(".gsap-div", { duration: 2, y: -10, opacity: 0, height: 0, width: 0});
+      }
+  }, [showDiv] )
+
+  const toggleAppShow = () =>{
+    setShowDiv((prev => !prev));
+    
+  }
   
 
   const googleIcon = (
@@ -57,7 +72,13 @@ export default function LandingPage(){
               progress, analyze trends, and make informed decisions for optimal
               lung health.
             </p>
-            <img src={doctor} alt="Doctor image" width="300" height="300" />
+            <img
+              className="doctor-img"
+              src={doctor}
+              alt="Doctor image"
+              width="300"
+              height="300"
+            />
           </div>
           <div className="btn-div">
             <Button
@@ -79,6 +100,7 @@ export default function LandingPage(){
               COPD parameters, providing users with real-time insights for
               personalized care.
             </p>
+
             <Button
               className="google-btn"
               variant="contained"
@@ -88,6 +110,18 @@ export default function LandingPage(){
               {`GET IT ON \n
               GOOGLE PLAY`}
             </Button>
+            <Button
+              className="arrow-btn"
+              variant="contained"
+              onClick={toggleAppShow}
+            >
+              \/
+            </Button>
+            {showDiv ? (
+              <div className="gsap-div"><p>Why are you a gay man</p></div>
+            ) : (
+              <div className="gsap-div"></div>
+            )}
           </div>
         </div>
       </main>

@@ -71,3 +71,9 @@ body {
   border: 1px solid white ;
   margin: 5px ;
 }
+.app-section .arrow-btn{
+  width: 40px;
+  background-color: black ;
+  border: 1px solid white ;
+  margin: 5px ;
+}

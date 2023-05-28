@@ -47,7 +47,7 @@ export default function Login() {
         <input
           className="text-input"
           type="text"
-          placeholder="e-mail"
+          placeholder="E-mail"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -66,12 +66,12 @@ export default function Login() {
           />
           {!passwordType ? (
             <VisibilityIcon
-              sx={{ color: "black"}}
+              sx={{ color: "black", ml:1, width: 40}}
               onClick={togglePassword}
             />
           ) : (
             <VisibilityOffIcon
-              sx={{ color: "black" }}
+              sx={{ color: "black", ml:1, width: 40}}
               onClick={togglePassword}
             />
           )}
