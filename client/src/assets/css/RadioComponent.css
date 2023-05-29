@@ -23,6 +23,7 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  align-items: center;
   padding: 0.4rem 0.8rem;
   width: 100%;
 }
@@ -40,10 +41,12 @@
 
 .rating {
   background-color: rgba(0, 0, 16, 0.8);
+  text-align: center;
+  align-items: center;
   padding: 0.4rem 0.4rem 0.1rem 0.4rem;
   border-radius: 2.2rem;
   width: 53vh;
-  height: 118px;
+  height: 90px;
 }
 
 svg {

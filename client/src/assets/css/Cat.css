@@ -7,6 +7,15 @@
 .video-div{
   display: flex;
   justify-content: center;
-  margin: 20px;
-  padding: 20px;
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+  position: relative; 
+  border: 1px solid var(--gray-20);
+  border-radius: 6px;
+  padding: 50px;
+}
+.icon{
+  display: flex;
+  justify-content: center;
 }

@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import RadioComponent from '../../components/RadioComponent';
 import "../../assets/css/Cat.css"
 import VideoPlayer from '../../components/VideoPlayer';
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 export default function Cat () {
   const theme = useTheme();
@@ -43,9 +44,16 @@ export default function Cat () {
         for better management. Remember, it's not a diagnostic tool. Consult
         your healthcare provider for further guidance.
       </p>
+      <p className="description">
+        The next video should help you better understand the concept
+      </p>
+      <div className='icon'>
+        <ArrowDownwardIcon fontSize='large'/>
+      </div>
       <div className="video-div">
         <VideoPlayer videoUrl={"https://www.youtube.com/watch?v=OaTOd3oSGwU"} />
       </div>
+
       <h2>CAT</h2>
       <RadioComponent
         questionId={"cough"}
