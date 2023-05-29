@@ -6,7 +6,7 @@
   --main-color-30: #966baf;
   --main-color-60: #400762;
   --main-color-70: #300549;
-  --main-color-80: #200431;
+  --main-color-80: #200431c3;
   --gray-10: #f5f5f5;
   --gray-20: hsl(0, 0%, 75%);
   --gray-30: hsl(0, 0%, 55%);
@@ -21,7 +21,8 @@
   --green-30: #bae2c6;
   --green-40: #a9dbb8;
   --green-50: #87af93;
-  --green-60: #44584a;
+  --green-60: #19b247;
+  
  
 
   --input-border: 1px solid var(var(--gray-20));

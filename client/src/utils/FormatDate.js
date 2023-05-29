@@ -28,7 +28,6 @@ export function formatDate(timestamp) {
   const dayOfWeek = daysOfWeek[date.getDay()];
   const dayOfMonth = date.getDate();
   const month = monthsOfYear[date.getMonth()];
-  const year = date.getFullYear();
 
-  return `${dayOfWeek}-${dayOfMonth}-${month}-${year}`;
+  return `${dayOfWeek} - ${dayOfMonth}`;
 }

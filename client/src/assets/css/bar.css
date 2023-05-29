@@ -3,11 +3,16 @@
 .chart-box{
   display: flex;
   margin-bottom: 40px;
-  width: 1000px;
-  background-color: var(--body-background-color-30);
+  width: 1000px;  
   border: 1px solid var(--gray-20);
+  background-color: rgb(78 76 87 / 58%);
   border-radius: 7px;
-  padding: 10px
+  padding: 10px;
+  margin-top:30px
+}
+
+.charts{
+  color: white;
 }
 .content-box{
   padding : 50px

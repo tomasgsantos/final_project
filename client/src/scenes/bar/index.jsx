@@ -64,6 +64,10 @@ export default function Bar({ userRecords }) {
             timestamp: formatDate(data.timestamp),
           };
         });
+        formattedPaco2Data.reverse();
+        formattedPao2Data.reverse();
+        formattedRrData.reverse();
+        formattedTData.reverse();
         setPaco2(formattedPaco2Data);
         setPao2(formattedPao2Data);
         setRr(formattedRrData);
@@ -74,17 +78,18 @@ export default function Bar({ userRecords }) {
     };
     fetchHealthValues();
   }, []);
-
+  
   const [userData, setUserData] = useState({
     labels: userBarData.map((data) => data.day),
     datasets: [
       {
         label: "Wellness Value",
         data: userBarData.map((data) => data.wv),
-        color: ["white"],
         backgroundColor: userBarData.map((data) =>
-          data.wv > 75 ? "green" : "red"
+          data.wv > 75 ? colors.green[600] : colors.red[500]
         ),
+        pointRadius: 5,
+        borderColor: colors.grey[200],
       },
     ],
   });
@@ -98,6 +103,7 @@ export default function Bar({ userRecords }) {
   const tThreshold = 37 ;// Cº
 
 
+
   const paco2ChartData = {
     labels: paco2 ? paco2.map((data) => data.timestamp) : [],
     datasets: [
@@ -105,7 +111,7 @@ export default function Bar({ userRecords }) {
         label: "Carbon Dioxide Blood Pressure",
         data: paco2 ? paco2.map((data) => data.value) : [],
         backgroundColor: paco2
-          ? paco2.map((data) => (data.value < paco2Threshold ? "red" : "green"))
+          ? paco2.map((data) => (data.value > paco2Threshold ? colors.red[500] : colors.green[600]))
           : [],
       },
     ],
@@ -117,7 +123,7 @@ export default function Bar({ userRecords }) {
         label: "Oxygen Blood Pressure",
         data: pao2 ? pao2.map((data) => data.value) : [],
         backgroundColor: pao2
-          ? pao2.map((data) => (data.value < pao2Threshold ? "red" : "green"))
+          ? pao2.map((data) => (data.value < pao2Threshold ? colors.red[500] : colors.green[600]))
           : [],
       },
     ],
@@ -129,8 +135,9 @@ export default function Bar({ userRecords }) {
         label: "Respiratory Frequency",
         data: rr ? rr.map((data) => data.value) : [],
         backgroundColor: rr
-          ? rr.map((data) => (data.value < rrThreshold ? "red" : "green"))
+          ? rr.map((data) => (data.value > rrThreshold ? colors.red[500] : colors.green[600]))
           : [],
+        
       },
     ],
   };
@@ -141,7 +148,7 @@ export default function Bar({ userRecords }) {
         label: "Temperature",
         data: t ? t.map((data) => data.value) : [],
         backgroundColor: t
-          ? t.map((data) => (data.value < tThreshold ? "red" : "green"))
+          ? t.map((data) => (data.value > tThreshold ? colors.red[500] : colors.green[600]))
           : [],
       },
     ],
@@ -202,22 +209,22 @@ export default function Bar({ userRecords }) {
           })}
       </div>
       <Box className="chart-box" height="75vh">
-        <BarChart chartData={userData} />
+        <BarChart className="charts" chartData={userData} />
       </Box>
       <Box className="chart-box" height="75vh">
         <LineChart chartData={userData} />
       </Box>
       <Box className="chart-box" height="75vh">
-        <BarChart chartData={paco2ChartData} />
+        <BarChart className="charts" chartData={paco2ChartData} />
       </Box>
       <Box className="chart-box" height="75vh">
-        <BarChart chartData={pao2ChartData} />
+        <BarChart className="charts" chartData={pao2ChartData} />
       </Box>
       <Box className="chart-box" height="75vh">
-        <BarChart chartData={rrChartData} />
+        <BarChart className="charts" chartData={rrChartData} />
       </Box>
       <Box className="chart-box" height="75vh">
-        <BarChart chartData={tChartData} />
+        <BarChart className="charts" chartData={tChartData} />
       </Box>
     </Box>
   );
