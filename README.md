@@ -8,7 +8,6 @@
 [x] Data Tables
 [x] Charts
 [x] Register
-[x] FAQ Section
 [x] Bd
 [x] Interactabilty
 [x] Profile Editor
@@ -17,30 +16,26 @@
 
 
 
-
-
-
-
 ### Working on it
 - COPD Assesment Test [95%] (form submission logic missing) 
 - Landing Page [75%]
-- Doctor Tables connected to db 
-- doctorId added to patient table
 - Homepage [25%]
-- Main data display widgets [70%]
+- Homepage [25%]
+- Main data display and widgets [30%]
 - New CRUD Routes [75%]
-- Different access roles [50%]
-- Education [50%]
-- Test Results
-
-
-
+- Education [75%]
 
 
 
 ### Todo list
+- Test Results
+- Wellness Value algorithm 
 - Design Choices
 - Css
 - Settings
 
 
+#### Side Ideas 
+- Different access roles [10%]
+- Doctor Tables connected to db 
+- doctorId added to patient table
