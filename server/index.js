@@ -203,7 +203,7 @@ app.get("/api/getSensor/:id", authenticateUser, async (req, res) => {
     }
 
     const records = await pool.query(
-      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idsensor = $1 AND sd.idpatient = $2 ORDER BY sd.timestamp ASC",
+      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idsensor = $1 AND sd.idpatient = $2 ORDER BY sd.timestamp DESC",
       [sensorId, userId]
     );
 
@@ -213,6 +213,18 @@ app.get("/api/getSensor/:id", authenticateUser, async (req, res) => {
     res.status(500).json({ message: "getSensor/:id Error" });
   }
 });
+
+app.get("/api/getFaq" , async (req, res) => {
+  try{
+
+    const faq = await pool.query("SELECT * FROM faq");
+
+    res.json(faq.rows.slice(0,8));
+  } catch(err){
+    console.log(err.message);
+    res.status(500).json({message : "faq node failed"});
+  }
+})
 
 
 

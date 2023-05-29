@@ -43,6 +43,16 @@ export const getChartData = async (id) => {
   }
 }
 
+export const getFaq = async ()=>{
+  const response = await fetch("http://localhost:5001/api/getFaq")
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+}else {
+  throw new Error("Failed to fetch Faq data");
+}
+};
+
 // export const getAllRecords = async () =>{
 //   const token = localStorage.getItem("token")
 //   const response = await fetch("http://localhost:5001/api/allRecords",{

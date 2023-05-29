@@ -25,7 +25,7 @@ export default function Dashboard({userData}) {
         data: userBarData.map((data) => data.wv),
         color: ["white"],
         backgroundColor: userBarData.map((data) =>
-          data.wv > 75 ? colors.green[500] : colors.red[500]
+          data.wv > 75 ? colors.green[600] : colors.red[500]
         ),
       },
     ],

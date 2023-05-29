@@ -2,9 +2,9 @@ import ReactPlayer from "react-player";
 import React, { useRef } from "react";
 
 
-function VideoPlayer() {
+function VideoPlayer({videoUrl}) {
   const playerRef = useRef(null);
-  const url = "https://www.youtube.com/watch?v=HWMOsqppMlg";
+  const url = videoUrl;
   return <ReactPlayer light={true} ref={playerRef} url={url} controls={true} />
 
 }

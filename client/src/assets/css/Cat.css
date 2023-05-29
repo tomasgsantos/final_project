@@ -1,0 +1,21 @@
+@import "vars.css";
+
+.description{
+  font-size: 1.5rem;
+  text-align: center;
+}
+.video-div{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+  position: relative; 
+  border: 1px solid var(--gray-20);
+  border-radius: 6px;
+  padding: 50px;
+}
+.icon{
+  display: flex;
+  justify-content: center;
+}

@@ -20,6 +20,7 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
+import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import { logout } from "../../utils/AuthService";
 
 
@@ -159,13 +160,6 @@ const Sidebar = ({userData}) => {
               setSelected={setSelected}
             />
             <Item
-              title="Medical Records"
-              to="/vitals"
-              icon={<FolderOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
               title="Your Charts"
               to="/bar"
               icon={<TimelineOutlinedIcon />}
@@ -180,17 +174,27 @@ const Sidebar = ({userData}) => {
             >
               Pages
             </Typography>
-            {userData && (userData.role == "patient" ? null : <Item
-              title="Patients Data"
-              to="/patients"
-              icon={<ViewListIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />)}
+            {userData &&
+              (userData.role == "patient" ? null : (
+                <Item
+                  title="Patients Data"
+                  to="/patients"
+                  icon={<ViewListIcon />}
+                  selected={selected}
+                  setSelected={setSelected}
+                />
+              ))}
             <Item
               title="Education"
               to="/education"
               icon={<SchoolOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="CAT"
+              to="/cat"
+              icon={<ContentPasteSearchIcon />}
               selected={selected}
               setSelected={setSelected}
             />
