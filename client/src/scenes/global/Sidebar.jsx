@@ -160,13 +160,6 @@ const Sidebar = ({userData}) => {
               setSelected={setSelected}
             />
             <Item
-              title="Medical Records"
-              to="/vitals"
-              icon={<FolderOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
               title="Your Charts"
               to="/bar"
               icon={<TimelineOutlinedIcon />}

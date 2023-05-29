@@ -5,7 +5,6 @@ import { convertUser, convertRecords } from "../utils/userConverter";
 import { isAuthenticated } from "../utils/AuthService";
 import Dashboard from "../scenes/Dashboard";
 import Vitals from "../scenes/Vitals";
-import Records from "../scenes/Records";
 import Education from "../scenes/Education";
 import PatientData from "../scenes/patients";
 import Contacts from "../scenes/Contacts";
@@ -67,7 +66,6 @@ export default function Homepage() {
         <Routes>
           {isLoggedIn && <Route path="/" element={<Dashboard userData={userData} />} />}
           {isLoggedIn && <Route path="/vitals" element={<Vitals />} />}
-          {isLoggedIn && <Route path="/records" element={<Records />} />}
           {isLoggedIn && <Route path="/education" element={<Education />} />}
           {userData && (userData.role == "patient" ? null : <Route path="/patients" element={<PatientData />} />)}
           {isLoggedIn && <Route path="/contacts" element={<Contacts />} />}

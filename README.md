@@ -13,6 +13,8 @@
 [x] Interactabilty
 [x] Profile Editor
 [x] Charts with db connected data
+[x] FAQ
+
 
 
 
@@ -20,14 +22,15 @@
 
 
 ### Working on it
-- Landing Page [25%]
+- COPD Assesment Test [95%] (form submission logic missing) 
+- Landing Page [75%]
 - Doctor Tables connected to db 
 - doctorId added to patient table
 - Homepage [25%]
 - Main data display widgets [70%]
-- New CRUD Routes [65%]
+- New CRUD Routes [75%]
 - Different access roles [50%]
-- Education
+- Education [50%]
 - Test Results
 
 
