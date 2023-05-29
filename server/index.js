@@ -214,6 +214,18 @@ app.get("/api/getSensor/:id", authenticateUser, async (req, res) => {
   }
 });
 
+app.get("/api/getFaq" , async (req, res) => {
+  try{
+
+    const faq = await pool.query("SELECT * FROM faq");
+
+    res.json(faq.rows.slice(0,8));
+  } catch(err){
+    console.log(err.message);
+    res.status(500).json({message : "faq node failed"});
+  }
+})
+
 
 
 // Middleware to authenticate the user

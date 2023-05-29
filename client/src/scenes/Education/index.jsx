@@ -74,7 +74,7 @@ export default function Education() {
         </div>
       </div>
 
-      <VideoPlayer />
+      <VideoPlayer videoUrl={"https://www.youtube.com/watch?v=HWMOsqppMlg"} />
     </div>
   );
 }

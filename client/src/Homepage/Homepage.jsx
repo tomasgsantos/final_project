@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { getUserData, getRecord  } from "../utils/getData";
+import { getUserData, getRecord, getFaq  } from "../utils/getData";
 import { convertUser, convertRecords } from "../utils/userConverter";
 import { isAuthenticated } from "../utils/AuthService";
 import Dashboard from "../scenes/Dashboard";
@@ -15,10 +15,12 @@ import Bar from "../scenes/bar";
 import Profile from "../scenes/profile";
 import Sidebar from "../scenes/global/Sidebar";
 import Topbar from "../scenes/global/Topbar";
+import Cat from "../scenes/Cat";
 
 export default function Homepage() {
   const [userData, setUserData] = useState(null);
   const [userRecords, setUserRecords] = useState(null);
+  const [faq , setFaq] = useState(null);
   const isAutenticado = isAuthenticated();
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
@@ -43,9 +45,18 @@ export default function Homepage() {
         console.error(error.message);
       }
     }
+    const fetchFaq = async () =>{
+      try{
+        const data = await getFaq();
+        setFaq(data);
+      }catch(err){
+        console.error(err.message);
+      }
+    }
 
     fetchData();
     fetchRecords();
+    fetchFaq();
   }, []);
 
   return (
@@ -60,10 +71,12 @@ export default function Homepage() {
           {isLoggedIn && <Route path="/education" element={<Education />} />}
           {userData && (userData.role == "patient" ? null : <Route path="/patients" element={<PatientData />} />)}
           {isLoggedIn && <Route path="/contacts" element={<Contacts />} />}
-          {isLoggedIn && <Route path="/faq" element={<FAQ />} />}
+          {isLoggedIn && <Route path="/faq" element={<FAQ faqData={faq}/>} />}
           {isLoggedIn && <Route path="/bar" element={<Bar userRecords={userRecords} />} />}
           {isLoggedIn && <Route path="/form" element={<Form />} />}
           {isLoggedIn && <Route path="/profile" element={<Profile userData={userData} />} />}
+          {isLoggedIn && <Route path="/cat" element={<Cat />} />}
+          
           {/* {!isLoggedIn && <Navigate to="/" replace={true} />} */}
         </Routes>
       </main>

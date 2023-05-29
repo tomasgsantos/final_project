@@ -25,7 +25,7 @@ const colors = tokens(theme.palette.mode);
       data={chartData}
       options={{
         layout: {
-          padding :5
+          padding: 5,
         },
         scales: {
           y: {
@@ -37,6 +37,7 @@ const colors = tokens(theme.palette.mode);
             },
             grid: {
               color: colors.grey[300],
+              borderColor: colors.grey[300]
             },
           },
           x: {
@@ -48,9 +49,9 @@ const colors = tokens(theme.palette.mode);
                 borderColor: "white",
               },
             },
-            grid:{
+            grid: {
               display: false,
-            }
+            },
           },
         },
       }}

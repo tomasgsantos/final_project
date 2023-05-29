@@ -167,7 +167,7 @@ export default function Bar({ userRecords }) {
         </Typography>
         <Button
           variant="learn-btn"
-          sx={{ backgroundColor: colors.green[500], height: "40px" }}
+          sx={{ backgroundColor: colors.green[600], height: "40px"}}
           onClick={() => navigate("/home/education")}
         >
           <SchoolOutlinedIcon />
