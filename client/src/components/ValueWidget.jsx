@@ -14,7 +14,7 @@ export default function ValueWidget(props){
     <Typography className="text" variant="h4" color="white">
       {name}
     </Typography>
-    <Box sx={{backgroundColor: value > 60 ? colors.green[600] : colors.red[500] }}className="well-widget">
+    <Box sx={{backgroundColor: value < 60 ? colors.green[600] : colors.red[500] }}className="well-widget">
       <Typography className="dashboard-typography" variant="h4" color="white">
         {value && value}
       </Typography>

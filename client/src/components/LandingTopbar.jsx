@@ -16,13 +16,13 @@ const LandingTopbar = () => {
   const colorMode = useContext(ColorModeContext);
 
   const loginButtonSx = {
-    backgroundColor: colors.green[500],
+    backgroundColor: colors.green[400],
     color: colors.green[900],
     height: 50,
     width: 130,
     "&:hover":{
       backgroundColor: colors.green[600],
-      borderColor: colors.green[200],
+      borderColor: colors.grey[200],
       border: 1,
     }
   };
@@ -35,7 +35,7 @@ const LandingTopbar = () => {
     height: 50,
     width: 130,
     "&:hover": {
-      backgroundColor: colors.grey[200],
+      backgroundColor: colors.green[200],
       border: 3,
       borderColor:colors.green[500]
     },
@@ -52,10 +52,10 @@ const LandingTopbar = () => {
             : colors.primary[900]
         }
       >
-        <img src={Home} alt="Home_logo" width="95px" height="70px" />
+        <img src={Home} alt="Home_logo" width="95px" height="70px" onClick={() => navigate("/")}/>
       </div>
       <div className="box-c">
-        <a className="landing-topbar-a">About us</a>
+        <a href="/about" className="landing-topbar-a">About us</a>
         <a className="landing-topbar-a">Contact us</a>
       </div>
       {/* Icons */}

@@ -10,6 +10,7 @@ import Register from "./components/Register.jsx";
 import { isAuthenticated } from "./utils/AuthService";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -31,6 +32,7 @@ function App() {
             {isLoggedIn && <Route path="/*" element={<Homepage />} />}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<AboutUs />} />
           </Routes>
         </div>
       </ThemeProvider>

@@ -166,7 +166,7 @@ app.get("/api/record", authenticateUser, async (req, res) => {
     const userId = req.userId;
 
     const records = await pool.query(
-      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp ASC",
+      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp DESC",
       [userId]
     );
 
