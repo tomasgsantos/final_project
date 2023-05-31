@@ -162,7 +162,7 @@ export default function Bar({ userRecords }) {
     <Box className="content-box">
       <Header title="Your Charts" />
       <Typography variant="h5" sx={{ m: 10 }}>
-        This is your Data! Here you have displayed in simple charts your
+        This is your Data! Here you have displayed in simple widgets and charts your
         Wellness Value throughout the week.
       </Typography>
       <div className="learn-more">

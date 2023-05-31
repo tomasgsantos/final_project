@@ -1,19 +1,19 @@
 import React, {useState} from "react";
 import "../assets/css/RadioComponent.css";
 
-export default function RadioComponent({questionId ,worst, best}){
+export default function RadioComponent({questionId ,worst, best, onRatingChange}){
 
   const [ratings, setRatings] = useState({});
 
   const handleRatingChange = (e) => {
     const rating = e.target.value;
-
-    console.log("Rating:", rating); // Log the question identifier and rating value
-
     setRatings((prevRatings) => ({
       ...prevRatings,
-      [questionId]: rating, // Store the rating with the question identifier in the state
+      [questionId]: rating,
     }));
+    
+    // Invoke the callback function with the updated ratings
+    onRatingChange({ questionId, rating });
   };
 
 
@@ -47,7 +47,7 @@ export default function RadioComponent({questionId ,worst, best}){
                 id={`happy-${questionId}`}
                 value={2}
                 onChange={handleRatingChange}
-                defaultChecked
+                
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
