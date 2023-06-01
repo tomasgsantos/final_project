@@ -1,13 +1,9 @@
-import React from "react";
-import "../assets/css/LandingTopbar.css";
-import { Box, Button, IconButton, useTheme } from "@mui/material";
-import { useContext } from "react";
-import { ColorModeContext, tokens } from "../theme";
-import Home from "../assets/images/copdeck_logo.png";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import { Button, useTheme } from "@mui/material";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import "../assets/css/LandingTopbar.css";
+import Home from "../assets/images/copdeck_logo.png";
+import { ColorModeContext, tokens } from "../theme";
 
 const LandingTopbar = () => {
   const navigate = useNavigate();

@@ -17,5 +17,11 @@
   margin-top: 50px;
 }
 
-
+.dashboard-widgets{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--content-background);
+  text-align: center;
+  justify-content: center;
+}
 

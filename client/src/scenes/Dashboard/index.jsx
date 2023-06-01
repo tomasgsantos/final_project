@@ -41,7 +41,7 @@ export default function Dashboard({userData}) {
   return (
     <div>
       <Header title={"Dashboard"} subtitle={"Welcome to your dashboard"} />
-      <div className="widgets">
+      <div className="dashboard-widgets">
         <ValueWidget name="Wellness Value" value="90" />
       </div>
       <Typography className="dashboard-typography" variant="h4" color="white">
