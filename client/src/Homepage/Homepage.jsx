@@ -15,6 +15,7 @@ import Profile from "../scenes/profile";
 import Sidebar from "../scenes/global/Sidebar";
 import Topbar from "../scenes/global/Topbar";
 import Cat from "../scenes/Cat";
+import Results from "../scenes/Results";
 
 export default function Homepage() {
   const [userData, setUserData] = useState(null);
@@ -74,6 +75,8 @@ export default function Homepage() {
           {isLoggedIn && <Route path="/form" element={<Form />} />}
           {isLoggedIn && <Route path="/profile" element={<Profile userData={userData} />} />}
           {isLoggedIn && <Route path="/cat" element={<Cat />} />}
+          {isLoggedIn && <Route path="/results" element={<Results />} />}
+
           
           {/* {!isLoggedIn && <Navigate to="/" replace={true} />} */}
         </Routes>

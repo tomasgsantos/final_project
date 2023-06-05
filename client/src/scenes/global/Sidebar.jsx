@@ -154,7 +154,7 @@ const Sidebar = ({userData}) => {
             </Typography>
             <Item
               title="Test Results"
-              to="/records"
+              to="/results"
               icon={<MonitorHeartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

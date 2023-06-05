@@ -110,7 +110,7 @@ export default function LandingPage(){
               {`GET IT ON \n
               GOOGLE PLAY`}
             </Button>
-            <Button
+            {/* <Button
               className="arrow-btn"
               variant="contained"
               onClick={toggleAppShow}
@@ -118,10 +118,10 @@ export default function LandingPage(){
               \/
             </Button>
             {showDiv ? (
-              <div className="gsap-div"><p>Why are you a gay man</p></div>
+              <div className="gsap-div"><p></p></div>
             ) : (
               <div className="gsap-div"></div>
-            )}
+            )} */}
           </div>
         </div>
       </main>

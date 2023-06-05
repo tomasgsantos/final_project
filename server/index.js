@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 app.use(cors());
 app.use(express.json());
 
+
 // Routes
 app.post("/api/register", async (req, res) => {
   try {
@@ -70,6 +71,22 @@ app.post("/api/register", async (req, res) => {
 
 });
 
+
+
+app.post("/api/cat", authenticateUser, async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { cough, phlegm, activity, breathless, chest, energy, house, sleep } = req.body;
+    const catScore = await pool.query(
+      "INSERT INTO cat (cough, phlegm, activity, breathless, chest, energy, house, sleep, patientid) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+      [cough, phlegm, activity, breathless, chest, energy, house, sleep,userId]
+    );
+    res.json(catScore);
+  } catch (error) {
+    console.error("Error: ", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 
 app.post("/api/updateProfile", authenticateUser, async (req, res) => {
   try {
@@ -166,7 +183,7 @@ app.get("/api/record", authenticateUser, async (req, res) => {
     const userId = req.userId;
 
     const records = await pool.query(
-      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp ASC",
+      "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp DESC",
       [userId]
     );
 

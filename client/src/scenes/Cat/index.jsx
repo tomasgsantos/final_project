@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useTheme } from '@mui/material';
+import { useTheme, Button } from '@mui/material';
 import { tokens } from '../../theme';
 import Header from '../../components/Header';
 import RadioComponent from '../../components/RadioComponent';
@@ -13,17 +13,19 @@ export default function Cat () {
   const [formData, setFormData] = useState({
     cough: "",
     phlegm: "",
-    chestTightness: "",
-    breathlessness: "",
-    activitiesLimitation: "",
-    leavingHomeConfidence: "",
-    sleepQuality: "",
-    energyLevel: "",
+    chest: "",
+    breathless: "",
+    activity: "",
+    house: "",
+    sleep: "",
+    energy: "",
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleRatingChange = ({ questionId, rating }) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [questionId]: rating,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -33,7 +35,7 @@ export default function Cat () {
   };
 
   return (
-    <div>
+    <form className='cat-form'>
       <Header title={"Copd Assessment Test"} />
       <p className="description">
         Welcome to the COPD Assessment Test (CAT) page! This test helps evaluate
@@ -47,8 +49,8 @@ export default function Cat () {
       <p className="description">
         The next video should help you better understand the concept
       </p>
-      <div className='icon'>
-        <ArrowDownwardIcon fontSize='large'/>
+      <div className="icon">
+        <ArrowDownwardIcon fontSize="large" />
       </div>
       <div className="video-div">
         <VideoPlayer videoUrl={"https://www.youtube.com/watch?v=OaTOd3oSGwU"} />
@@ -59,16 +61,19 @@ export default function Cat () {
         questionId={"cough"}
         worst={"I never cough"}
         best={"I cough all the time"}
+        onRatingChange={handleRatingChange}
       />
       <RadioComponent
         questionId={"phlegm"}
         worst={"I have no phlegm (mucus) in my chest at all"}
         best={"My chest is completely full of phlegm (mucus)"}
+        onRatingChange={handleRatingChange}
       />
       <RadioComponent
         questionId={"chest"}
         worst={"My chest does not feel tight at all"}
         best={"My chest feels very tight"}
+        onRatingChange={handleRatingChange}
       />
       <RadioComponent
         questionId={"breathless"}
@@ -78,11 +83,13 @@ export default function Cat () {
         best={
           "When I walk up a hill or one flight of stairs I am very breathless"
         }
+        onRatingChange={handleRatingChange}
       />
       <RadioComponent
         questionId={"activity"}
         worst={"I am not limited doing any activities at home"}
         best={"I am very limited doing activities at home"}
+        onRatingChange={handleRatingChange}
       />
       <RadioComponent
         questionId={"house"}
@@ -90,17 +97,21 @@ export default function Cat () {
         best={
           "I am not at all confident leaving my home because of my lung condition"
         }
+        onRatingChange={handleRatingChange}
       />
       <RadioComponent
         questionId={"sleep"}
         worst={"I sleep soundly"}
         best={`I dont sleep soundly because of my lung condition`}
+        onRatingChange={handleRatingChange}
       />
       <RadioComponent
         questionId={"energy"}
         worst={"I have lots of energy"}
         best={"I have no energy at all"}
+        onRatingChange={handleRatingChange}
       />
-    </div>
+      <Button variant='contained' onClick={handleSubmit}>Submit</Button>
+    </form>
   );
 }

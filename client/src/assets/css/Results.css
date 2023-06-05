@@ -1,0 +1,29 @@
+@import "vars.css";
+
+.main-div{
+  display: flex;
+  border: 1px solid var(--gray-20) ;
+  height: 60vh;
+}
+.left-div{
+  border: 1px solid var(--gray-20);
+  width: 50%;
+  vertical-align: center;
+  justify-content: center;
+  text-align: center;
+}
+.right-div{
+  display:flex;
+  flex-direction: column;
+  border: 1px solid var(--gray-20);
+  width: 50%;
+}
+.sub-div{
+  border: 1px solid var(--gray-20);
+  height: 50%;
+}
+.left-div p{
+  text-align: center;
+
+}
+
