@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
-import { useTheme, Button } from '@mui/material';
-import { tokens } from '../../theme';
-import Header from '../../components/Header';
-import RadioComponent from '../../components/RadioComponent';
-import "../../assets/css/Cat.css"
-import VideoPlayer from '../../components/VideoPlayer';
+import React, { useState } from "react";
+import { useTheme, Button } from "@mui/material";
+import { tokens } from "../../theme";
+import Header from "../../components/Header";
+import RadioComponent from "../../components/RadioComponent";
+import "../../assets/css/Cat.css";
+import VideoPlayer from "../../components/VideoPlayer";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { postCat } from "../../utils/postData";
 
-export default function Cat () {
+export default function Cat() {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode)
+  const colors = tokens(theme.palette.mode);
   const [formData, setFormData] = useState({
     cough: "",
     phlegm: "",
@@ -31,11 +32,11 @@ export default function Cat () {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Process the form data, e.g., submit it to the server
-    console.log(formData);
+    postCat(formData);
   };
 
   return (
-    <form className='cat-form'>
+    <form className="cat-form">
       <Header title={"Copd Assessment Test"} />
       <p className="description">
         Welcome to the COPD Assessment Test (CAT) page! This test helps evaluate
@@ -111,7 +112,21 @@ export default function Cat () {
         best={"I have no energy at all"}
         onRatingChange={handleRatingChange}
       />
-      <Button variant='contained' onClick={handleSubmit}>Submit</Button>
+      <div className="cat-submit">
+        <Button
+          sx={{
+            width: "40%",
+            height: "60px",
+            mt: "20px",
+            borderRadius: "1rem",
+            backgroundColor: colors.green[300],
+          }}
+          variant="contained"
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+      </div>
     </form>
   );
 }
