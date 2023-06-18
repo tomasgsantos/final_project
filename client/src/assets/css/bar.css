@@ -43,3 +43,44 @@
   align-items: center;
   text-align: center;
 }
+.color-guide{
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.color-line{
+  display: flex;
+  gap: 0.5rem;
+  text-align: center;
+  align-items: center;
+}
+
+.green{
+  background-color: #5ee432;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+}
+
+.yellow{
+  background-color: #fffa50;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+}
+
+.orange{
+  background-color: #f7aa38;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+}
+
+.red{
+  background-color: #ef4655;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+}

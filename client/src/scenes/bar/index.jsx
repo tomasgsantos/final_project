@@ -190,8 +190,8 @@ export default function Bar({ userRecords }) {
     <Box className="content-box">
       <Header title="Your Charts" />
       <Typography variant="h5" sx={{ m: 10 }}>
-        This is your Data! Here you have displayed in simple widgets and charts your
-        Wellness Value throughout the week.
+        This is your Data! Here you have displayed in simple widgets and charts
+        your Wellness Value throughout the week.
       </Typography>
       <div className="learn-more">
         <Typography className="learn-text" variant="h5">
@@ -200,10 +200,28 @@ export default function Bar({ userRecords }) {
         <Button
           variant="learn-btn"
           sx={{ backgroundColor: colors.green[600], height: "40px" }}
-          onClick={() => navigate("/home/education")}
+          onClick={() => navigate("/education")}
         >
           <SchoolOutlinedIcon />
         </Button>
+      </div>
+      <div className="color-guide">
+        <div className="color-line">
+          <div className="green"></div>
+          <p> - Good</p>
+        </div>
+        <div className="color-line">
+          <div className="yellow"></div>
+          <p> - Ok</p>
+        </div>
+        <div className="color-line">
+          <div className="orange"></div>
+          <p> - Severe</p>
+        </div>
+        <div className="color-line">
+          <div className="red"></div>
+          <p> - Very Severe</p>
+        </div>
       </div>
       <div className="widgets">
         {userRecords &&
@@ -216,15 +234,15 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                      <ValueWidget name="PaCO2" value={value} />
-                      <p>
-                        Paco2 stands for partial pressure of carbon dioxide. It
-                        measures the amount of carbon dioxide in your blood. In
-                        COPD, it helps determine how well your lungs are
-                        functioning. Higher Paco2 levels indicate poor lung
-                        function, while lower levels suggest better lung
-                        function.
-                      </p>
+                        <ValueWidget name="PaCO2" value={value} />
+                        <p>
+                          Paco2 stands for partial pressure of carbon dioxide.
+                          It measures the amount of carbon dioxide in your
+                          blood. In COPD, it helps determine how well your lungs
+                          are functioning. Higher Paco2 levels indicate poor
+                          lung function, while lower levels suggest better lung
+                          function.
+                        </p>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -244,15 +262,15 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                      <ValueWidget name="PaO2" value={value} />
-                      <p>
-                        PaO2 stands for partial pressure of oxygen. It measures
-                        the amount of oxygen in your blood. In COPD, it
-                        indicates how well your lungs are able to oxygenate your
-                        body. Higher PaO2 levels indicate better oxygenation,
-                        while lower levels suggest reduced oxygen levels in the
-                        blood.
-                      </p>
+                        <ValueWidget name="PaO2" value={value} />
+                        <p>
+                          PaO2 stands for partial pressure of oxygen. It
+                          measures the amount of oxygen in your blood. In COPD,
+                          it indicates how well your lungs are able to oxygenate
+                          your body. Higher PaO2 levels indicate better
+                          oxygenation, while lower levels suggest reduced oxygen
+                          levels in the blood.
+                        </p>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -272,15 +290,18 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                      <ValueWidget name="Respiratory Frequency" value={value} />
-                      <p>
-                        Respiratory rate refers to the number of breaths you
-                        take per minute. It is an important measure of how fast
-                        or slow you are breathing. In COPD, an increased
-                        respiratory rate may indicate difficulty in breathing or
-                        inadequate oxygen exchange. Monitoring your respiratory
-                        rate helps assess your breathing status.
-                      </p>
+                        <ValueWidget
+                          name="Respiratory Frequency"
+                          value={value}
+                        />
+                        <p>
+                          Respiratory rate refers to the number of breaths you
+                          take per minute. It is an important measure of how
+                          fast or slow you are breathing. In COPD, an increased
+                          respiratory rate may indicate difficulty in breathing
+                          or inadequate oxygen exchange. Monitoring your
+                          respiratory rate helps assess your breathing status.
+                        </p>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -297,15 +318,15 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                      <ValueWidget name="Temperature" value={value} />
-                      <p>
-                        Temperature refers to the level of heat in your body.
-                        While it is not directly related to COPD, changes in
-                        temperature can affect your overall comfort and
-                        well-being. It is important to maintain a comfortable
-                        temperature and avoid extreme cold or heat, as they can
-                        impact your respiratory symptoms.
-                      </p>
+                        <ValueWidget name="Temperature" value={value} />
+                        <p>
+                          Temperature refers to the level of heat in your body.
+                          While it is not directly related to COPD, changes in
+                          temperature can affect your overall comfort and
+                          well-being. It is important to maintain a comfortable
+                          temperature and avoid extreme cold or heat, as they
+                          can impact your respiratory symptoms.
+                        </p>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -322,12 +343,12 @@ export default function Bar({ userRecords }) {
             }
           })}
       </div>
-      <Box className="chart-box" height="75vh">
+      {/* <Box className="chart-box" height="75vh">
         <BarChart className="charts" chartData={userData} />
       </Box>
       <Box className="chart-box" height="75vh">
         <LineChart chartData={userData} />
-      </Box>
+      </Box> */}
     </Box>
   );
 }
