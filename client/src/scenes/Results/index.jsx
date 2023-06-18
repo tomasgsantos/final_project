@@ -13,7 +13,8 @@ export default function Results(){
         </div>
         <div className="right-div">
           <div className="sub-div">
-
+            <p>6 Minute Walk Test</p>
+            
           </div>
           <div className="sub-div">
 

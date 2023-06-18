@@ -76,8 +76,6 @@ export default function Homepage() {
           {isLoggedIn && <Route path="/profile" element={<Profile userData={userData} />} />}
           {isLoggedIn && <Route path="/cat" element={<Cat />} />}
           {isLoggedIn && <Route path="/results" element={<Results />} />}
-
-          
           {/* {!isLoggedIn && <Navigate to="/" replace={true} />} */}
         </Routes>
       </main>

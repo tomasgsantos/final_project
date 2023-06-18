@@ -27,11 +27,7 @@ export default function Bar({ userRecords }) {
   const [t, setT] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (userRecords) {
-      console.log("userRecords Bar: " + userRecords);
-    }
-  }, [userRecords]);
+
 
   useEffect(() => {
     const fetchHealthValues = async () => {
@@ -108,13 +104,21 @@ export default function Bar({ userRecords }) {
         label: "Carbon Dioxide Blood Pressure",
         data: paco2 ? paco2.map((data) => data.value) : [],
         backgroundColor: paco2
-          ? paco2.map((data) =>
-              data.value > paco2Threshold ? colors.red[500] : colors.green[600]
+          ? paco2.map(
+              (data) =>
+                data.value > 70
+                  ? "#ef4655" // Red
+                  : data.value > 58
+                  ? "#f7aa38" // Orange
+                  : data.value > 48
+                  ? "#fffa50" // Yellow
+                  : "#5ee432" // Green
             )
           : [],
       },
     ],
   };
+
   const pao2ChartData = {
     labels: pao2 ? pao2.map((data) => data.timestamp) : [],
     datasets: [
@@ -122,13 +126,21 @@ export default function Bar({ userRecords }) {
         label: "Oxygen Blood Pressure",
         data: pao2 ? pao2.map((data) => data.value) : [],
         backgroundColor: pao2
-          ? pao2.map((data) =>
-              data.value < pao2Threshold ? colors.red[500] : colors.green[600]
+          ? pao2.map(
+              (data) =>
+                data.value < 50
+                  ? "#ef4655" // Red
+                  : data.value < 65
+                  ? "#f7aa38" // Orange
+                  : data.value < 83
+                  ? "#fffa50" // Yellow
+                  : "#5ee432" // Green
             )
           : [],
       },
     ],
   };
+
   const rrChartData = {
     labels: rr ? rr.map((data) => data.timestamp) : [],
     datasets: [
@@ -136,13 +148,21 @@ export default function Bar({ userRecords }) {
         label: "Respiratory Frequency",
         data: rr ? rr.map((data) => data.value) : [],
         backgroundColor: rr
-          ? rr.map((data) =>
-              data.value > rrThreshold ? colors.red[500] : colors.green[600]
+          ? rr.map(
+              (data) =>
+                data.value > 30
+                  ? "#ef4655" // Red
+                  : data.value > 25
+                  ? "#f7aa38" // Orange
+                  : data.value > 20
+                  ? "#fffa50" // Yellow
+                  : "#5ee432" // Green
             )
           : [],
       },
     ],
   };
+
   const tChartData = {
     labels: t ? t.map((data) => data.timestamp) : [],
     datasets: [
@@ -150,13 +170,21 @@ export default function Bar({ userRecords }) {
         label: "Temperature",
         data: t ? t.map((data) => data.value) : [],
         backgroundColor: t
-          ? t.map((data) =>
-              data.value > tThreshold ? colors.red[500] : colors.green[600]
+          ? t.map(
+              (data) =>
+                data.value > 38.5
+                  ? "#ef4655" // Red
+                  : data.value >= 37.9 && data.value <= 38.5
+                  ? "#f7aa38" // Orange
+                  : data.value >= 37 && data.value < 37.9
+                  ? "#fffa50" // Yellow
+                  : "#5ee432" // Green
             )
           : [],
       },
     ],
   };
+
 
   return (
     <Box className="content-box">
