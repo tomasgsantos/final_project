@@ -88,7 +88,25 @@ if (name === "PaO2") {
       }
     },
   };
-}
+} else if (name === "Wellness Value") {
+  defaultOptions = {
+    ...defaultOptions,
+    min: 0,
+    max: 100,
+    value: 50,
+    color: function (value) {
+      if (value >= 75) {
+        return "#5ee432"; // Green
+      } else if (value >= 50 && value < 75) {
+        return "#fffa50"; // Yellow
+      } else if (value >= 25 && value < 50) {
+        return "#f7aa38"; // Orange
+      } else if (value > 25) {
+        return "#ef4655"; // Red
+      }
+    },
+  };
+} 
 
 
 

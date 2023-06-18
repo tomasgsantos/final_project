@@ -16,20 +16,28 @@ export default function Dashboard({userData}) {
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
   
+const [userGraphData, setUserGraphData] = useState({
+  labels: userBarData.map((data) => data.day),
+  datasets: [
+    {
+      label: "Wellness Value",
+      data: userBarData.map((data) => data.wv),
+      color: ["white"],
+      backgroundColor: userBarData.map((data) => {
+        if (data.wv >= 75) {
+          return "#5ee432"; // Green
+        } else if (data.wv > 50) {
+          return "#fffa50"; // Yellow
+        } else if (data.wv > 25) {
+          return "#f7aa38"; // Orange
+        } else {
+          return "#ef4655"; // Red
+        }
+      }),
+    },
+  ],
+});
 
-  const [userGraphData, setUserGraphData] = useState({
-    labels: userBarData.map((data) => data.day),
-    datasets: [
-      {
-        label: "Wellness Value",
-        data: userBarData.map((data) => data.wv),
-        color: ["white"],
-        backgroundColor: userBarData.map((data) =>
-          data.wv > 75 ? colors.green[600] : colors.red[500]
-        ),
-      },
-    ],
-  });
 
   
 

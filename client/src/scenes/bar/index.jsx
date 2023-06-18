@@ -26,6 +26,10 @@ export default function Bar({ userRecords }) {
   const [rr, setRr] = useState(null);
   const [t, setT] = useState(null);
   const navigate = useNavigate();
+  const [switchA, setSwitchA] = useState(true)
+  const [switchB, setSwitchB] = useState(true)
+  const [switchC, setSwitchC] = useState(true)
+  const [switchD, setSwitchD] = useState(true)
 
 
 
@@ -91,6 +95,7 @@ export default function Bar({ userRecords }) {
     ],
   });
 
+
   //Medical parameter healthy threshold values
   const paco2Threshold = 47; //mmHg
   const pao2Threshold = 60; //mmHg
@@ -115,6 +120,8 @@ export default function Bar({ userRecords }) {
                   : "#5ee432" // Green
             )
           : [],
+        pointRadius: 7,
+        pointHoverRadius: 12,
       },
     ],
   };
@@ -137,6 +144,8 @@ export default function Bar({ userRecords }) {
                   : "#5ee432" // Green
             )
           : [],
+        pointRadius: 7,
+        pointHoverRadius: 12,
       },
     ],
   };
@@ -159,6 +168,8 @@ export default function Bar({ userRecords }) {
                   : "#5ee432" // Green
             )
           : [],
+        pointRadius: 7,
+        pointHoverRadius: 12,
       },
     ],
   };
@@ -181,6 +192,8 @@ export default function Bar({ userRecords }) {
                   : "#5ee432" // Green
             )
           : [],
+        pointRadius: 7,
+        pointHoverRadius: 12,
       },
     ],
   };
@@ -246,11 +259,35 @@ export default function Bar({ userRecords }) {
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
+                      {switchD ? (
+                        <Button
+                          variant="outlined"
+                          sx={{ color: "white", borderColor: "white" }}
+                          onClick={() => setSwitchD(!switchD)}
+                        >
+                          Line Chart
+                        </Button>
+                      ) : (
+                        <Button
+                          sx={{ color: "white", borderColor: "white" }}
+                          variant="outlined"
+                          onClick={() => setSwitchD(!switchD)}
+                        >
+                          Bar Chart
+                        </Button>
+                      )}
                       <Box className="chart-box" height="75vh">
-                        <BarChart
-                          className="charts"
-                          chartData={paco2ChartData}
-                        />
+                        {switchD ? (
+                          <BarChart
+                            className="charts"
+                            chartData={paco2ChartData}
+                          />
+                        ) : (
+                          <LineChart
+                            className="charts"
+                            chartData={paco2ChartData}
+                          />
+                        )}
                       </Box>
                     </AccordionDetails>
                   </Accordion>
@@ -274,11 +311,35 @@ export default function Bar({ userRecords }) {
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
+                      {switchA ? (
+                        <Button
+                          variant="outlined"
+                          sx={{ color: "white", borderColor: "white" }}
+                          onClick={() => setSwitchA(!switchA)}
+                        >
+                          Line Chart
+                        </Button>
+                      ) : (
+                        <Button
+                          sx={{ color: "white", borderColor: "white" }}
+                          variant="outlined"
+                          onClick={() => setSwitchA(!switchA)}
+                        >
+                          Bar Chart
+                        </Button>
+                      )}
                       <Box className="chart-box" height="75vh">
-                        <BarChart
-                          className="charts"
-                          chartData={pao2ChartData}
-                        />
+                        {!switchA ? (
+                          <BarChart
+                            className="charts"
+                            chartData={pao2ChartData}
+                          />
+                        ) : (
+                          <LineChart
+                            className="charts"
+                            chartData={pao2ChartData}
+                          />
+                        )}
                       </Box>
                     </AccordionDetails>
                   </Accordion>
@@ -305,8 +366,35 @@ export default function Bar({ userRecords }) {
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
+                      {switchB ? (
+                        <Button
+                          variant="outlined"
+                          sx={{ color: "white", borderColor: "white" }}
+                          onClick={() => setSwitchB(!switchB)}
+                        >
+                          Line Chart
+                        </Button>
+                      ) : (
+                        <Button
+                          sx={{ color: "white", borderColor: "white" }}
+                          variant="outlined"
+                          onClick={() => setSwitchB(!switchB)}
+                        >
+                          Bar Chart
+                        </Button>
+                      )}
                       <Box className="chart-box" height="75vh">
-                        <BarChart className="charts" chartData={rrChartData} />
+                        {switchB ? (
+                          <BarChart
+                            className="charts"
+                            chartData={rrChartData}
+                          />
+                        ) : (
+                          <LineChart
+                            className="charts"
+                            chartData={rrChartData}
+                          />
+                        )}
                       </Box>
                     </AccordionDetails>
                   </Accordion>
@@ -330,8 +418,35 @@ export default function Bar({ userRecords }) {
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
+                      {switchC ? (
+                        <Button
+                          variant="outlined"
+                          sx={{ color: "white", borderColor: "white" }}
+                          onClick={() => setSwitchC(!switchC)}
+                        >
+                          Line Chart
+                        </Button>
+                      ) : (
+                        <Button
+                          sx={{ color: "white", borderColor: "white" }}
+                          variant="outlined"
+                          onClick={() => setSwitchC(!switchC)}
+                        >
+                          Bar Chart
+                        </Button>
+                      )}
                       <Box className="chart-box" height="75vh">
-                        <BarChart className="charts" chartData={tChartData} />
+                        {switchC ? (
+                          <BarChart
+                            className="charts"
+                            chartData={tChartData}
+                          />
+                        ) : (
+                          <LineChart
+                            className="charts"
+                            chartData={tChartData}
+                          />
+                        )}
                       </Box>
                     </AccordionDetails>
                   </Accordion>
