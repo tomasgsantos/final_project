@@ -12,14 +12,14 @@ export default function Cat() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [formData, setFormData] = useState({
-    cough: "",
-    phlegm: "",
-    chest: "",
-    breathless: "",
-    activity: "",
-    house: "",
-    sleep: "",
-    energy: "",
+    cough: 0,
+    phlegm: 0,
+    chest: 0,
+    breathless: 0,
+    activity: 0,
+    house: 0,
+    sleep: 0,
+    energy: 0,
   });
 
   const handleRatingChange = ({ questionId, rating }) => {
@@ -32,7 +32,9 @@ export default function Cat() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Process the form data, e.g., submit it to the server
-    postCat(formData);
+    postCat(formData).then(()=>{
+      alert("Form submitted successfully");
+    });
   };
 
   return (

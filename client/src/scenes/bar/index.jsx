@@ -225,7 +225,7 @@ export default function Bar({ userRecords }) {
         </div>
         <div className="color-line">
           <div className="yellow"></div>
-          <p> - Ok</p>
+          <p> - Mild</p>
         </div>
         <div className="color-line">
           <div className="orange"></div>
@@ -317,7 +317,7 @@ export default function Bar({ userRecords }) {
                           sx={{ color: "white", borderColor: "white" }}
                           onClick={() => setSwitchA(!switchA)}
                         >
-                          Line Chart
+                          Bar Chart
                         </Button>
                       ) : (
                         <Button
@@ -325,7 +325,7 @@ export default function Bar({ userRecords }) {
                           variant="outlined"
                           onClick={() => setSwitchA(!switchA)}
                         >
-                          Bar Chart
+                          Line Chart
                         </Button>
                       )}
                       <Box className="chart-box" height="75vh">

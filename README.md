@@ -13,23 +13,21 @@
 [x] Profile Editor
 [x] Charts with db connected data
 [x] FAQ
+[x] Main data display and widgets 
+[x] COPD Assesment Test
 
 
 
 ### Working on it
-- COPD Assesment Test [95%] (form submission logic missing) 
 - Landing Page [75%]
-- Homepage [25%]
-- Homepage [25%]
-- Main data display and widgets [30%]
-- New CRUD Routes [75%]
+- Homepage [75%]
+- New CRUD Routes [85%]
 - Education [75%]
-
+- Test Results [50%]
+- Wellness Value algorithm [33%]
 
 
 ### Todo list
-- Test Results
-- Wellness Value algorithm 
 - Design Choices
 - Css
 - Settings

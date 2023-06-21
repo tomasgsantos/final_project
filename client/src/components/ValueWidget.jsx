@@ -19,8 +19,8 @@ export default function ValueWidget(props){
 if (name === "PaO2") {
   defaultOptions = {
     ...defaultOptions,
-    min: 10,
-    max: 200,
+    min: 30,
+    max: 108,
     value: 100,
     color: function (value) {
       if (value >= 83 && value <= 108) {
@@ -37,11 +37,11 @@ if (name === "PaO2") {
 } else if (name === "PaCO2") {
   defaultOptions = {
     ...defaultOptions,
-    min: 0,
+    min: 35,
     max: 100,
     value: 50,
     color: function (value) {
-      if (value > 0 && value <= 48) {
+      if (value <= 48) {
         return "#5ee432"; // Green
       } else if (value > 48 && value <= 58) {
         return "#fffa50"; // Yellow
@@ -55,17 +55,17 @@ if (name === "PaO2") {
 } else if (name === "Temperature") {
   defaultOptions = {
     ...defaultOptions,
-    min: 0,
+    min: 34,
     max: 42,
     value: 36,
     color: function (value) {
-      if (value < 37) {
+      if (value < 37 && value >= 35.5) {
         return "#5ee432"; // Green
       } else if (value >= 37 && value <= 37.8) {
         return "#fffa50"; // Yellow
-      } else if (value > 37.8 && value <= 38.5) {
+      } else if (value > 37.8 && value <= 38.5 ) {
         return "#f7aa38"; // Orange
-      } else if (value > 38.5) {
+      } else if (value > 38.5 || value < 35.5) {
         return "#ef4655"; // Red
       }
     },
@@ -73,17 +73,17 @@ if (name === "PaO2") {
 } else if (name === "Respiratory Frequency") {
   defaultOptions = {
     ...defaultOptions,
-    min: 0,
-    max: 90,
+    min: 4,
+    max: 150,
     value: 50,
     color: function (value) {
-      if (value < 20) {
+      if (value < 20 && value >= 6 ) {
         return "#5ee432"; // Green
       } else if (value >= 20 && value <= 25) {
         return "#fffa50"; // Yellow
       } else if (value > 25 && value <= 30) {
         return "#f7aa38"; // Orange
-      } else if (value > 30) {
+      } else if (value > 30 || value < 6) {
         return "#ef4655"; // Red
       }
     },
