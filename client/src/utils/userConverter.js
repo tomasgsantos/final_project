@@ -24,6 +24,28 @@ export const convertUser = (data) => {
   };
 };
 
+// export const convertSitTest = (data) =>{
+//   if(!data) return null;
+//   data.map((test)=>{
+//     const {
+//       initialpulsation,
+//       finalpulsation,
+//       date1test,
+//       countcycles,
+//       testpercentage,
+//     } = test;
+
+//     return {
+//       initialPulsation: initialpulsation,
+//       finalPulsation: finalpulsation,
+//       dateTest: new Date(date1test),
+//       countCycles: countcycles,
+//       testPercentage: testpercentage,
+//     };
+//   })
+  
+  
+// }
 
 export const convertRecords = (data) => {
   if (!data) return null;
@@ -48,3 +70,4 @@ export const convertRecords = (data) => {
     };
   });
 };
+

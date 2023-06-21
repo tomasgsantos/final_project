@@ -109,7 +109,7 @@ app.post("/api/updateProfile", authenticateUser, async (req, res) => {
         dateOfBirth,
         heightInCm,
         weightInKg,
-        userId, // Assuming you have user authentication and the user ID is available in the request object
+        userId,
       ]
     );
 
@@ -162,6 +162,36 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+app.get("/api/sitStand", authenticateUser, async (req, res) =>{
+  try{
+    const userId = req.userId;
+    const sitStand = await pool.query(
+      `SELECT initialpulsation, finalpulsation, date1test, countcycles, testpercentage FROM "1mstst" WHERE idpatient= $1 ORDER BY date1test DESC`,
+      [userId]
+    );
+
+    res.json(sitStand.rows.slice(0,2));
+  }catch(err){
+    console.error(err.message);
+    res.status(500).json({message: "Sit to Stand fetch error DB"});
+  };
+});
+
+app.get("/api/walkTest", authenticateUser, async (req, res) => {
+  try{
+    const userId = req.userId;
+    const walkResults = await pool.query(
+      `SELECT initialpulsation, finalpulsation, date6test, numbersteps, distance, testpercent FROM sixmwt WHERE idpatient = $1 ORDER BY date6test DESC`,
+      [userId]
+    );
+
+    res.json(walkResults.rows.slice(0, 2));
+  }catch(err){
+    console.error(err.message);
+    res.status(523).json({message: "Walk Test fetch error DB"});
+  };
+});
+
 app.get("/api/userData", authenticateUser, async (req, res) => {
   try {
     const userId = req.userId;
@@ -181,7 +211,6 @@ app.get("/api/userData", authenticateUser, async (req, res) => {
 app.get("/api/record", authenticateUser, async (req, res) => {
   try {
     const userId = req.userId;
-
     const records = await pool.query(
       "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp DESC",
       [userId]

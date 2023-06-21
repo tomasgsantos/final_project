@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { getUserData, getRecord, getFaq  } from "../utils/getData";
+import { getUserData, getRecord, getFaq, getSitStand, getWalkTest } from "../utils/getData";
 import { convertUser, convertRecords } from "../utils/userConverter";
+import { calcSitStand, calcWalkResults } from "../utils/Calc";
 import { isAuthenticated } from "../utils/AuthService";
 import Dashboard from "../scenes/Dashboard";
 import Vitals from "../scenes/Vitals";
@@ -23,6 +24,10 @@ export default function Homepage() {
   const [faq , setFaq] = useState(null);
   const isAutenticado = isAuthenticated();
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [sitStand, setSitStand] = useState(null);
+  const [walkResults, setWalkResults] = useState(null);
+  const [sitTestResults, setSitTestResults] = useState(null);
+  const [walkTestResults, setWalkTestResults] = useState(null);
 
   useEffect(() => { 
     setIsLoggedIn(isAutenticado);
@@ -39,7 +44,6 @@ export default function Homepage() {
       try{
         const data = await getRecord();
         const convertedRecords = convertRecords(data);
-        console.log("Converted records: " + JSON.stringify(convertedRecords))
         setUserRecords(convertedRecords);
       }catch (error){
         console.error(error.message);
@@ -53,19 +57,54 @@ export default function Homepage() {
         console.error(err.message);
       }
     }
+    const fetchSitStand = async () =>{
+      try{
+        const data = await getSitStand();
+        setSitStand(data);
+      }catch(err){
+        console.error(err.message);
+      }
+    }
+    const fetchWalkTest = async () =>{
+      try{
+        const data = await getWalkTest();
+        console.log("Data" + JSON.stringify(data));
+        setWalkResults(data);
+      }catch(err){
+        console.error(err.message);
+      }
+    } 
 
     fetchData();
     fetchRecords();
     fetchFaq();
+    fetchSitStand();
+    fetchWalkTest();
   }, []);
 
+  useEffect(()=>{
+    if(sitStand){
+      const data = calcSitStand(sitStand);
+      setSitTestResults(data);
+    }
+  }, [sitStand]);
+
+  useEffect(()=>{
+    if(walkResults){
+      const data = calcWalkResults(walkResults);
+      setWalkTestResults(data);
+      console.log("Data walk testes bomba: "+ data)
+    }
+  }, [walkResults]);
+
+  
   return (
     <div className="app">
       <Sidebar userData={userData} />
       <main className="content">
         <Topbar userData={userData} />
         <Routes>
-          {isLoggedIn && <Route path="/" element={<Dashboard userData={userData} />} />}
+          {isLoggedIn && <Route path="/" element={<Dashboard userData={userData} sitTestResults={sitTestResults} walkTestResults={walkTestResults}/>} />}
           {isLoggedIn && <Route path="/vitals" element={<Vitals />} />}
           {isLoggedIn && <Route path="/education" element={<Education />} />}
           {userData && (userData.role == "patient" ? null : <Route path="/patients" element={<PatientData />} />)}
@@ -75,9 +114,7 @@ export default function Homepage() {
           {isLoggedIn && <Route path="/form" element={<Form />} />}
           {isLoggedIn && <Route path="/profile" element={<Profile userData={userData} />} />}
           {isLoggedIn && <Route path="/cat" element={<Cat />} />}
-          {isLoggedIn && <Route path="/results" element={<Results />} />}
-
-          
+          {isLoggedIn && <Route path="/results" element={<Results sitStand={sitStand} />} />}
           {/* {!isLoggedIn && <Navigate to="/" replace={true} />} */}
         </Routes>
       </main>
