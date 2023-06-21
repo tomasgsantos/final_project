@@ -11,21 +11,7 @@ export default function Results({sitStand}){
   const [sitStandCalibration, setSitStandCalibration] = useState("");
   const [sitStandResults, setSitStandResults] = useState("");
 
-  useEffect(()=>{
-    if(sitStand){
-      setSitStandResults(sitStand[0]);
-      setSitStandCalibration(sitStand[1]);
-
-      const calPulsation = (sitStandCalibration.initialpulsation + sitStandCalibration.finalpulsation)/2;
-      const resPulsation = (sitStandResults.initialpulsation + sitStandResults.finalpulsation)/2;
-
-      const finalPulsation = (calPulsation - resPulsation) * 2
-      const finalCount = (sitStandCalibration.countcycles - sitStandResults.countcycles) * 5;
-
-      const testResults = 50 + finalCount + finalPulsation
-      
-    }
-  }, [sitStand])
+  
 
 
 

@@ -9,7 +9,6 @@ export default function ValueWidget(props){
  const {name, value} = props;
  const theme = useTheme()
  const colors = tokens(theme.palette.mode)
- console.log("Name: " + name)
  let defaultOptions = {
     dialStartAngle: 180,
     dialEndAngle: 0,

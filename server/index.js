@@ -214,14 +214,32 @@ app.get("/api/record", authenticateUser, async (req, res) => {
     const records = await pool.query(
       "SELECT sd.value, sd.timestamp, s.sensor_purpose FROM sensordetect sd INNER JOIN sensors s ON sd.idsensor = s.id WHERE sd.idpatient = $1 ORDER BY sd.timestamp DESC",
       [userId]
-    );
+      );
+      
+      res.json(records.rows.slice(0, 4));
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ message: "Server Error" });
+    }
+  });
 
-    res.json(records.rows.slice(0, 4));
-  } catch (err) {
+
+app.get("/api/cat", authenticateUser , async (req, res) => {
+  try{
+    const userId = req.userId;
+
+    const cat = await pool.query(
+      `SELECT * FROM cat WHERE patientid = $1 ORDER BY id DESC`,
+      [userId]
+    );
+    res.json(cat.rows[0])
+  }catch(err){
     console.error(err.message);
-    res.status(500).json({ message: "Server Error" });
+    res.status(506).json({message: "cat fetch failed DB"});
   }
-});
+})
+
+
 app.get("/api/allRecords", authenticateUser, async (req, res) => {
   try {
     const userId = req.userId;
@@ -271,6 +289,7 @@ app.get("/api/getFaq" , async (req, res) => {
     res.status(500).json({message : "faq node failed"});
   }
 })
+
 
 
 

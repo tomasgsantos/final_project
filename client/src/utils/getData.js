@@ -43,6 +43,19 @@ export const getWalkTest = async () =>{
   }
 }
 
+export const getCat = async ()=>{
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${dbPort}/api/cat`,{
+    headers: {
+      Authorization: `Bearer ${token}`,
+  },
+});
+  if(response.ok) {
+    const data = await response.json();
+    return data;
+  }
+}
+
 export const getRecord = async () => {
   const token = localStorage.getItem("token");
   const response = await fetch(`${dbPort}/api/record`, {
