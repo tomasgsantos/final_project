@@ -12,3 +12,36 @@
 .sidebar-home{
   height: 50px;
 }
+
+body .pro-sidebar > .pro-sidebar-inner{
+  position: sticky;
+  left: 0;
+  top:0;
+  height: 100vh;
+  background-color: var(--sidebar-background);
+}
+
+
+body .pro-sidebar .pro-menu{
+  padding: 0;
+}
+
+body .pro-sidebar .pro-menu .pro-menu-item{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+body .pro-sidebar .pro-menu .nav-menu .pro-menu-item{
+  position: unset;
+} 
+
+body .pro-sidebar .user-badge{
+  margin:0;
+  position: sticky;
+  top: 106px;
+  z-index: 10;
+}
+body .pro-sidebar .user-badge .MuiSvgIcon-root{
+  width: 1rem;
+  height: 1rem;
+}

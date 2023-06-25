@@ -4,9 +4,7 @@
 .red{
   color:red
 }
-.content{
-  padding: 30px
-}
+
 .login-form{
   display: flex;
   flex-direction: column;

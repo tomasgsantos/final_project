@@ -21,12 +21,12 @@ function App() {
   useEffect(() => {
     setIsLoggedIn(isAuthenticado);
   }, []);
-
+  console.log("theme",theme.palette.mode);
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div className="app">
+    <div className={`theme-${theme.palette.mode}`}>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Routes>
             {!isLoggedIn && <Route path="/" element={<LandingPage />} />}
             {isLoggedIn && <Route path="/*" element={<Homepage />} />}
@@ -34,9 +34,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<AboutUs />} />
           </Routes>
-        </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </div>
   );
 }
 

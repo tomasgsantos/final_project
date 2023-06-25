@@ -12,6 +12,16 @@ function LineChart({ chartData }) {
     <Line
       data={chartData}
       options={{
+        plugins: {
+          legend: {
+            labels: {
+              color: colors.grey[100],
+              font: {
+                size: 14,
+              },
+            },
+          },
+        },
         responsive: true,
         maintainAspectRatio: false,
         layout: {

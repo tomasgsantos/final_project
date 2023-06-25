@@ -1,5 +1,4 @@
 import React from "react";
-import "../../assets/css/Sidebar.css";
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
@@ -15,13 +14,13 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
-import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
-import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
 import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { logout } from "../../utils/AuthService";
+import "../../assets/css/Sidebar.css";
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -62,16 +61,19 @@ const Sidebar = ({userData}) => {
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `${colors.primary[600]} !important`,
+          background: `var(--sidebar-background) !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
         },
-        "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
-        },
         "& .pro-inner-item:hover": {
           color: "#868dfb !important",
+        },
+        "& .pro-menu-item": {
+          background: `var(--sidebar-background)`,
+        },
+        "& .user-badge": {
+          background: `var(--sidebar-background)`,
         },
         "& .pro-menu-item.active": {
           color: "#6870fa !important",
@@ -85,7 +87,7 @@ const Sidebar = ({userData}) => {
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
-              margin: "10px 0 20px 0",
+              padding: "10px 0",
               color: colors.grey[100],
             }}
           >
@@ -105,7 +107,11 @@ const Sidebar = ({userData}) => {
           </MenuItem>
 
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box
+              mb="25px"
+              className="user-badge"
+              sx={{ background: `${colors.primary[600]}` }}
+            >
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   onClick={() => {
@@ -126,9 +132,18 @@ const Sidebar = ({userData}) => {
                 >
                   {userData && userData.name}
                 </Typography>
-                <Typography variant="h6" color={colors.green[300]}>
-                  {userData && capitalize(userData.role)}
-                </Typography>
+                <div className="d-flex gap-8 j-c-center a-i-center">
+                  <Typography variant="h5" color={colors.green[300]}>
+                    {userData && capitalize(userData.role)}
+                  </Typography>
+                  <IconButton
+                    onClick={handleLogout}
+                    size="small"
+                    title="Logout"
+                  >
+                    <LogoutIcon />
+                  </IconButton>
+                </div>
               </Box>
             </Box>
           )}
@@ -226,14 +241,6 @@ const Sidebar = ({userData}) => {
               selected={selected}
               setSelected={setSelected}
             /> */}
-            <Button
-              variant="contained"
-              color="secondary"
-              sx={{ mt: 4, mr: 7 }}
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
           </Box>
         </Menu>
       </ProSidebar>

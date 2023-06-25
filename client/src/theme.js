@@ -144,82 +144,77 @@ export const tokens = (mode) => ({
 
 //mui theme settings
 
-export const themeSettings = (mode) =>{
-  const colors = tokens(mode)
+export const themeSettings = (mode) => {
+  const colors = tokens(mode);
 
-  return{
+  return {
     palette: {
       mode: mode,
-      ...(mode==='dark' 
-      ?{
-        primary: {
-          main:colors.primary[500],
-        },
-        secondary:{
-          main:colors.primary[100],
-        },
-        neutral:{
-          dark:colors.grey[700],
-          main:colors.grey[500],
-          light:colors.grey[100],
-        },
-        background:{
-          default:colors.primary[500],
-        }
-      }:{
-        primary: {
-          main:colors.primary[500],
-        },
-        secondary:{
-          main:colors.primary[300],
-        },
-        neutral:{
-          dark:colors.grey[700],
-          main:colors.grey[500],
-          light:colors.grey[100]
-        },
-        white:{
-          main: colors.grey[100]
-        },
-        black:{
-          main:colors.grey[900]
-        },
-        background:{
-          default:"#fcfcfc",
-        },
-        typography:{
-          fontFamily:["Montserrat", "sans-serif"],
-          fontSize:16,
-          h1:{
-            // fontFamily:["Source Sans Pro", "sans-serif"].join(","),
-            fontSize:40,
-          },
-          h2:{
-            // fontFamily:["Source Sans Pro", "sans-serif"].join(","),
-            fontSize:36,
-          },
-          h3:{
-            // fontFamily:["Source Sans Pro", "sans-serif"].join(","),
-            fontSize:24,
-          },
-          h4:{
-            // fontFamily:["Source Sans Pro", "sans-serif"].join(","),
-            fontSize:20,
-          },
-          h5:{
-            // fontFamily:["Source Sans Pro", "sans-serif"].join(","),
-            fontSize:16,
-          },
-          h6:{
-            // fontFamily:["Source Sans Pro", "sans-serif"].join(","),
-            fontSize:12,
+      ...(mode === "dark"
+        ? {
+            primary: {
+              main: colors.primary[500],
+            },
+            secondary: {
+              main: colors.primary[100],
+            },
+            neutral: {
+              dark: colors.grey[700],
+              main: colors.grey[500],
+              light: colors.grey[100],
+            },
+            background: {
+              default: colors.primary[500],
+            },
           }
-        }
-      }
-      )
-    }
-  }
-}
+        : {
+            primary: {
+              main: colors.primary[500],
+            },
+            secondary: {
+              main: colors.primary[300],
+            },
+            neutral: {
+              dark: colors.grey[700],
+              main: colors.grey[500],
+              light: colors.grey[100],
+            },
+            white: {
+              main: colors.grey[100],
+            },
+            black: {
+              main: colors.grey[900],
+            },
+            background: {
+              default: "#fcfcfc",
+            },
+          }),
+    },
+    typography: {
+      fontFamily: "Montserrat",
+      fontSize: 16,
+      h1: {
+        fontSize: 40,
+      },
+      h2: {
+        fontSize: 36,
+      },
+      h3: {
+        fontSize: 24,
+      },
+      h4: {
+        fontSize: 20,
+      },
+      h5: {
+        fontSize: 16,
+      },
+      h6: {
+        fontSize: 12,
+      },
+    },
+  };
+};
+
 
 //context color-mode
 

@@ -37,7 +37,7 @@ svg.gauge {
   width: 10rem,
 }
 .gauge-container.two > .gauge .dial {
-  stroke: #334455;
+  stroke: var(--gauge-stroke-color);
   stroke-width: 29;
 }
 .gauge-container.two > .gauge .value {
@@ -46,7 +46,7 @@ svg.gauge {
   stroke-width: 26;
 }
 .gauge-container.two > .gauge .value-text {
-  fill: #ccc;
+  fill: var(--gauge-text-color);
   font-weight: 100;
   font-size: 1.6em;
 }

@@ -10,8 +10,8 @@ export default function ValueWidget(props){
  const theme = useTheme()
  const colors = tokens(theme.palette.mode)
  let defaultOptions = {
-    dialStartAngle: 180,
-    dialEndAngle: 0,
+    dialStartAngle: 135,
+    dialEndAngle: 45,
     dialRadius: 35,
     // Put any other defaults you want. e.g. dialStartAngle, dialEndAngle, dialRadius, etc.
   };
@@ -112,9 +112,11 @@ if (name === "PaO2") {
 
   return(
   <Box className="well-box">
-    <Typography className="text" variant="h5" color="white">
-      {name}
-    </Typography>
+    { name &&
+      <Typography className="text" variant="h5" color="white">
+        {name}
+      </Typography>
+     }
         {value &&  <Gauge value={value} defaultOptions={defaultOptions} />}
   </Box>
   )
