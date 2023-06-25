@@ -31,6 +31,7 @@ export default function PatientData() {
       renderCell: ({ row: { copdSeverity } }) => {
         return (
           <Box
+            className="content-box"
             width="200px"
             display={"flex"}
             justifyContent={"center"}

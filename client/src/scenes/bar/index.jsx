@@ -253,7 +253,7 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                        <ValueWidget value={value} />
+                        <ValueWidget name={sensorPurpose} value={value} />
                         <div>
                           <h3>PaCO2</h3>
                           <Tooltip
@@ -340,7 +340,7 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                        <ValueWidget value={value} />
+                        <ValueWidget name={sensorPurpose} value={value} />
                         <div>
                           <h3>PaO2</h3>
                           <Tooltip
@@ -399,7 +399,7 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                        <ValueWidget value={value} />
+                        <ValueWidget name={sensorPurpose} value={value} />
                         <div>
                           <h3>Respiratory Frequency</h3>
                           <Tooltip
@@ -460,7 +460,7 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                        <ValueWidget value={value} />
+                        <ValueWidget name={sensorPurpose} value={value} />
                         <div>
                           <h3>Temperature</h3>
                           <Tooltip

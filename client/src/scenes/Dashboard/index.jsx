@@ -92,7 +92,7 @@ export default function Dashboard({userData, sitWvTestResults, walkWvTestResults
   
 
   return (
-    <div>
+    <div className="content-box">
       <Header title={"Dashboard"} subtitle={"Welcome to your dashboard"} />
       <div className="dashboard-widgets">
         <ValueWidget name="Wellness Value" value={wellnessValue} />

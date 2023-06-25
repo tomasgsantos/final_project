@@ -104,7 +104,7 @@ export default function Results({sitStand}){
   },[walkData])
 
   return (
-    <div className="content">
+    <div className="content-box">
       <Header title={"Test Results"}></Header>
       <div className="main-div">
           {switchD ? (

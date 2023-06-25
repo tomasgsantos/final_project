@@ -44,7 +44,7 @@ export default function Profile({ userData }) {
 
 
   return (
-    <Box>
+    <Box className="content-box">
       <Header title={"Profile"} subtitle={"Edit your profile"} />
       {profileData ? (
         <form className="profile-form" onSubmit={handleSubmit}>

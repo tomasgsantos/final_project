@@ -15,7 +15,7 @@ export default function ValueWidget(props){
     dialRadius: 35,
     // Put any other defaults you want. e.g. dialStartAngle, dialEndAngle, dialRadius, etc.
   };
-if (name === "PaO2") {
+if (name === "pao2") {
   defaultOptions = {
     ...defaultOptions,
     min: 30,
@@ -33,7 +33,7 @@ if (name === "PaO2") {
       }
     },
   };
-} else if (name === "PaCO2") {
+} else if (name === "paco2") {
   defaultOptions = {
     ...defaultOptions,
     min: 35,
@@ -51,7 +51,7 @@ if (name === "PaO2") {
       }
     },
   };
-} else if (name === "Temperature") {
+} else if (name === "temperature") {
   defaultOptions = {
     ...defaultOptions,
     min: 34,
@@ -69,7 +69,7 @@ if (name === "PaO2") {
       }
     },
   };
-} else if (name === "Respiratory Frequency") {
+} else if (name === "respiratory rate") {
   defaultOptions = {
     ...defaultOptions,
     min: 4,
@@ -112,11 +112,11 @@ if (name === "PaO2") {
 
   return(
   <Box className="well-box">
-    { name &&
+    {/* { name &&
       <Typography className="text" variant="h5" color="white">
         {name}
       </Typography>
-     }
+     } */}
         {value &&  <Gauge value={value} defaultOptions={defaultOptions} />}
   </Box>
   )

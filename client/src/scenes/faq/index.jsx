@@ -23,7 +23,7 @@ export default function FAQ({faqData}) {
 
 
   return (
-    <Box m="20px">
+    <Box className="content-box" m="20px">
       <Header title={"FAQ"} subtitle={"Frequently Asked Questions"} />
       {faq && faq.map((item)=>{
         return(
