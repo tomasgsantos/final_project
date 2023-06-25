@@ -12,6 +12,8 @@ function LineChart({ chartData }) {
     <Line
       data={chartData}
       options={{
+        responsive: true,
+        maintainAspectRatio: false,
         layout: {
           padding: 5,
         },

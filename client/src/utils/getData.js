@@ -15,9 +15,9 @@ export const getUserData = async () => {
   }
 };
 
-export const getSitStand = async () => {
+export const getSitWvStand = async () => {
   const token = localStorage.getItem("token");
-  const response = await fetch(`${dbPort}/api/sitStand`, {
+  const response = await fetch(`${dbPort}/api/sitWvStand`, {
     headers: {
       Authorization: `Bearer ${token} `,
     },
@@ -26,13 +26,13 @@ export const getSitStand = async () => {
     const data = await response.json();
     return data;
   } else {
-    throw new Error("Failed to fetch Sit to Stand Data");
+    throw new Error("Failed to fetch SitWv to Stand Data");
   }
 };
 
-export const getWalkTest = async () =>{
+export const getWalkWvTest = async () =>{
   const token = localStorage.getItem('token');
-  const response = await fetch(`${dbPort}/api/walkTest`, {
+  const response = await fetch(`${dbPort}/api/walkWvTest`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -43,6 +43,31 @@ export const getWalkTest = async () =>{
   }
 }
 
+export const getAllWalkData = async () =>{
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${dbPort}/api/allWalkData`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+  }
+export const getAllSitData = async () =>{
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${dbPort}/api/allSitData`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  }
+  }
+
 export const getCat = async ()=>{
   const token = localStorage.getItem('token');
   const response = await fetch(`${dbPort}/api/cat`,{
@@ -51,6 +76,19 @@ export const getCat = async ()=>{
   },
 });
   if(response.ok) {
+    const data = await response.json();
+    return data;
+  }
+}
+
+export const getWV = async () => {
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${dbPort}/api/getWV`,{
+    headers:{
+      Authorization: 'Bearer ' + token,
+    },
+  });
+  if(response.ok){
     const data = await response.json();
     return data;
   }
@@ -73,13 +111,14 @@ export const getRecord = async () => {
 
 export const getChartData = async (id) => {
   const token = localStorage.getItem("token");
-  const response = await fetch(`dbPort/api/getSensor/${id}`, {
+  const response = await fetch(`${dbPort}/api/getSensor/${id}`, {
     headers: {
       Authorization: "Bearer " + token,
     },
   });
   if (response.ok) {
     const data = await response.json();
+    console.log("getChart data" + data)
     return data;
   } else {
     throw new Error("Failed to fetch Chart data");

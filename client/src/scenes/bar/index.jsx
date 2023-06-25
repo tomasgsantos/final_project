@@ -10,13 +10,13 @@ import { userBarData } from "../../data/mockData";
 import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import LineChart from "../../components/LineChart";
-import "../../assets/css/bar.css";
 import { useNavigate } from "react-router-dom";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ValueWidget from "../../components/ValueWidget";
 import { getChartData } from "../../utils/getData";
 import { formatDate } from "../../utils/FormatDate";
+import "../../assets/css/bar.css";
 
 export default function Bar({ userRecords }) {
   const theme = useTheme();
@@ -39,8 +39,7 @@ export default function Bar({ userRecords }) {
         const paco2Data = await getChartData("1");
         const pao2Data = await getChartData("2");
         const rrData = await getChartData("3");
-        const tData = await getChartData("4");
-        // paco2Data.reverse();
+        const tData = await getChartData("4");      
         const formattedPaco2Data = paco2Data.map((data) => {
           return {
             ...data,
@@ -79,6 +78,7 @@ export default function Bar({ userRecords }) {
     };
     fetchHealthValues();
   }, []);
+
 
   const [userData, setUserData] = useState({
     labels: userBarData.map((data) => data.day),

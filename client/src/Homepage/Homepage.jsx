@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { getUserData, getRecord, getFaq, getSitStand, getWalkTest, getCat } from "../utils/getData";
+import { getUserData, getRecord, getFaq, getSitWvStand, getWalkWvTest, getCat } from "../utils/getData";
 import { convertUser, convertRecords } from "../utils/userConverter";
-import { calcSitStand, calcWalkResults, calcVarResults, calcCatResults } from "../utils/Calc";
+import { calcSitWvStand, calcWalkWvResults, calcVarResults, calcCatResults } from "../utils/Calc";
 import { isAuthenticated } from "../utils/AuthService";
 import Dashboard from "../scenes/Dashboard";
 import Vitals from "../scenes/Vitals";
@@ -25,10 +25,10 @@ export default function Homepage() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [userRecords, setUserRecords] = useState(null);
   const [varResults, setVarResults] = useState(null);
-  const [sitStand, setSitStand] = useState(null);
-  const [sitTestResults, setSitTestResults] = useState(null);
-  const [walkResults, setWalkResults] = useState(null);
-  const [walkTestResults, setWalkTestResults] = useState(null);
+  const [sitWvStand, setSitWvStand] = useState(null);
+  const [sitWvTestResults, setSitWvTestResults] = useState(null);
+  const [walkWvResults, setWalkWvResults] = useState(null);
+  const [walkWvTestResults, setWalkWvTestResults] = useState(null);
   const [cat, setCat]= useState(null); 
   const [catResults, setCatResults]= useState(null);
 
@@ -60,18 +60,18 @@ export default function Homepage() {
         console.error(err.message);
       }
     }
-    const fetchSitStand = async () =>{
+    const fetchSitWvStand = async () =>{
       try{
-        const data = await getSitStand();
-        setSitStand(data);
+        const data = await getSitWvStand();
+        setSitWvStand(data);
       }catch(err){
         console.error(err.message);
       }
     }
-    const fetchWalkTest = async () =>{
+    const fetchWalkWvTest = async () =>{
       try{
-        const data = await getWalkTest();
-        setWalkResults(data);
+        const data = await getWalkWvTest();
+        setWalkWvResults(data);
       }catch(err){
         console.error(err.message);
       }
@@ -89,29 +89,32 @@ export default function Homepage() {
     fetchData();
     fetchRecords();
     fetchFaq();
-    fetchSitStand();
-    fetchWalkTest();
+    fetchSitWvStand();
+    fetchWalkWvTest();
     fetchCat();
   }, []);
 
   useEffect(()=>{
-    if(sitStand){
-      const data = calcSitStand(sitStand);
-      setSitTestResults(data);
+    if(sitWvStand){
+      const data = calcSitWvStand(sitWvStand);
+      setSitWvTestResults(data);
+      console.log("sit: "+sitWvTestResults)
     }
-  }, [sitStand]);
+  }, [sitWvStand]);
 
   useEffect(()=>{
-    if(walkResults){
-      const data = calcWalkResults(walkResults);
-      setWalkTestResults(data);
+    if(walkWvResults){
+      const data = calcWalkWvResults(walkWvResults);
+      setWalkWvTestResults(data);
+      console.log("walk: "+walkWvTestResults)
     }
-  }, [walkResults]);
+  }, [walkWvResults]);
 
   useEffect(()=>{
     if(userRecords){
       const data = calcVarResults(userRecords);
       setVarResults(data.allVariablesImpact);
+      console.log("var: "+ varResults)
     }
   },[userRecords]);
 
@@ -119,6 +122,7 @@ export default function Homepage() {
     if(cat){
       const data = calcCatResults(cat);
       setCatResults(data)
+      console.log("cat: " + catResults)
     }
   },[cat]);
 
@@ -129,7 +133,7 @@ export default function Homepage() {
       <main className="content">
         <Topbar userData={userData} />
         <Routes>
-          {isLoggedIn && <Route path="/" element={<Dashboard userData={userData} sitTestResults={sitTestResults} walkTestResults={walkTestResults} varResults={varResults} catResults={catResults}/>} />}
+          {isLoggedIn && <Route path="/" element={<Dashboard userData={userData} sitWvTestResults={sitWvTestResults} walkWvTestResults={walkWvTestResults} varResults={varResults} catResults={catResults}/>} />}
           {isLoggedIn && <Route path="/vitals" element={<Vitals />} />}
           {isLoggedIn && <Route path="/education" element={<Education />} />}
           {userData && (userData.role == "patient" ? null : <Route path="/patients" element={<PatientData />} />)}
@@ -139,7 +143,7 @@ export default function Homepage() {
           {isLoggedIn && <Route path="/form" element={<Form />} />}
           {isLoggedIn && <Route path="/profile" element={<Profile userData={userData} />} />}
           {isLoggedIn && <Route path="/cat" element={<Cat />} />}
-          {isLoggedIn && <Route path="/results" element={<Results sitStand={sitStand} />} />}
+          {isLoggedIn && <Route path="/results" element={<Results />} />}
           {/* {!isLoggedIn && <Navigate to="/" replace={true} />} */}
         </Routes>
       </main>

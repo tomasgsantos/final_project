@@ -22,3 +22,18 @@ export const postCat = async (formData) =>{
       }),
     });
   };
+
+  export const postWv = async (value) =>{
+    const token = localStorage.getItem('token');
+
+      await fetch(`${dbPort}/api/postWV`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          value: value
+        }),
+      });
+  };

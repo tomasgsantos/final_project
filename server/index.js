@@ -84,7 +84,38 @@ app.post("/api/cat", authenticateUser, async (req, res) => {
     res.json(catScore);
   } catch (error) {
     console.error("Error: ", error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(600).json({ message: "Server Error" });
+  }
+});
+
+app.get("/api/getWV", authenticateUser, async (req, res) => {
+  try{
+    const userId = req.userId;
+
+    const wellValue = await pool.query(
+      `SELECT value, date FROM wellness WHERE patientId = $1`,
+      [userId]
+    );
+    res.json(wellValue.rows[0]);
+  }catch(error){
+    console.error("Error fetching wellness value DB: " + error);
+    res.status(600).json({message: "Error fetching wellnessvalue"});
+  }
+})
+
+app.post("/api/postWV", authenticateUser, async (req, res) => {
+  try{
+    const userId = req.userId;
+    const {value} = req.body;
+
+    const meter = await pool.query(
+      `INSERT INTO wellness (value, patientid) VALUES ($1, $2) RETURNING * `,
+      [value, userId]
+    );
+    res.json(meter);
+  }catch(error){
+    console.error("Error inserting wellness value: " + error);
+    res.status(600).json({message: "Error inserting wellnessvalue"});
   }
 });
 
@@ -162,7 +193,7 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-app.get("/api/sitStand", authenticateUser, async (req, res) =>{
+app.get("/api/sitWvStand", authenticateUser, async (req, res) =>{
   try{
     const userId = req.userId;
     const sitStand = await pool.query(
@@ -177,7 +208,7 @@ app.get("/api/sitStand", authenticateUser, async (req, res) =>{
   };
 });
 
-app.get("/api/walkTest", authenticateUser, async (req, res) => {
+app.get("/api/walkWvTest", authenticateUser, async (req, res) => {
   try{
     const userId = req.userId;
     const walkResults = await pool.query(
@@ -191,6 +222,36 @@ app.get("/api/walkTest", authenticateUser, async (req, res) => {
     res.status(523).json({message: "Walk Test fetch error DB"});
   };
 });
+
+app.get("/api/allSitData", authenticateUser, async (req, res)=>{
+  try{
+    const userId = req.userId;
+    const sitResults = await pool.query(
+      `SELECT initialpulsation, finalpulsation, date1test, countcycles, testpercentage FROM "1mstst" WHERE idpatient= $1 ORDER BY date1test DESC`,
+      [userId]
+    );
+
+    res.json(sitResults.rows.slice(0,7));
+  }catch(err){
+    console.error(err.message);
+    res.status(500).send({message: "All sit data fecth error DB"});
+}});
+
+app.get("/api/allWalkData" , authenticateUser, async(req, res)=>{
+  try{
+    const userId = req.userId;
+    const walkResults = await pool.query(
+      `SELECT initialpulsation, finalpulsation, date6test, numbersteps, distance, testpercent FROM sixmwt WHERE idpatient = $1 `,
+      [userId]
+    );
+
+    res.json(walkResults.rows.slice(0,7));
+  }catch(err){
+    console.error(err.message);
+    res.status(500).send({message: "All walk data fecth error DB"});
+  }
+});
+
 
 app.get("/api/userData", authenticateUser, async (req, res) => {
   try {

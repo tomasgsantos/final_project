@@ -24,6 +24,8 @@ const colors = tokens(theme.palette.mode);
     <Bar
       data={chartData}
       options={{
+        responsive: true,
+        maintainAspectRatio: false,
         layout: {
           padding: 5,
         },
@@ -37,7 +39,7 @@ const colors = tokens(theme.palette.mode);
             },
             grid: {
               color: colors.grey[300],
-              borderColor: colors.grey[300]
+              borderColor: colors.grey[300],
             },
           },
           x: {
