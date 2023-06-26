@@ -132,6 +132,32 @@ export default function Results({sitStand}){
             )}
           </Box>
       </div>
+      <div className="main-div">
+          {switchD ? (
+            <Button
+              variant="outlined"
+              sx={{ color: "white", borderColor: "white" }}
+              onClick={() => setSwitchD(!switchD)}
+            >
+              Line Chart
+            </Button>
+          ) : (
+            <Button
+              sx={{ color: "white", borderColor: "white" }}
+              variant="outlined"
+              onClick={() => setSwitchD(!switchD)}
+            >
+              Bar Chart
+            </Button>
+          )}
+          <Box className="chart-box">
+            {switchD ? (
+              <BarChart className="charts" chartData={countSitChartData} />
+            ) : (
+              <LineChart className="charts" chartData={countSitChartData} />
+            )}
+          </Box>
+      </div>
     </div>
   );
 }

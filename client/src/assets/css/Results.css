@@ -12,6 +12,10 @@
 
 .chart-box{
   display: flex;
-  height: 150px;
+  height: 230px;
+}
+
+.chart-box.MuiBox-root.css-0{
+  width: 90%;
 }
 
