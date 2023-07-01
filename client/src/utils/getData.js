@@ -94,6 +94,19 @@ export const getWV = async () => {
   }
 }
 
+export const getAllWv = async () => {
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${dbPort}/api/getWvChart`, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+  if(response.ok){
+    const data = await response.json();
+    return data;
+  }
+}
+
 export const getRecord = async () => {
   const token = localStorage.getItem("token");
   const response = await fetch(`${dbPort}/api/record`, {

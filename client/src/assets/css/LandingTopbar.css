@@ -19,12 +19,12 @@
 }
 .box-c{
   display: flex;
-  gap: 40px;
+  gap: 50px;
   text-align: justify;
+  justify-content: center;
   width: 400px;
   align-items: center;
   text-decoration: underline;
-  margin-right: 400px;
 }
 .landing-topbar{
   display:flex;

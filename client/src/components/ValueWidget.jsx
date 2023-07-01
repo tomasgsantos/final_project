@@ -100,7 +100,7 @@ if (name === "pao2") {
         return "#fffa50"; // Yellow
       } else if (value >= 25 && value < 50) {
         return "#f7aa38"; // Orange
-      } else if (value > 25) {
+      } else if (value < 25) {
         return "#ef4655"; // Red
       }
     },

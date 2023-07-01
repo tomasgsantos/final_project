@@ -213,13 +213,13 @@ const Sidebar = ({userData}) => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Emergency"
               to="/emergency"
               icon={<LocalHospitalOutlinedIcon sx={{ color: "red" }} />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
             <Item
               title="FAQ"
               to="/faq"
@@ -227,13 +227,13 @@ const Sidebar = ({userData}) => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Contacts"
               to="/contacts"
               icon={<AlternateEmailIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
             {/* <Item
               title="Form"
               to="/form"

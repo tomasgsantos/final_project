@@ -32,7 +32,7 @@ function LineChart({ chartData }) {
             ticks: {
               color: "white",
               font: {
-                size: 14,
+                size: 12,
               },
             },
             grid: {
@@ -43,7 +43,7 @@ function LineChart({ chartData }) {
             ticks: {
               color: "white",
               font: {
-                size: 17,
+                size: 12,
                 border: 1,
                 borderColor: "white",
               },

@@ -351,15 +351,38 @@ export default function Bar({ userRecords }) {
                             oxygenation, while lower levels suggest reduced oxygen
                             levels in the blood."
                           >
-                            <p>
-                              PaO2 stands for partial pressure of oxygen…
-                            </p>
+                            <p>PaO2 stands for partial pressure of oxygen…</p>
                           </Tooltip>
                         </div>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                      {switchA ? (
+                      <ButtonGroup
+                        variant="outlined"
+                        className="chart-type-switch"
+                        aria-label="outlined button group"
+                      >
+                        <Tooltip title="Bar chart">
+                          <IconButton
+                            className={switchA ? "active" : "noot"}
+                            onClick={() => setSwitchA(!switchA)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <BarChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Line chart">
+                          <IconButton
+                            onClick={() => setSwitchA(!switchA)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <SsidChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </ButtonGroup>
+                      {/* {switchA ? (
                         <Button
                           variant="outlined"
                           sx={{ color: "white", borderColor: "white" }}
@@ -375,7 +398,7 @@ export default function Bar({ userRecords }) {
                         >
                           Line Chart
                         </Button>
-                      )}
+                      )} */}
                       <Box className="chart-box" height="75vh">
                         {!switchA ? (
                           <BarChart
@@ -420,7 +443,32 @@ export default function Bar({ userRecords }) {
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                      {switchB ? (
+                      <ButtonGroup
+                        variant="outlined"
+                        className="chart-type-switch"
+                        aria-label="outlined button group"
+                      >
+                        <Tooltip title="Bar chart">
+                          <IconButton
+                            className={switchB ? "active" : "noot"}
+                            onClick={() => setSwitchB(!switchB)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <BarChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Line chart">
+                          <IconButton
+                            onClick={() => setSwitchB(!switchB)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <SsidChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </ButtonGroup>
+                      {/* {switchB ? (
                         <Button
                           variant="outlined"
                           sx={{ color: "white", borderColor: "white" }}
@@ -436,7 +484,7 @@ export default function Bar({ userRecords }) {
                         >
                           Bar Chart
                         </Button>
-                      )}
+                      )} */}
                       <Box className="chart-box" height="75vh">
                         {switchB ? (
                           <BarChart
@@ -480,7 +528,32 @@ export default function Bar({ userRecords }) {
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                      {switchC ? (
+                      <ButtonGroup
+                        variant="outlined"
+                        className="chart-type-switch"
+                        aria-label="outlined button group"
+                      >
+                        <Tooltip title="Bar chart">
+                          <IconButton
+                            className={switchC ? "active" : "noot"}
+                            onClick={() => setSwitchC(!switchC)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <BarChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Line chart">
+                          <IconButton
+                            onClick={() => setSwitchC(!switchC)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <SsidChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </ButtonGroup>
+                      {/* {switchC ? (
                         <Button
                           variant="outlined"
                           sx={{ color: "white", borderColor: "white" }}
@@ -496,7 +569,7 @@ export default function Bar({ userRecords }) {
                         >
                           Bar Chart
                         </Button>
-                      )}
+                      )} */}
                       <Box className="chart-box" height="75vh">
                         {switchC ? (
                           <BarChart className="charts" chartData={tChartData} />

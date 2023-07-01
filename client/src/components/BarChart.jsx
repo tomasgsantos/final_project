@@ -44,7 +44,7 @@ const colors = tokens(theme.palette.mode);
             ticks: {
               color: colors.grey[100],
               font: {
-                size: 14,
+                size: 12,
               },
             },
             grid: {
@@ -56,7 +56,7 @@ const colors = tokens(theme.palette.mode);
             ticks: {
               color: colors.grey[100],
               font: {
-                size: 17,
+                size: 12,
                 border: 1,
                 borderColor: colors.grey[100],
               },

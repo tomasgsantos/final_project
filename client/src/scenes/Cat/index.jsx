@@ -7,10 +7,12 @@ import "../../assets/css/Cat.css";
 import VideoPlayer from "../../components/VideoPlayer";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { postCat } from "../../utils/postData";
+import { useNavigate } from "react-router-dom";
 
 export default function Cat() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     cough: 0,
     phlegm: 0,
@@ -34,6 +36,7 @@ export default function Cat() {
     // Process the form data, e.g., submit it to the server
     postCat(formData).then(()=>{
       alert("Form submitted successfully");
+      navigate(0);
     });
   };
 

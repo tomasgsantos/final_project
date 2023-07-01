@@ -91,6 +91,10 @@ code {
   justify-content: stretch;
 }
 
+.a-i-start{
+  align-items: flex-start;
+}
+
 .a-i-center{
   align-items: center;
 }

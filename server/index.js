@@ -103,6 +103,21 @@ app.get("/api/getWV", authenticateUser, async (req, res) => {
   }
 })
 
+app.get("/api/getWvChart", authenticateUser, async(req, res)=>{
+  try{
+    const userId = req.userId;
+
+    const wellData = await pool.query(
+      `SELECT value, date FROM wellness WHERE patientId = $1`,
+      [userId]
+    );
+    res.json(wellData.rows);
+  }catch(error){
+    console.error("Error fetching all Wellness Vaues Db" + error);
+    res.status(600).json({message: "Error fetching wellness values"})
+  }
+})
+
 app.post("/api/postWV", authenticateUser, async (req, res) => {
   try{
     const userId = req.userId;
