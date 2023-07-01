@@ -10,9 +10,30 @@
   align-items: center;
 }
 
+.main-div + .main-div{
+  margin-top: 40px ;
+}
+
 .chart-box{
   display: flex;
-  width: 850px;
-  height: 150px;
+  height: 230px;
 }
+
+.chart-box.MuiBox-root.css-0{
+  width: 90%;
+}
+
+.blue{
+  background-color: blue;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+}
+.purple{
+  background-color: peru;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+}
+
 

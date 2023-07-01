@@ -5,7 +5,7 @@ import VideoPlayer from "../../components/VideoPlayer";
 
 export default function Education() {
   return (
-    <div className="content">
+    <div className="content-box">
       <Header title={"Education"} subtitle={"Learn more about COPD!"} />
 
       <div className="education-container">

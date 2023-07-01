@@ -10,12 +10,12 @@ export default function ValueWidget(props){
  const theme = useTheme()
  const colors = tokens(theme.palette.mode)
  let defaultOptions = {
-    dialStartAngle: 180,
-    dialEndAngle: 0,
+    dialStartAngle: 135,
+    dialEndAngle: 45,
     dialRadius: 35,
     // Put any other defaults you want. e.g. dialStartAngle, dialEndAngle, dialRadius, etc.
   };
-if (name === "PaO2") {
+if (name === "pao2") {
   defaultOptions = {
     ...defaultOptions,
     min: 30,
@@ -33,7 +33,7 @@ if (name === "PaO2") {
       }
     },
   };
-} else if (name === "PaCO2") {
+} else if (name === "paco2") {
   defaultOptions = {
     ...defaultOptions,
     min: 35,
@@ -51,7 +51,7 @@ if (name === "PaO2") {
       }
     },
   };
-} else if (name === "Temperature") {
+} else if (name === "temperature") {
   defaultOptions = {
     ...defaultOptions,
     min: 34,
@@ -69,7 +69,7 @@ if (name === "PaO2") {
       }
     },
   };
-} else if (name === "Respiratory Frequency") {
+} else if (name === "respiratory rate") {
   defaultOptions = {
     ...defaultOptions,
     min: 4,
@@ -100,7 +100,7 @@ if (name === "PaO2") {
         return "#fffa50"; // Yellow
       } else if (value >= 25 && value < 50) {
         return "#f7aa38"; // Orange
-      } else if (value > 25) {
+      } else if (value < 25) {
         return "#ef4655"; // Red
       }
     },
@@ -112,9 +112,11 @@ if (name === "PaO2") {
 
   return(
   <Box className="well-box">
-    <Typography className="text" variant="h5" color="white">
-      {name}
-    </Typography>
+    {/* { name &&
+      <Typography className="text" variant="h5" color="white">
+        {name}
+      </Typography>
+     } */}
         {value &&  <Gauge value={value} defaultOptions={defaultOptions} />}
   </Box>
   )

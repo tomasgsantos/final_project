@@ -42,11 +42,7 @@ const LandingTopbar = () => {
       <div
         className="box-a"
         
-        BackgroundColor={
-          theme.palette.mode === "dark"
-            ? colors.primary[400]
-            : colors.primary[900]
-        }
+      
       >
         <img src={Home} alt="Home_logo" width="95px" height="70px" onClick={() => navigate("/")}/>
       </div>

@@ -3,8 +3,7 @@
 .chart-box{
   display: flex;
   margin-bottom: 40px;
-  width: 1000px;  
-  border: 1px solid var(--gray-20);
+  /* border: 1px solid var(--main-color-60); */
   background-color: var(--content-background);
   border-radius: 7px;
   padding: 10px;
@@ -14,40 +13,53 @@
 .charts{
   color: white;
 }
-.content-box{
-  padding : 50px
-}
+
 .learn-more{
   display: flex;
   text-align: center;
   justify-content: center;;
   align-items: center;
   gap: 30px;
-  margin-bottom: 7rem;
+  padding: 2rem 0;
+
 }
+
 .learn-text{
   padding: 10px;
   
 }
 .widgets{
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
 
 }
+
+body .MuiAccordion-root{
+  background-color: var(--body-background-color);
+}
+
+.chart-type-switch {
+  display: flex!important;
+  justify-content: flex-end;
+}
+
+.chart-type-switch .active{
+  background-color: var(--main-color-60);
+  
+}
+
 .accordion-summary{
   display: flex;
-  gap: 50px;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
-  text-align: center;
+
 }
 .color-guide{
   display: flex;
-  justify-content: center;
   gap: 40px;
-  margin-bottom: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--body-background-color);
 }
 
 .color-line{

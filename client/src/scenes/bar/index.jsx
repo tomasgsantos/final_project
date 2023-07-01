@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, IconButton, ButtonGroup, Typography } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -16,6 +16,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ValueWidget from "../../components/ValueWidget";
 import { getChartData } from "../../utils/getData";
 import { formatDate } from "../../utils/FormatDate";
+import Tooltip from "@mui/material/Tooltip";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import SsidChartIcon from "@mui/icons-material/SsidChart";
+
 import "../../assets/css/bar.css";
 
 export default function Bar({ userRecords }) {
@@ -201,12 +205,12 @@ export default function Bar({ userRecords }) {
 
   return (
     <Box className="content-box">
-      <Header title="Your Charts" />
-      <Typography variant="h5" sx={{ m: 10 }}>
-        This is your Data! Here you have displayed in simple widgets and charts
-        your Wellness Value throughout the week.
-      </Typography>
-      <div className="learn-more">
+      <Header
+        title="Your Charts"
+        subtitle="Here is your wellness data presented in easy-to-understand widgets and charts, showcasing your wellness value over the course of the week."
+      />
+
+      <div className="d-flex gap-16">
         <Typography className="learn-text" variant="h5">
           Learn more about your Data here!
         </Typography>
@@ -218,24 +222,26 @@ export default function Bar({ userRecords }) {
           <SchoolOutlinedIcon />
         </Button>
       </div>
-      <div className="color-guide">
+      <Box
+        className="color-guide"
+      >
         <div className="color-line">
           <div className="green"></div>
-          <p> - Good</p>
+          <p>Good</p>
         </div>
         <div className="color-line">
           <div className="yellow"></div>
-          <p> - Mild</p>
+          <p>Mild</p>
         </div>
         <div className="color-line">
           <div className="orange"></div>
-          <p> - Severe</p>
+          <p>Severe</p>
         </div>
         <div className="color-line">
           <div className="red"></div>
-          <p> - Very Severe</p>
+          <p>Very Severe</p>
         </div>
-      </div>
+      </Box>
       <div className="widgets">
         {userRecords &&
           userRecords.map((record) => {
@@ -247,19 +253,54 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                        <ValueWidget name="PaCO2" value={value} />
-                        <p>
-                          Paco2 stands for partial pressure of carbon dioxide.
-                          It measures the amount of carbon dioxide in your
-                          blood. In COPD, it helps determine how well your lungs
-                          are functioning. Higher Paco2 levels indicate poor
-                          lung function, while lower levels suggest better lung
-                          function.
-                        </p>
+                        <ValueWidget name={sensorPurpose} value={value} />
+                        <div>
+                          <h3>PaCO2</h3>
+                          <Tooltip
+                            title="Paco2 stands for partial pressure of carbon dioxide.
+                              It measures the amount of carbon dioxide in your
+                              blood. In COPD, it helps determine how well your lungs
+                              are functioning. Higher Paco2 levels indicate poor
+                              lung function, while lower levels suggest better lung
+                              function."
+                          >
+                            <p>
+                              Paco2 stands for partial pressure of carbon
+                              dioxide…
+                            </p>
+                          </Tooltip>
+                        </div>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                      {switchD ? (
+                      <ButtonGroup
+                        variant="outlined"
+                        className="chart-type-switch"
+                        aria-label="outlined button group"
+                      >
+                        <Tooltip title="Bar chart">
+                          <IconButton
+                            className={switchD ? "active": "noot"}
+                            onClick={() => setSwitchD(!switchD)}
+                            size="small"
+                            title="Logout"
+                            >
+                            <BarChartIcon />
+                          </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Line chart">
+                            <IconButton
+                                
+                                onClick={() => setSwitchD(!switchD)}
+                                size="small"
+                                title="Logout"
+                                >
+                              <SsidChartIcon />
+                            </IconButton>
+                          </Tooltip>
+                      </ButtonGroup>
+
+                      {/* {switchD ? (
                         <Button
                           variant="outlined"
                           sx={{ color: "white", borderColor: "white" }}
@@ -275,7 +316,7 @@ export default function Bar({ userRecords }) {
                         >
                           Bar Chart
                         </Button>
-                      )}
+                      )} */}
                       <Box className="chart-box" height="75vh">
                         {switchD ? (
                           <BarChart
@@ -299,19 +340,49 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                        <ValueWidget name="PaO2" value={value} />
-                        <p>
-                          PaO2 stands for partial pressure of oxygen. It
-                          measures the amount of oxygen in your blood. In COPD,
-                          it indicates how well your lungs are able to oxygenate
-                          your body. Higher PaO2 levels indicate better
-                          oxygenation, while lower levels suggest reduced oxygen
-                          levels in the blood.
-                        </p>
+                        <ValueWidget name={sensorPurpose} value={value} />
+                        <div>
+                          <h3>PaO2</h3>
+                          <Tooltip
+                            title="PaO2 stands for partial pressure of oxygen. It
+                            measures the amount of oxygen in your blood. In COPD,
+                            it indicates how well your lungs are able to oxygenate
+                            your body. Higher PaO2 levels indicate better
+                            oxygenation, while lower levels suggest reduced oxygen
+                            levels in the blood."
+                          >
+                            <p>PaO2 stands for partial pressure of oxygen…</p>
+                          </Tooltip>
+                        </div>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                      {switchA ? (
+                      <ButtonGroup
+                        variant="outlined"
+                        className="chart-type-switch"
+                        aria-label="outlined button group"
+                      >
+                        <Tooltip title="Bar chart">
+                          <IconButton
+                            className={switchA ? "active" : "noot"}
+                            onClick={() => setSwitchA(!switchA)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <BarChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Line chart">
+                          <IconButton
+                            onClick={() => setSwitchA(!switchA)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <SsidChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </ButtonGroup>
+                      {/* {switchA ? (
                         <Button
                           variant="outlined"
                           sx={{ color: "white", borderColor: "white" }}
@@ -327,7 +398,7 @@ export default function Bar({ userRecords }) {
                         >
                           Line Chart
                         </Button>
-                      )}
+                      )} */}
                       <Box className="chart-box" height="75vh">
                         {!switchA ? (
                           <BarChart
@@ -351,22 +422,53 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                        <ValueWidget
-                          name="Respiratory Frequency"
-                          value={value}
-                        />
-                        <p>
-                          Respiratory rate refers to the number of breaths you
-                          take per minute. It is an important measure of how
-                          fast or slow you are breathing. In COPD, an increased
-                          respiratory rate may indicate difficulty in breathing
-                          or inadequate oxygen exchange. Monitoring your
-                          respiratory rate helps assess your breathing status.
-                        </p>
+                        <ValueWidget name={sensorPurpose} value={value} />
+                        <div>
+                          <h3>Respiratory Frequency</h3>
+                          <Tooltip
+                            title="Respiratory rate refers to the number of breaths you
+                            take per minute. It is an important measure of how
+                            fast or slow you are breathing. In COPD, an
+                            increased respiratory rate may indicate difficulty
+                            in breathing or inadequate oxygen exchange.
+                            Monitoring your respiratory rate helps assess your
+                            breathing status."
+                          >
+                            <p>
+                              Respiratory rate refers to the number of breaths
+                              you take per minute…
+                            </p>
+                          </Tooltip>
+                        </div>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                      {switchB ? (
+                      <ButtonGroup
+                        variant="outlined"
+                        className="chart-type-switch"
+                        aria-label="outlined button group"
+                      >
+                        <Tooltip title="Bar chart">
+                          <IconButton
+                            className={switchB ? "active" : "noot"}
+                            onClick={() => setSwitchB(!switchB)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <BarChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Line chart">
+                          <IconButton
+                            onClick={() => setSwitchB(!switchB)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <SsidChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </ButtonGroup>
+                      {/* {switchB ? (
                         <Button
                           variant="outlined"
                           sx={{ color: "white", borderColor: "white" }}
@@ -382,7 +484,7 @@ export default function Bar({ userRecords }) {
                         >
                           Bar Chart
                         </Button>
-                      )}
+                      )} */}
                       <Box className="chart-box" height="75vh">
                         {switchB ? (
                           <BarChart
@@ -406,19 +508,52 @@ export default function Bar({ userRecords }) {
                   <Accordion defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
-                        <ValueWidget name="Temperature" value={value} />
-                        <p>
-                          Temperature refers to the level of heat in your body.
-                          While it is not directly related to COPD, changes in
-                          temperature can affect your overall comfort and
-                          well-being. It is important to maintain a comfortable
-                          temperature and avoid extreme cold or heat, as they
-                          can impact your respiratory symptoms.
-                        </p>
+                        <ValueWidget name={sensorPurpose} value={value} />
+                        <div>
+                          <h3>Temperature</h3>
+                          <Tooltip
+                            title="Temperature refers to the level of heat in your body.
+                            While it is not directly related to COPD, changes in
+                            temperature can affect your overall comfort and
+                            well-being. It is important to maintain a comfortable
+                            temperature and avoid extreme cold or heat, as they
+                            can impact your respiratory symptoms."
+                          >
+                            <p>
+                              Temperature refers to the level of heat in your
+                              body…
+                            </p>
+                          </Tooltip>
+                        </div>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                      {switchC ? (
+                      <ButtonGroup
+                        variant="outlined"
+                        className="chart-type-switch"
+                        aria-label="outlined button group"
+                      >
+                        <Tooltip title="Bar chart">
+                          <IconButton
+                            className={switchC ? "active" : "noot"}
+                            onClick={() => setSwitchC(!switchC)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <BarChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Line chart">
+                          <IconButton
+                            onClick={() => setSwitchC(!switchC)}
+                            size="small"
+                            title="Logout"
+                          >
+                            <SsidChartIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </ButtonGroup>
+                      {/* {switchC ? (
                         <Button
                           variant="outlined"
                           sx={{ color: "white", borderColor: "white" }}
@@ -434,13 +569,10 @@ export default function Bar({ userRecords }) {
                         >
                           Bar Chart
                         </Button>
-                      )}
+                      )} */}
                       <Box className="chart-box" height="75vh">
                         {switchC ? (
-                          <BarChart
-                            className="charts"
-                            chartData={tChartData}
-                          />
+                          <BarChart className="charts" chartData={tChartData} />
                         ) : (
                           <LineChart
                             className="charts"

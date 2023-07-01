@@ -26,29 +26,39 @@ const colors = tokens(theme.palette.mode);
       options={{
         responsive: true,
         maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                  color: colors.grey[100], 
+                    font: {
+                        size: 14
+                    }
+                }
+            }
+        },
         layout: {
           padding: 5,
         },
         scales: {
           y: {
             ticks: {
-              color: "white",
+              color: colors.grey[100],
               font: {
-                size: 14,
+                size: 12,
               },
             },
             grid: {
-              color: colors.grey[300],
-              borderColor: colors.grey[300],
+              color: colors.grey[100],
+              borderColor: colors.grey[100],
             },
           },
           x: {
             ticks: {
-              color: "white",
+              color: colors.grey[100],
               font: {
-                size: 17,
+                size: 12,
                 border: 1,
-                borderColor: "white",
+                borderColor: colors.grey[100],
               },
             },
             grid: {

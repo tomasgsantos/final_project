@@ -12,6 +12,16 @@ function LineChart({ chartData }) {
     <Line
       data={chartData}
       options={{
+        plugins: {
+          legend: {
+            labels: {
+              color: colors.grey[100],
+              font: {
+                size: 14,
+              },
+            },
+          },
+        },
         responsive: true,
         maintainAspectRatio: false,
         layout: {
@@ -22,7 +32,7 @@ function LineChart({ chartData }) {
             ticks: {
               color: "white",
               font: {
-                size: 14,
+                size: 12,
               },
             },
             grid: {
@@ -33,7 +43,7 @@ function LineChart({ chartData }) {
             ticks: {
               color: "white",
               font: {
-                size: 17,
+                size: 12,
                 border: 1,
                 borderColor: "white",
               },
