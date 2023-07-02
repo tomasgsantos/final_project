@@ -1,53 +1,72 @@
 @import "vars.css";
 
 .card {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 50px;
-  align-items: center;
-  margin: auto;
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 16, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 16, 0.23);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 16, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 16, 0.23);
   background-color:var(--content-background) ;
   border-radius: 5px;
-  border: 1px solid var(--gray-20);
-  padding: 0.8rem;
+  border: 2px solid var(--body-background-color-20);
+  padding: 0.8rem 1.5rem;
   width: 100%;
-  margin: 10px;
+}
+.card + .card{
+  margin-top: 2rem;
+}
+.card:hover, .card:focus-within{
+  outline: 4px solid var(--gray-10);
 }
 .rating-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.4rem 0.8rem;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0;
+  gap: 2rem;
   width: 100%;
 }
+
 .rating-text{
-  width: 37%;
-
+  flex-grow: 1;
+  font-size: 1rem;
+  text-align: left;
+  font-weight: 400;
+  font-size: 1.25rem;
 }
-
-.rating-text p {
-  color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
 .rating {
   background-color: rgba(0, 0, 16, 0.8);
   text-align: center;
   align-items: center;
   padding: 0.4rem 0.4rem 0.1rem 0.4rem;
   border-radius: 2.2rem;
-  width: 53vh;
-  height: 90px;
+  width: auto;
+  display: flex;
 }
+.rating-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+  }
+
+
+@media(min-width: 992px){
+  .rating-container{
+    flex-direction: row;
+  }
+  .rating{
+    width: 50%;
+    height: 90px;
+  }
+  .rating-form{
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .rating-text{
+    width: 25%;
+  }
+}
+
 
 svg {
   fill: rgb(242, 242, 242);
@@ -76,29 +95,29 @@ input + svg {
 input[class="super-happy"]:hover + svg,
 input[class="super-happy"]:checked + svg,
 input[class="super-happy"]:focus + svg {
-  fill: rgb(0, 109, 217);
+  fill: var(--status-verygood);
 }
 
 input[class="happy"]:hover + svg,
 input[class="happy"]:checked + svg,
 input[class="happy"]:focus + svg {
-  fill: rgb(0, 204, 79);
+  fill:  var(--status-good);
 }
 
 input[class="neutral"]:hover + svg,
 input[class="neutral"]:checked + svg,
 input[class="neutral"]:focus + svg {
-  fill: rgb(232, 214, 0);
+  fill:  var(--status-neutral);
 }
 
 input[class="sad"]:hover + svg,
 input[class="sad"]:checked + svg,
 input[class="sad"]:focus + svg {
-  fill: rgb(229, 132, 0);
+  fill:  var(--status-warning);
 }
 
 input[class="super-sad"]:hover + svg,
 input[class="super-sad"]:checked + svg,
 input[class="super-sad"]:focus + svg {
-  fill: rgb(239, 42, 16);
+  fill:  var(--status-danger);
 }

@@ -5,7 +5,6 @@ import Header from "../../components/Header";
 import RadioComponent from "../../components/RadioComponent";
 import "../../assets/css/Cat.css";
 import VideoPlayer from "../../components/VideoPlayer";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { postCat } from "../../utils/postData";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +12,9 @@ export default function Cat() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
+  
+  const [isSubmited, setIsSubmited]= useState(false);
+  const [isCollapsed, setIsCollapsed]= useState(true);
   const [formData, setFormData] = useState({
     cough: 0,
     phlegm: 0,
@@ -35,35 +37,64 @@ export default function Cat() {
     e.preventDefault();
     // Process the form data, e.g., submit it to the server
     postCat(formData).then(()=>{
-      alert("Form submitted successfully");
-      navigate(0);
+      setIsSubmited(true);
     });
   };
+  const backToDashboard = (e) => {
+    e.preventDefault();
+    navigate("/dashboard");
+  };
+
+  const toggleCollapse = (e) => {
+    setIsCollapsed(!isCollapsed);
+  }
 
   return (
     <div className="content-box">
       <form className="cat-form">
         <Header title={"Copd Assessment Test"} />
-        <p className="description">
+        <p>
           Welcome to the COPD Assessment Test (CAT) page! This test helps
           evaluate the impact of chronic obstructive pulmonary disease (COPD) on
-          your daily life. Answer eight simple questions and rate your symptoms
-          on a scale of
-          <strong> Super Happy to Super Sad.</strong> The higher the score, the
-          greater the impact of COPD. This self-assessment tool provides
-          insights for better management. Remember, it's not a diagnostic tool.
-          Consult your healthcare provider for further guidance.
+          your daily life.
         </p>
         <p className="description">
-          The next video should help you better understand the concept
+          Answer eight simple questions and rate your symptoms on a scale of
+          <strong> Super Happy to Super Sad</strong>.
         </p>
-        <div className="icon">
-          <ArrowDownwardIcon fontSize="large" />
-        </div>
-        <div className="video-div">
-          <VideoPlayer
-            videoUrl={"https://www.youtube.com/watch?v=OaTOd3oSGwU"}
-          />
+
+        <Button
+          sx={{
+            // width: "40%",
+            // height: "60px",
+            // mt: "20px",
+            // borderRadius: "1rem",
+            // backgroundColor: colors.green[300],
+          }}
+          variant="contained"
+          onClick={toggleCollapse}
+        >
+          Learn more
+        </Button>
+        <div className={`collapse ${isCollapsed ? '' : 'open'}`} >
+          <div className="d-flex">
+            <div className="w-50">
+            <p>
+              The higher the score, the greater the impact of COPD. This
+              self-assessment tool provides insights for better management.
+              Remember, it's not a diagnostic tool. Consult your healthcare
+              provider for further guidance.
+            </p>
+            <p className="description">
+              The next video should help you better understand the concept
+            </p>
+         </div>
+          <div className="video-div">
+            <VideoPlayer
+              videoUrl={"https://www.youtube.com/watch?v=OaTOd3oSGwU"}
+            />
+          </div>
+          </div>
         </div>
 
         <h2>CAT</h2>
@@ -133,8 +164,23 @@ export default function Cat() {
             variant="contained"
             onClick={handleSubmit}
           >
-            Submit
+            {isSubmited ? "Submited" : "Submit"}
           </Button>
+          {isSubmited && (
+            <Button
+              sx={{
+                width: "40%",
+                height: "60px",
+                mt: "20px",
+                borderRadius: "1.5rem",
+                backgroundColor: colors.green[300],
+              }}
+              variant="contained"
+              onClick={backToDashboard}
+            >
+              Back to dashboard
+            </Button>
+          )}
         </div>
       </form>
     </div>

@@ -17,9 +17,7 @@ const Gauge = (props) => {
   }, [props]);
 
   return (
-    <div className="wrapper">
-      <div ref={gaugeEl} className="gauge-container two" />
-    </div>
+    <div ref={gaugeEl} className="gauge-container two" />
   );
 };
 

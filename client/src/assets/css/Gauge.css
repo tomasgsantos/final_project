@@ -18,36 +18,39 @@ a.link {
 
 
 svg.gauge {
-  width: 10rem;
-  height: 11rem;
+  width: 100%;
+  display: block; 
+  height: auto;
+  aspect-ratio: 1 /1;
+  /* height: 11rem;  */
 }
 
 /* ------- Alternate Style ------- */
 .wrapper {
   display: flex;
-  height: 200px;
-  width: 200px;
+  /* height: 200px;
+  width: 200px; */
   justify-content: center;
   align-items: center;
 }
 .wrapper > .gauge-container {
   margin: 0;
 }
-.gauge-container.two {
-  width: 10rem,
-}
+
 .gauge-container.two > .gauge .dial {
   stroke: var(--gauge-stroke-color);
-  stroke-width: 29;
+  /* stroke-width: 12; */
 }
+
 .gauge-container.two > .gauge .value {
   stroke: orange;
   stroke-dasharray: none;
-  stroke-width: 26;
+  /* stroke-width: 8; */
 }
+
 .gauge-container.two > .gauge .value-text {
   fill: var(--gauge-text-color);
-  font-weight: 100;
+  /* font-weight: 100; */
   font-size: 1.6em;
 }
 

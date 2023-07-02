@@ -10,24 +10,24 @@ export function formatDate(timestamp) {
     "Friday",
     "Saturday",
   ];
-  const monthsOfYear = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  // const monthsOfYear = [
+  //   "January",
+  //   "February",
+  //   "March",
+  //   "April",
+  //   "May",
+  //   "June",
+  //   "July",
+  //   "August",
+  //   "September",
+  //   "October",
+  //   "November",
+  //   "December",
+  // ];
 
   const dayOfWeek = daysOfWeek[date.getDay()];
   const dayOfMonth = date.getDate();
-  const month = monthsOfYear[date.getMonth()];
+  // const month = monthsOfYear[date.getMonth()];
 
   return `${dayOfWeek} - ${dayOfMonth}`;
 }

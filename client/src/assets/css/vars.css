@@ -26,6 +26,14 @@
   --gauge-text-color: var(--gray-20);
   --gauge-stroke-color: #63577f;
   --sidebar-background: var(--main-color-70);
+  --text-color: var(--gray-10);
+  --link-color: var(--main-color-10);
+  --status-verygood: #05dd05;
+  --status-good: #ced711;
+  --status-neutral: #f0ed1f;
+  --status-warning: #ff9e0c;
+  --status-danger: #f00418;
+   
 }
 
 .theme-light{
@@ -43,8 +51,8 @@
   --gray-20: hsl(0, 0%, 25%);
   --gray-10: hsl(0, 0%, 2%);
   --body-background-color: white;
-  --body-background-color-20: #60586f;
-  --body-background-color-30: #888293;
+  --body-background-color-20: #b7afc6;
+  --body-background-color-30: #9e92b5;
   --green-10: #eef8f1;
   --green-20: #cbe9d4;
   --green-30: #bae2c6;
@@ -55,5 +63,7 @@
   --input-border: 1px solid var(var(--gray-20));
   --gauge-text-color: var(--gray-20);
   --gauge-stroke-color: #63577f;
-   --sidebar-background: var(--main-color-10);
+  --sidebar-background: var(--main-color-10);
+  --text-color: var(--gray-10);
+  --link-color: var(--main-color-80);
 }

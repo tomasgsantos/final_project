@@ -1,14 +1,27 @@
-.well-box{
+
+.wellness-widget{
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    gap: 30px;
+  flex-direction: column;
+  gap: 0;
+  background-color: var(--content-background-10);
+}
+.wellness-widget__chart{
+  width: 100%;
+}
+.wellness-widget__info{
+  width: 100%;
 }
 
-.text{
-  max-width: 140px;
-  text-align: center;
-  
+@media (min-width: 768px) {
+  .wellness-widget{
+    flex-direction: row;
+    align-items: center;
+    max-height: 70vh;
+  }
+  .wellness-widget__chart{
+    width: 60%;
+  }
+  .wellness-widget__info{
+    width: 40%;
+  }
 }

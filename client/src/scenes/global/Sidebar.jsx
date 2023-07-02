@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import { Box, Button, IconButton, Typography, capitalize, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, capitalize, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import { useNavigate } from "react-router-dom";
@@ -13,10 +13,8 @@ import MonitorHeartOutlinedIcon from "@mui/icons-material/MonitorHeartOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import ViewListIcon from '@mui/icons-material/ViewList';
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { logout } from "../../utils/AuthService";
@@ -26,7 +24,6 @@ import "../../assets/css/Sidebar.css";
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const dbPort = 'http:/localhost:5001';
 
   return (
     <MenuItem
@@ -154,7 +151,7 @@ const Sidebar = ({userData}) => {
           >
             <Item
               title="Dashboard"
-              to="/"
+              to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -189,8 +186,8 @@ const Sidebar = ({userData}) => {
             >
               Pages
             </Typography>
-            {userData &&
-              (userData.role == "patient" ? null : (
+            {/* {userData &&
+              (userData.role === "patient" ? null : (
                 <Item
                   title="Patients Data"
                   to="/patients"
@@ -198,7 +195,7 @@ const Sidebar = ({userData}) => {
                   selected={selected}
                   setSelected={setSelected}
                 />
-              ))}
+              ))} */}
             <Item
               title="Education"
               to="/education"

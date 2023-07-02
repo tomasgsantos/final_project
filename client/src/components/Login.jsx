@@ -13,7 +13,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-   const [passwordType, setPasswordType] = useState(true);
+  const [passwordType, setPasswordType] = useState(true);
 
   
   const togglePassword = () => {
@@ -29,7 +29,7 @@ export default function Login() {
     try {
       await login(email, password);
       setError("");
-      navigate("/");
+      navigate("/dashboard");
       navigate(0);
     } catch (err) {
       setError("Invalid credentials");
@@ -39,7 +39,7 @@ export default function Login() {
   return (
     <div className="register-page">
       <img className="logo" src={logo} alt="logo" width={300} />
-      <form className="register-form">
+      <div className="register-form">
         <h1 className="login-title">Login</h1>
         <label htmlFor="email" className="login-label">
           E-mail
@@ -80,6 +80,7 @@ export default function Login() {
           variant="contained"
           color="primary"
           className="login-B"
+          type="submit"
           onClick={handleLogin}
         >
           Login
@@ -93,7 +94,7 @@ export default function Login() {
           Back to Landing Page
         </Button>
         {error && <p className="error">{error}</p>}
-      </form>
+      </div>
     </div>
   );
 }

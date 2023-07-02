@@ -1,44 +1,30 @@
-import React, {useState, useEffect} from "react";
-import Header from "./Header";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import LandingTopbar from "./LandingTopbar";
 import "../assets/css/LandingPage.css"
-import { tokens } from "../theme";
 import GoogleIcon from "@mui/icons-material/Google";
-import { useTheme, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import doctor from "../assets/images/doctor_dashboard.png"
-import { gsap} from "gsap";
+// import { gsap} from "gsap";
 
 export default function LandingPage(){
   const navigate = useNavigate();
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode)
-  const [showDiv, setShowDiv] = useState(false);
+  // const [showDiv, setShowDiv] = useState(false);
 
-  useEffect(() =>{
-      if(showDiv){
-        gsap.to(".gsap-div" , {duration: 2, y: 10, background: colors.green[500], width: "100%", height: 50, opacity: 1});
-      }else{
-         gsap.to(".gsap-div", { duration: 2, y: -10, opacity: 0, height: 0, width: 0});
-      }
-  }, [showDiv] )
+  // useEffect(() =>{
+  //     if(showDiv){
+  //       gsap.to(".gsap-div" , {duration: 2, y: 10, background: colors.green[500], width: "100%", height: 50, opacity: 1});
+  //     }else{
+  //        gsap.to(".gsap-div", { duration: 2, y: -10, opacity: 0, height: 0, width: 0});
+  //     }
+  // }, [showDiv] )
 
-  const toggleAppShow = () =>{
-    setShowDiv((prev => !prev));
-    
-  }
 
 
   const startBtn = {
     backgroundColor: "#695987",
     
   };
-
-  const googleBtn = {
-    "&:hover": {
-      backgroundColor: "#695987",
-    }
-  }
 
 
   return (
@@ -59,7 +45,7 @@ export default function LandingPage(){
             <img
               className="doctor-img"
               src={doctor}
-              alt="Doctor image"
+              alt="doctor icon"
               width="300"
               height="300"
             />

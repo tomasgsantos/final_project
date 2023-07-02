@@ -19,7 +19,11 @@ export default function Education() {
             air pollution.
           </p>
         </div>
-
+        <div className="education-section__video">
+          <VideoPlayer
+            videoUrl={"https://www.youtube.com/watch?v=HWMOsqppMlg"}
+          />
+        </div>
         <div className="education-section">
           <h2>Symptoms</h2>
           <ul>
@@ -30,7 +34,6 @@ export default function Education() {
             <li>Frequent respiratory infections</li>
           </ul>
         </div>
-
         <div className="education-section">
           <h2>Treatment</h2>
           <p>
@@ -40,7 +43,6 @@ export default function Education() {
             supplemental oxygen therapy, and lifestyle changes.
           </p>
         </div>
-
         <div className="education-section">
           <h2>Prevention</h2>
           <p>
@@ -51,7 +53,6 @@ export default function Education() {
             lung health.
           </p>
         </div>
-
         <div className="education-section">
           <h2>Support and Resources</h2>
           <p>
@@ -73,8 +74,6 @@ export default function Education() {
           </ul>
         </div>
       </div>
-
-      <VideoPlayer videoUrl={"https://www.youtube.com/watch?v=HWMOsqppMlg"} />
     </div>
   );
 }

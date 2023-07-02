@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
 import Header from "../../components/Header";
-import { useTheme, Box, Button } from "@mui/material";
+import { useTheme, Box, Button, ButtonGroup, IconButton, Tooltip,  } from "@mui/material";
 import { tokens } from "../../theme";
 import { getAllSitData, getAllWalkData } from "../../utils/getData";
 import BarChart from "../../components/BarChart";
 import LineChart from "../../components/LineChart";
 import { formatDate } from "../../utils/FormatDate";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import SsidChartIcon from "@mui/icons-material/SsidChart";
 import "../../assets/css/Results.css";
 
 export default function Results({sitStand}){
@@ -57,7 +59,7 @@ export default function Results({sitStand}){
   }, [])
 
 
-  const pulsationSitChartData = {
+  const sitChartData = {
     labels: sitData ? sitData.map((sit) => sit.timestamp) : null,
     datasets: [
       {
@@ -67,11 +69,19 @@ export default function Results({sitStand}){
               (sit) => (sit.initialpulsation + sit.finalpulsation) / 2
             )
           : [],
-        backgroundColor: "blue",
+        backgroundColor: colors.green[100],
         pointRadius: 7,
         pointHoverRadius: 12,
         borderColor: colors.grey[100],
         border: "1px solid ",
+      },
+      {
+        label: "Sit to Stand Test - nº Repetitions",
+        data: sitData ? sitData.map((sit) => sit.countcycles) : [],
+        backgroundColor: colors.blue[300],
+        pointRadius: 7,
+        pointHoverRadius: 12,
+        borderColor: colors.grey[100],
       },
     ],
     options: {
@@ -84,21 +94,9 @@ export default function Results({sitStand}){
     },
   };
 
-  const countSitChartData = {
-    labels: sitData ? sitData.map((sit) => sit.timestamp) : null,
-    datasets: [
-      {
-        label: "Sit to Stand Test - nº Repetitions",
-        data: sitData ? sitData.map((sit) => sit.countcycles) : [],
-        backgroundColor: "blue",
-        pointRadius: 7,
-        pointHoverRadius: 12,
-        borderColor: colors.grey[100],
-      },
-    ],
-  };
 
-  const pulsationWalkChartData = {
+
+  const walkChartData = {
     labels: walkData ? walkData.map((walk) => walk.timestamp) : null,
     datasets: [
       {
@@ -108,21 +106,15 @@ export default function Results({sitStand}){
               (walk) => (walk.initialpulsation + walk.finalpulsation) / 2
             )
           : [],
-        backgroundColor: "peru",
+        backgroundColor: colors.green[300],
         pointRadius: 7,
         pointHoverRadius: 12,
         borderColor: colors.grey[100],
       },
-    ],
-  };
-
-  const stepsWalkChartData = {
-    labels: walkData ? walkData.map((walk) => walk.timestamp) : [],
-    datasets: [
       {
         label: "6 Min Walk Test - nº Steps",
         data: walkData ? walkData.map((walk) => walk.numbersteps) : [],
-        backgroundColor: "peru",
+        backgroundColor: colors.blue[300],
         pointRadius: 7,
         pointHoverRadius: 12,
         borderColor: colors.grey[100],
@@ -140,115 +132,86 @@ export default function Results({sitStand}){
   return (
     <div className="content-box">
       <Header title={"Test Results"}></Header>
-      <div className="d-flex  a-i-center gap-8">
-        <div className="blue"></div>
-        <h4>- Sit to Stand Test</h4>
-      </div>
-      <div className="main-div">
-        {switchD ? (
-          <Button
-            variant="outlined"
-            sx={{ color: "white", borderColor: "white" }}
-            onClick={() => setSwitchD(!switchD)}
-          >
-            Line Chart
-          </Button>
-        ) : (
-          <Button
-            sx={{ color: "white", borderColor: "white" }}
-            variant="outlined"
-            onClick={() => setSwitchD(!switchD)}
-          >
-            Bar Chart
-          </Button>
-        )}
+      <div className="result-box d-flex  a-i-center gap-8">
+        <div className="result-box__header">
+          <div className="result-box__title">
+            <h2>Sit to Stand Test</h2>
+          </div>
+          <div className="result-box__bar">
+            <ButtonGroup
+              variant="outlined"
+              className="chart-type-switch"
+              aria-label="outlined button group"
+            >
+              <Tooltip title="Bar chart">
+                <IconButton
+                  className={switchD ? "active" : "noot"}
+                  onClick={() => setSwitchD(!switchD)}
+                  size="small"
+                  title="Logout"
+                >
+                  <BarChartIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Line chart">
+                <IconButton
+                  onClick={() => setSwitchD(!switchD)}
+                  size="small"
+                  title="Logout"
+                >
+                  <SsidChartIcon />
+                </IconButton>
+              </Tooltip>
+            </ButtonGroup>
+          </div>
+        </div>
         <Box className="chart-box">
           {switchD ? (
-            <BarChart className="charts" chartData={pulsationSitChartData} />
+            <BarChart className="charts" chartData={sitChartData} />
           ) : (
-            <LineChart className="charts" chartData={pulsationSitChartData} />
+            <LineChart className="charts" chartData={sitChartData} />
           )}
         </Box>
       </div>
-      <div className="main-div">
-        {switchA ? (
-          <Button
-            variant="outlined"
-            sx={{ color: "white", borderColor: "white" }}
-            onClick={() => setSwitchA(!switchA)}
-          >
-            Line Chart
-          </Button>
-        ) : (
-          <Button
-            sx={{ color: "white", borderColor: "white" }}
-            variant="outlined"
-            onClick={() => setSwitchA(!switchA)}
-          >
-            Bar Chart
-          </Button>
-        )}
-        <Box className="chart-box">
-          {switchA ? (
-            <BarChart className="charts" chartData={countSitChartData} />
-          ) : (
-            <LineChart className="charts" chartData={countSitChartData} />
-          )}
-        </Box>
-      </div>
-      <div className="d-flex  a-i-center gap-8">
-        <div className="purple"></div>
-        <h4>- 6 Min Walk Test</h4>
-      </div>
-      <div className="main-div">
-        {switchB ? (
-          <Button
-            variant="outlined"
-            sx={{ color: "white", borderColor: "white" }}
-            onClick={() => setSwitchB(!switchB)}
-          >
-            Line Chart
-          </Button>
-        ) : (
-          <Button
-            sx={{ color: "white", borderColor: "white" }}
-            variant="outlined"
-            onClick={() => setSwitchB(!switchB)}
-          >
-            Bar Chart
-          </Button>
-        )}
+      <div className="result-box d-flex  a-i-center gap-8">
+        <div className="result-box__header">
+          <div className="result-box__title">
+            <h2>- 6 Min Walk Test</h2>
+          </div>
+          <div className="result-box__bar">
+            <ButtonGroup
+              variant="outlined"
+              className="chart-type-switch"
+              aria-label="outlined button group"
+            >
+              <Tooltip title="Bar chart">
+                <IconButton
+                  className={switchD ? "active" : "noot"}
+                  onClick={() => setSwitchB(!switchB)}
+                  size="small"
+                  title="Logout"
+                >
+                  <BarChartIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Line chart">
+                <IconButton
+                  onClick={() => setSwitchB(!switchB)}
+                  size="small"
+                  title="Logout"
+                >
+                  <SsidChartIcon />
+                </IconButton>
+              </Tooltip>
+            </ButtonGroup>
+          </div>
+        </div>
+       
         <Box className="chart-box">
           {switchB ? (
-            <BarChart className="charts" chartData={pulsationWalkChartData} />
+            <BarChart className="charts" chartData={walkChartData} />
           ) : (
-            <LineChart className="charts" chartData={pulsationWalkChartData} />
-          )}
-        </Box>
-      </div>
-      <div className="main-div">
-        {switchC ? (
-          <Button
-            variant="outlined"
-            sx={{ color: "white", borderColor: "white" }}
-            onClick={() => setSwitchC(!switchC)}
-          >
-            Line Chart
-          </Button>
-        ) : (
-          <Button
-            sx={{ color: "white", borderColor: "white" }}
-            variant="outlined"
-            onClick={() => setSwitchC(!switchC)}
-          >
-            Bar Chart
-          </Button>
-        )}
-        <Box className="chart-box">
-          {switchC ? (
-            <BarChart className="charts" chartData={stepsWalkChartData} />
-          ) : (
-            <LineChart className="charts" chartData={stepsWalkChartData} />
+            <LineChart className="charts" chartData={walkChartData} />
           )}
         </Box>
       </div>

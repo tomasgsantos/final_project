@@ -6,7 +6,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Header from "../../components/Header";
 import BarChart from "../../components/BarChart";
-import { userBarData } from "../../data/mockData";
 import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import LineChart from "../../components/LineChart";
@@ -19,6 +18,7 @@ import { formatDate } from "../../utils/FormatDate";
 import Tooltip from "@mui/material/Tooltip";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import SsidChartIcon from "@mui/icons-material/SsidChart";
+
 
 import "../../assets/css/bar.css";
 
@@ -84,27 +84,13 @@ export default function Bar({ userRecords }) {
   }, []);
 
 
-  const [userData, setUserData] = useState({
-    labels: userBarData.map((data) => data.day),
-    datasets: [
-      {
-        label: "Wellness Value",
-        data: userBarData.map((data) => data.wv),
-        backgroundColor: userBarData.map((data) =>
-          data.wv > 75 ? colors.green[600] : colors.red[500]
-        ),
-        pointRadius: 5,
-        borderColor: colors.grey[200],
-      },
-    ],
-  });
 
 
-  //Medical parameter healthy threshold values
-  const paco2Threshold = 47; //mmHg
-  const pao2Threshold = 60; //mmHg
-  const rrThreshold = 25; //bpm
-  const tThreshold = 37; // Cº
+  // //Medical parameter healthy threshold values
+  // const paco2Threshold = 47; //mmHg
+  // const pao2Threshold = 60; //mmHg
+  // const rrThreshold = 25; //bpm
+  // const tThreshold = 37; // Cº
 
   const paco2ChartData = {
     labels: paco2 ? paco2.map((data) => data.timestamp) : [],

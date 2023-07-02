@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes} from "react-router-dom";
 import { getUserData, getRecord, getFaq, getSitWvStand, getWalkWvTest, getCat } from "../utils/getData";
 import { convertUser, convertRecords } from "../utils/userConverter";
 import { calcSitWvStand, calcWalkWvResults, calcVarResults, calcCatResults } from "../utils/Calc";
@@ -17,6 +17,7 @@ import Sidebar from "../scenes/global/Sidebar";
 import Topbar from "../scenes/global/Topbar";
 import Cat from "../scenes/Cat";
 import Results from "../scenes/Results";
+import LandingPage from "../components/LandingPage";
 
 export default function Homepage() {
   const [userData, setUserData] = useState(null);
@@ -133,10 +134,11 @@ export default function Homepage() {
       <main className="content">
         <Topbar userData={userData} />
         <Routes>
-          {isLoggedIn && <Route path="/" element={<Dashboard userData={userData} sitWvTestResults={sitWvTestResults} walkWvTestResults={walkWvTestResults} varResults={varResults} catResults={catResults}/>} />}
+          {isLoggedIn ? (<Route path="/dashboard" element={<Dashboard userData={userData} sitWvTestResults={sitWvTestResults} walkWvTestResults={walkWvTestResults} varResults={varResults} catResults={catResults}/>} />) 
+          :(<Route path="/" element={<LandingPage />} />) } 
           {isLoggedIn && <Route path="/vitals" element={<Vitals />} />}
           {isLoggedIn && <Route path="/education" element={<Education />} />}
-          {userData && (userData.role == "patient" ? null : <Route path="/patients" element={<PatientData />} />)}
+          {/* {userData && (userData.role === "patient" ? null : <Route path="/patients" element={<PatientData />} />)} */}
           {isLoggedIn && <Route path="/contacts" element={<Contacts />} />}
           {isLoggedIn && <Route path="/faq" element={<FAQ faqData={faq}/>} />}
           {isLoggedIn && <Route path="/bar" element={<Bar userRecords={userRecords} />} />}
@@ -144,7 +146,6 @@ export default function Homepage() {
           {isLoggedIn && <Route path="/profile" element={<Profile userData={userData} />} />}
           {isLoggedIn && <Route path="/cat" element={<Cat />} />}
           {isLoggedIn && <Route path="/results" element={<Results />} />}
-          {/* {!isLoggedIn && <Navigate to="/" replace={true} />} */}
         </Routes>
       </main>
     </div>

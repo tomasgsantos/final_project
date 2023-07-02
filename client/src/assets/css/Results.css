@@ -2,38 +2,31 @@
 
 .main-div{
   display: flex;
-  border: 1px solid var(--gray-20) ;
-  height: 25vh;
   gap: 20px;
   justify-content: center;
   text-align: center;
   align-items: center;
 }
 
+.result-box{
+  display: block;
+  /* background-color: var(--body-background-color-30); */
+}
+.result-box__header{
+  display: flex;
+  align-items: center;
+}
+.results-box__title, .result-box__bar{
+  display: block;
+}
+.result-box__bar{
+  margin-left: auto;
+}
+
 .main-div + .main-div{
   margin-top: 40px ;
 }
 
-.chart-box{
-  display: flex;
-  height: 230px;
-}
 
-.chart-box.MuiBox-root.css-0{
-  width: 90%;
-}
-
-.blue{
-  background-color: blue;
-  height: 40px;
-  width: 40px;
-  border-radius: 5px;
-}
-.purple{
-  background-color: peru;
-  height: 40px;
-  width: 40px;
-  border-radius: 5px;
-}
 
 

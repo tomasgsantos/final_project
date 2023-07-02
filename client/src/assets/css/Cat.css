@@ -2,18 +2,25 @@
 
 .description{
   font-size: 1.5rem;
-  text-align: center;
+  text-align: left;
+}
+.collapse{
+  max-height: 0;
+  overflow: hidden;
+  transition: all .35s ease-out;
+}
+.collapse.open{
+  max-height: 100vh;
 }
 .video-div{
   display: flex;
   justify-content: center;
-  width: 80%;
   margin: auto;
   margin-top: 10px;
   position: relative; 
-  border: 1px solid var(--gray-20);
-  border-radius: 6px;
-  padding: 50px;
+  /* border: 1px solid var(--gray-20); */
+  /* border-radius: 6px;
+  padding: 50px; */
 }
 .icon{
   display: flex;

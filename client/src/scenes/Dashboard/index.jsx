@@ -3,11 +3,10 @@ import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Button, Tooltip } from "@mui/material";
 import BarChart from "../../components/BarChart";
-import { userBarData } from "../../data/mockData";
 import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import LineChart from "../../components/LineChart";
-import { getWV, getAllWv } from "../../utils/getData";
+import { getWV, getAllWv, getCat } from "../../utils/getData";
 import { postWv } from "../../utils/postData";
 import { formatDate } from "../../utils/FormatDate";
 import "../../assets/css/Dashboard.css";
@@ -28,13 +27,23 @@ export default function Dashboard({
   const [prevWv, setPrevWv] = useState(null);
   const [wvChartData, setWvChartData] = useState(null);
 
+  const fetchCat = async () => {
+    try {
+      const data = await getCat();
+      catResults = data;
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
   useEffect(() => {
+    fetchCat();
     if (catResults) {
       const valorFinal =
         ((sitWvTestResults + walkWvTestResults) / 2) * 0.3 +
         catResults * 0.3 +
         varResults * 0.4;
-      setWellnessValue(valorFinal);
+        console.log("ValorFinal: ", valorFinal < 5 ? 5 : valorFinal);
+      setWellnessValue(valorFinal < 5 ? 5 : valorFinal);
     }
   }, [catResults, sitWvTestResults, varResults, walkWvTestResults]);
 
@@ -74,6 +83,7 @@ export default function Dashboard({
     }
   }, [wvChartData]);
 
+    
   const handleWVClick = async () => {
     try {
       const prevValue = prevWv.value;
@@ -97,7 +107,7 @@ export default function Dashboard({
     labels: wvChartData ? wvChartData.map((data) => data.date) : [],
     datasets: [
       {
-        label: "Wellness Value",
+        // label: "Wellness Value",
         data: wvChartData ? wvChartData.map((data) => data.value) : [],
         color: ["white"],
         backgroundColor: wvChartData
@@ -123,25 +133,53 @@ export default function Dashboard({
 
   return (
     <div className="content-box">
-      <Header title={"Dashboard"} subtitle={"Welcome to your dashboard"} />
-      <div className="dashboard-widgets">
-        <h3>Wellness Value</h3>
-        <Tooltip placement="right"
-          title="The Wellness Value is calculated using your Test Results, your Medical Variables and you COPD Assesment Test Score.
-         Here's the formula : (Test x 0.3) + (Variables x 0.4) + (CAT x 0.3)
-        "
-        >
-          <InfoIcon />
-        </Tooltip>
-        <ValueWidget name="Wellness Value" value={wellnessValue} />
-        <Button
-          variant="contained"
-          onClick={handleWVClick}
-          sx={{ backgroundColor: colors.green[500], width: "100px" }}
-        >
-          Submit Value
-        </Button>
+      {userData && (
+        <Header
+          title={`Hello ${userData.name}`}
+          subtitle={"Welcome to your dashboard"}
+        />
+      )}
+      <div className="wellness-widget">
+        <div className="wellness-widget__chart">
+          <ValueWidget name="Wellness Value" value={wellnessValue} />
+        </div>
+        <div className="wellness-widget__info">
+          <h2>This is your Wellness Value</h2>
+          <p>
+            The Wellness Value is calculated using your Test Results, your
+            Medical Variables and you COPD Assesment Test Score.
+            <Tooltip
+              title=" Here's the formula:
+             (Test x 0.3) + (Variables x 0.4) + (CAT x 0.3)"
+            >
+              <span>
+                <InfoIcon />
+              </span>
+            </Tooltip>
+          </p>
+          <p>
+            Perform a Copd Assessment Test to update the Wellness Value, or
+            store the current value.
+          </p>
+          <div className="d-col gap-8">
+            <Button
+              variant="contained"
+              onClick={() => navigate("/cat")}
+            >
+              Perform a CAT
+            </Button>
+            
+            <Button
+              variant="contained"
+              onClick={handleWVClick}
+              sx={{ backgroundColor: colors.green[500] }}
+            >
+              Store Value
+            </Button>
+          </div>
+        </div>
       </div>
+
       <Typography className="dashboard-typography" variant="h4" color="white">
         Wellness Value History
       </Typography>

@@ -1,18 +1,14 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
 import "../assets/css/Widget.css"
-import { useTheme } from "@mui/material";
-import { tokens } from "../theme";
 import Gauge from "./Gauge";
 
 export default function ValueWidget(props){
  const {name, value} = props;
- const theme = useTheme()
- const colors = tokens(theme.palette.mode)
  let defaultOptions = {
     dialStartAngle: 135,
     dialEndAngle: 45,
     dialRadius: 35,
+    value: 100,
     // Put any other defaults you want. e.g. dialStartAngle, dialEndAngle, dialRadius, etc.
   };
 if (name === "pao2") {
@@ -111,13 +107,8 @@ if (name === "pao2") {
 
 
   return(
-  <Box className="well-box">
-    {/* { name &&
-      <Typography className="text" variant="h5" color="white">
-        {name}
-      </Typography>
-     } */}
-        {value &&  <Gauge value={value} defaultOptions={defaultOptions} />}
-  </Box>
+    <>
+      {value &&  <Gauge value={value} defaultOptions={defaultOptions} />}
+    </>
   )
 }

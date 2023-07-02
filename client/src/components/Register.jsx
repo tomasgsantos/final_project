@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/Register.css";
 import { Button } from "@mui/material";
@@ -14,13 +14,13 @@ export default function Register() {
   const [heightInCm, setHeightInCm] = React.useState("");
   const [weightInKg, setWeightInKg] = React.useState("");
   
-  const [error, setError] = useState("");
+
     
 
   const handleRegister = async () => {
     try{
       await register(email, password, name, dateOfBirth, copdSeverity, heightInCm, weightInKg)
-      setError("")
+
       navigate("/")
     }catch(err){
       console.log(err)
@@ -88,7 +88,7 @@ export default function Register() {
           value={weightInKg}
           onChange={(e) => setWeightInKg(e.target.value)}
         />
-        <Button variant="contained" color="primary" onClick={handleRegister}>
+        <Button variant="contained" type="submit" color="primary" onClick={handleRegister}>
           Register
         </Button>
         <Button

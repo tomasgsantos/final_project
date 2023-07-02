@@ -1,15 +1,14 @@
 import { Button, useTheme } from "@mui/material";
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/LandingTopbar.css";
 import Home from "../assets/images/copdeck_logo.png";
-import { ColorModeContext, tokens } from "../theme";
+import { tokens } from "../theme";
 
 const LandingTopbar = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const colorMode = useContext(ColorModeContext);
 
   const loginButtonSx = {
     backgroundColor: colors.green[400],
@@ -48,7 +47,7 @@ const LandingTopbar = () => {
       </div>
       <div className="box-c">
         <a href="/about" className="landing-topbar-a">About us</a>
-        <a className="landing-topbar-a">Contact us</a>
+        <a href="/contact" className="landing-topbar-a">Contact us</a>
       </div>
       {/* Icons */}
       <div className="box-b">

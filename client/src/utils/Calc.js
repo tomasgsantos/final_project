@@ -22,7 +22,7 @@ export const calcSitWvStand = (sitStand) => {
   const finalCount =
     (sitStandCalibration.countcycles - sitStandResults.countcycles) * 5;
 
-  const testResults = 50 + finalCount + finalPulsation;
+  let testResults = 50 + finalCount + finalPulsation;
   
   if (testResults > 100){
     testResults = 100;

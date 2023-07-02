@@ -2,12 +2,10 @@
 
 .chart-box{
   display: flex;
-  margin-bottom: 40px;
   /* border: 1px solid var(--main-color-60); */
   background-color: var(--content-background);
   border-radius: 7px;
-  padding: 10px;
-  margin-top:30px
+  height: 36vh!important;
 }
 
 .charts{
@@ -51,14 +49,45 @@ body .MuiAccordion-root{
   gap: 2rem;
   justify-content: center;
   align-items: center;
-
+  width: 100%;
+  flex-direction: column;
 }
+.MuiAccordionSummary-root{
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-summary .gauge-container{
+  width: 100%;
+}
+
+@media(min-width: 768px){
+  .MuiAccordionSummary-root{
+    flex-direction: row;
+  }
+  .accordion-summary{
+    flex-direction: row;
+  }
+  .accordion-summary .gauge-container{
+    width: 30%;
+    flex-grow: 1;
+  }
+  .accordion-summary .gauge-container + div{
+    width: 70%;
+    flex-grow: 1;
+  }
+  .color-guide{
+    flex-wrap: nowrap;
+  }
+}
+
 .color-guide{
   display: flex;
   gap: 40px;
   position: sticky;
   top: 0;
   z-index: 10;
+  flex-wrap: wrap;
   background-color: var(--body-background-color);
 }
 

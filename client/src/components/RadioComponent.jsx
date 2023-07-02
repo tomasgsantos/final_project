@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "../assets/css/RadioComponent.css";
 
 export default function RadioComponent({questionId ,worst, best, onRatingChange}){
-
+  // eslint-disable-next-line no-unused-vars
   const [ratings, setRatings] = useState({});
 
   const handleRatingChange = (e) => {
@@ -11,11 +11,10 @@ export default function RadioComponent({questionId ,worst, best, onRatingChange}
       ...prevRatings,
       [questionId]: rating,
     }));
-    
+
     // Invoke the callback function with the updated ratings
     onRatingChange({ questionId, rating });
   };
-
 
   return (
     <div className="card">
@@ -47,7 +46,6 @@ export default function RadioComponent({questionId ,worst, best, onRatingChange}
                 id={`happy-${questionId}`}
                 value={2}
                 onChange={handleRatingChange}
-                
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Box, TextField, Button } from "@mui/material";
-import { useTheme } from "@mui/material";
-import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import "./profile.css"
 import { updateProfile } from "../../utils/AuthService";
 
 export default function Profile({ userData }) {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
 
   const [profileData, setProfileData] = useState("");
 

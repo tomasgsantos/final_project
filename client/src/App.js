@@ -8,15 +8,12 @@ import Homepage from "./Homepage/Homepage.jsx";
 import LandingPage from "./components/LandingPage.jsx";
 import Register from "./components/Register.jsx";
 import { isAuthenticated } from "./utils/AuthService";
-import { Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
 
 function App() {
   const [theme, colorMode] = useMode();
   const isAuthenticado = isAuthenticated();
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoggedIn(isAuthenticado);
