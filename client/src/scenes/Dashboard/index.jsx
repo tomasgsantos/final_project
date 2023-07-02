@@ -107,7 +107,7 @@ export default function Dashboard({
     labels: wvChartData ? wvChartData.map((data) => data.date) : [],
     datasets: [
       {
-        // label: "Wellness Value",
+        label: "Wellness Value",
         data: wvChartData ? wvChartData.map((data) => data.value) : [],
         color: ["white"],
         backgroundColor: wvChartData

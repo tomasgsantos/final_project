@@ -42,7 +42,7 @@ export default function Cat() {
   };
   const backToDashboard = (e) => {
     e.preventDefault();
-    navigate("/dashboard");
+    navigate("/");
   };
 
   const toggleCollapse = (e) => {
@@ -64,36 +64,38 @@ export default function Cat() {
         </p>
 
         <Button
-          sx={{
-            // width: "40%",
-            // height: "60px",
-            // mt: "20px",
-            // borderRadius: "1rem",
-            // backgroundColor: colors.green[300],
-          }}
+          sx={
+            {
+              // width: "40%",
+              // height: "60px",
+              // mt: "20px",
+              // borderRadius: "1rem",
+              // backgroundColor: colors.green[300],
+            }
+          }
           variant="contained"
           onClick={toggleCollapse}
         >
           Learn more
         </Button>
-        <div className={`collapse ${isCollapsed ? '' : 'open'}`} >
+        <div className={`collapse ${isCollapsed ? "" : "open"}`}>
           <div className="d-flex">
             <div className="w-50">
-            <p>
-              The higher the score, the greater the impact of COPD. This
-              self-assessment tool provides insights for better management.
-              Remember, it's not a diagnostic tool. Consult your healthcare
-              provider for further guidance.
-            </p>
-            <p className="description">
-              The next video should help you better understand the concept
-            </p>
-         </div>
-          <div className="video-div">
-            <VideoPlayer
-              videoUrl={"https://www.youtube.com/watch?v=OaTOd3oSGwU"}
-            />
-          </div>
+              <p>
+                The higher the score, the greater the impact of COPD. This
+                self-assessment tool provides insights for better management.
+                Remember, it's not a diagnostic tool. Consult your healthcare
+                provider for further guidance.
+              </p>
+              <p className="description">
+                The next video should help you better understand the concept
+              </p>
+            </div>
+            <div className="video-div">
+              <VideoPlayer
+                videoUrl={"https://www.youtube.com/watch?v=OaTOd3oSGwU"}
+              />
+            </div>
           </div>
         </div>
 
@@ -153,19 +155,21 @@ export default function Cat() {
           onRatingChange={handleRatingChange}
         />
         <div className="cat-submit">
-          <Button
-            sx={{
-              width: "40%",
-              height: "60px",
-              mt: "20px",
-              borderRadius: "1rem",
-              backgroundColor: colors.green[300],
-            }}
-            variant="contained"
-            onClick={handleSubmit}
-          >
-            {isSubmited ? "Submited" : "Submit"}
-          </Button>
+          {!isSubmited && (
+            <Button
+              sx={{
+                width: "40%",
+                height: "60px",
+                mt: "20px",
+                borderRadius: "1rem",
+                backgroundColor: colors.green[300],
+              }}
+              variant="contained"
+              onClick={handleSubmit}
+            >
+              {isSubmited ? "Submited" : "Submit"}
+            </Button>
+          )}
           {isSubmited && (
             <Button
               sx={{

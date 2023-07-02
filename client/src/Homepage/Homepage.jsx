@@ -134,16 +134,35 @@ export default function Homepage() {
       <main className="content">
         <Topbar userData={userData} />
         <Routes>
-          {isLoggedIn ? (<Route path="/dashboard" element={<Dashboard userData={userData} sitWvTestResults={sitWvTestResults} walkWvTestResults={walkWvTestResults} varResults={varResults} catResults={catResults}/>} />) 
-          :(<Route path="/" element={<LandingPage />} />) } 
+          {isLoggedIn ? (
+            <Route
+              path="/"
+              element={
+                <Dashboard
+                  userData={userData}
+                  sitWvTestResults={sitWvTestResults}
+                  walkWvTestResults={walkWvTestResults}
+                  varResults={varResults}
+                  catResults={catResults}
+                />
+              }
+            />
+          ) : (
+            <Route path="/" element={<LandingPage />} />
+            )}
+          {!isLoggedIn && <Route path="/*" element={<LandingPage />} />}
           {isLoggedIn && <Route path="/vitals" element={<Vitals />} />}
           {isLoggedIn && <Route path="/education" element={<Education />} />}
           {/* {userData && (userData.role === "patient" ? null : <Route path="/patients" element={<PatientData />} />)} */}
           {isLoggedIn && <Route path="/contacts" element={<Contacts />} />}
-          {isLoggedIn && <Route path="/faq" element={<FAQ faqData={faq}/>} />}
-          {isLoggedIn && <Route path="/bar" element={<Bar userRecords={userRecords} />} />}
+          {isLoggedIn && <Route path="/faq" element={<FAQ faqData={faq} />} />}
+          {isLoggedIn && (
+            <Route path="/bar" element={<Bar userRecords={userRecords} />} />
+          )}
           {isLoggedIn && <Route path="/form" element={<Form />} />}
-          {isLoggedIn && <Route path="/profile" element={<Profile userData={userData} />} />}
+          {isLoggedIn && (
+            <Route path="/profile" element={<Profile userData={userData} />} />
+          )}
           {isLoggedIn && <Route path="/cat" element={<Cat />} />}
           {isLoggedIn && <Route path="/results" element={<Results />} />}
         </Routes>

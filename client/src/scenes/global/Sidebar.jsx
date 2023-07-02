@@ -151,7 +151,7 @@ const Sidebar = ({userData}) => {
           >
             <Item
               title="Dashboard"
-              to="/dashboard"
+              to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

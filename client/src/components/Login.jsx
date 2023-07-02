@@ -29,7 +29,7 @@ export default function Login() {
     try {
       await login(email, password);
       setError("");
-      navigate("/dashboard");
+      navigate("/");
       navigate(0);
     } catch (err) {
       setError("Invalid credentials");
