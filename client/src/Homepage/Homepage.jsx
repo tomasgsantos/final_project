@@ -7,7 +7,6 @@ import { isAuthenticated } from "../utils/AuthService";
 import Dashboard from "../scenes/Dashboard";
 import Vitals from "../scenes/Vitals";
 import Education from "../scenes/Education";
-import PatientData from "../scenes/patients";
 import Contacts from "../scenes/Contacts";
 import Form from "../scenes/form";
 import FAQ from "../scenes/faq";
@@ -99,7 +98,6 @@ export default function Homepage() {
     if(sitWvStand){
       const data = calcSitWvStand(sitWvStand);
       setSitWvTestResults(data);
-      console.log("sit: "+sitWvTestResults)
     }
   }, [sitWvStand]);
 
@@ -107,7 +105,6 @@ export default function Homepage() {
     if(walkWvResults){
       const data = calcWalkWvResults(walkWvResults);
       setWalkWvTestResults(data);
-      console.log("walk: "+walkWvTestResults)
     }
   }, [walkWvResults]);
 
@@ -115,7 +112,6 @@ export default function Homepage() {
     if(userRecords){
       const data = calcVarResults(userRecords);
       setVarResults(data.allVariablesImpact);
-      console.log("var: "+ varResults)
     }
   },[userRecords]);
 
@@ -123,7 +119,6 @@ export default function Homepage() {
     if(cat){
       const data = calcCatResults(cat);
       setCatResults(data)
-      console.log("cat: " + catResults)
     }
   },[cat]);
 

@@ -36,8 +36,6 @@ export const calcWalkWvResults = (walkResults) => {
   const calibration = walkResults[0];
   const current = walkResults[1];
 
-  console.log("calibration: " + JSON.stringify(calibration))
-  console.log("current: " + JSON.stringify(current))
 
   const calPulsation = (calibration.initialpulsation + calibration.finalpulsation) / 2;
   const resPulsation = (current.initialpulsation + current.finalpulsation) / 2;

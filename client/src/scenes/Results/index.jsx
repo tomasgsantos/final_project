@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Header from "../../components/Header";
-import { useTheme, Box, Button, ButtonGroup, IconButton, Tooltip,  } from "@mui/material";
+import { useTheme, Box, ButtonGroup, IconButton, Tooltip,  } from "@mui/material";
 import { tokens } from "../../theme";
 import { getAllSitData, getAllWalkData } from "../../utils/getData";
 import BarChart from "../../components/BarChart";
@@ -17,9 +17,7 @@ export default function Results({sitStand}){
   const [sitData, setSitData]= useState(null);
   const [walkData, setWalkData]= useState(null);
 
-  const [switchA, setSwitchA] = useState(true);
   const [switchB, setSwitchB] = useState(true);
-  const [switchC, setSwitchC] = useState(true);
   const [switchD, setSwitchD] = useState(true);
 
   
@@ -123,11 +121,7 @@ export default function Results({sitStand}){
   };
 
 
-  useEffect(()=>{
-    if(walkData){
-      console.log("Walk data loaded successfully:" + JSON.stringify(walkData));
-    }
-  },[walkData])
+
 
   return (
     <div className="content-box">
@@ -148,7 +142,6 @@ export default function Results({sitStand}){
                   className={switchD ? "active" : "noot"}
                   onClick={() => setSwitchD(!switchD)}
                   size="small"
-                  title="Logout"
                 >
                   <BarChartIcon />
                 </IconButton>
@@ -157,7 +150,6 @@ export default function Results({sitStand}){
                 <IconButton
                   onClick={() => setSwitchD(!switchD)}
                   size="small"
-                  title="Logout"
                 >
                   <SsidChartIcon />
                 </IconButton>
@@ -189,7 +181,6 @@ export default function Results({sitStand}){
                   className={switchD ? "active" : "noot"}
                   onClick={() => setSwitchB(!switchB)}
                   size="small"
-                  title="Logout"
                 >
                   <BarChartIcon />
                 </IconButton>
@@ -198,7 +189,6 @@ export default function Results({sitStand}){
                 <IconButton
                   onClick={() => setSwitchB(!switchB)}
                   size="small"
-                  title="Logout"
                 >
                   <SsidChartIcon />
                 </IconButton>

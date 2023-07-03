@@ -42,7 +42,6 @@ export default function Dashboard({
         ((sitWvTestResults + walkWvTestResults) / 2) * 0.3 +
         catResults * 0.3 +
         varResults * 0.4;
-        console.log("ValorFinal: ", valorFinal < 5 ? 5 : valorFinal);
       setWellnessValue(valorFinal < 5 ? 5 : valorFinal);
     }
   }, [catResults, sitWvTestResults, varResults, walkWvTestResults]);
@@ -77,11 +76,6 @@ export default function Dashboard({
     }
   }, [wellnessValue]);
 
-  useEffect(() => {
-    if (wvChartData) {
-      console.log("Wv Chart Data: " + JSON.stringify(wvChartData));
-    }
-  }, [wvChartData]);
 
     
   const handleWVClick = async () => {
@@ -91,9 +85,7 @@ export default function Dashboard({
       if (change > 2 || change < -2) {
         try {
           postWv(wellnessValue);
-          console.log(
-            "Wellness value changed " + change + " and updated to DB"
-          );
+          alert("Wellness Value Submmited")
         } catch (error) {
           console.error(error);
         }

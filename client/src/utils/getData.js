@@ -131,7 +131,6 @@ export const getChartData = async (id) => {
   });
   if (response.ok) {
     const data = await response.json();
-    console.log("getChart data" + data)
     return data;
   } else {
     throw new Error("Failed to fetch Chart data");

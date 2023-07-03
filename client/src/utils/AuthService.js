@@ -86,7 +86,7 @@ export const updateProfile = async (profileData) => {
 
       if (response.ok) {
         // Profile data successfully updated
-        console.log("Profile data updated successfully");
+        alert("Profile data updated successfully");
       } else {
         // Handle error case
         console.error("Failed to update profile data");

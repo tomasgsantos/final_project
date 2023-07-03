@@ -16,7 +16,6 @@ export default function FAQ({faqData}) {
   useEffect(() => {
     if(faqData){
       setFaq(faqData);
-      console.log("setFaq: " + faq);
     }
 
   },[faqData])
@@ -27,9 +26,9 @@ export default function FAQ({faqData}) {
       <Header title={"FAQ"} subtitle={"Frequently Asked Questions"} />
       {faq && faq.map((item)=>{
         return(
-        <Accordion defaultExpanded={false}>
+        <Accordion key={item.id} defaultExpanded={false}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography color={colors.green[400]} variant="h5">
+            <Typography color={colors.green[300]} variant="h5">
               {item.question}
             </Typography>
           </AccordionSummary>

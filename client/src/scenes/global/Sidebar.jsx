@@ -14,7 +14,6 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import ViewListIcon from '@mui/icons-material/ViewList';
 import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { logout } from "../../utils/AuthService";

@@ -51,7 +51,7 @@ export default function Cat() {
 
   return (
     <div className="content-box">
-      <form className="cat-form">
+      <div className="cat-form">
         <Header title={"Copd Assessment Test"} />
         <p>
           Welcome to the COPD Assessment Test (CAT) page! This test helps
@@ -60,7 +60,7 @@ export default function Cat() {
         </p>
         <p className="description">
           Answer eight simple questions and rate your symptoms on a scale of
-          <strong> Super Happy to Super Sad</strong>.
+          <strong> None - Super Happy - Happy - Average - Sad - Super Sad</strong>.
         </p>
 
         <Button
@@ -162,7 +162,7 @@ export default function Cat() {
                 height: "60px",
                 mt: "20px",
                 borderRadius: "1rem",
-                backgroundColor: colors.green[300],
+                backgroundColor: colors.green[600],
               }}
               variant="contained"
               onClick={handleSubmit}
@@ -177,16 +177,16 @@ export default function Cat() {
                 height: "60px",
                 mt: "20px",
                 borderRadius: "1.5rem",
-                backgroundColor: colors.green[300],
+                backgroundColor: colors.green[600],
               }}
               variant="contained"
               onClick={backToDashboard}
             >
-              Back to dashboard
+              Thanks! Click to go back to dashboard
             </Button>
           )}
         </div>
-      </form>
+      </div>
     </div>
   );
 }

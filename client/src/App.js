@@ -18,7 +18,6 @@ function App() {
   useEffect(() => {
     setIsLoggedIn(isAuthenticado);
   }, []);
-  console.log("theme",theme.palette.mode);
   return (
     <div className={`theme-${theme.palette.mode}`}>
       <ColorModeContext.Provider value={colorMode}>

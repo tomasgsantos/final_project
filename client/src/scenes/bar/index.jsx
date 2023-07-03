@@ -112,6 +112,8 @@ export default function Bar({ userRecords }) {
           : [],
         pointRadius: 7,
         pointHoverRadius: 12,
+        borderColor: colors.grey[100],
+        border: "1px solid ",
       },
     ],
   };
@@ -136,6 +138,8 @@ export default function Bar({ userRecords }) {
           : [],
         pointRadius: 7,
         pointHoverRadius: 12,
+        borderColor: colors.grey[100],
+        border: "1px solid ",
       },
     ],
   };
@@ -160,6 +164,8 @@ export default function Bar({ userRecords }) {
           : [],
         pointRadius: 7,
         pointHoverRadius: 12,
+        borderColor: colors.grey[100],
+        border: "1px solid ",
       },
     ],
   };
@@ -184,6 +190,8 @@ export default function Bar({ userRecords }) {
           : [],
         pointRadius: 7,
         pointHoverRadius: 12,
+        borderColor: colors.grey[100],
+        border: "1px solid ",
       },
     ],
   };
@@ -231,12 +239,12 @@ export default function Bar({ userRecords }) {
       <div className="widgets">
         {userRecords &&
           userRecords.map((record) => {
-            const { sensorPurpose, value } = record;
+            const { id, sensorPurpose, value } = record;
 
             switch (sensorPurpose) {
               case "paco2":
                 return value ? (
-                  <Accordion defaultExpanded={false}>
+                  <Accordion key={`${sensorPurpose}-${id}`} defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
                         <ValueWidget name={sensorPurpose} value={value} />
@@ -269,7 +277,7 @@ export default function Bar({ userRecords }) {
                             className={switchD ? "active": "noot"}
                             onClick={() => setSwitchD(!switchD)}
                             size="small"
-                            title="Logout"
+                            
                             >
                             <BarChartIcon />
                           </IconButton>
@@ -279,7 +287,7 @@ export default function Bar({ userRecords }) {
                                 
                                 onClick={() => setSwitchD(!switchD)}
                                 size="small"
-                                title="Logout"
+                                
                                 >
                               <SsidChartIcon />
                             </IconButton>
@@ -323,7 +331,7 @@ export default function Bar({ userRecords }) {
                 );
               case "pao2":
                 return value ? (
-                  <Accordion defaultExpanded={false}>
+                  <Accordion key={`${sensorPurpose}-${id}`} defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
                         <ValueWidget name={sensorPurpose} value={value} />
@@ -353,7 +361,7 @@ export default function Bar({ userRecords }) {
                             className={switchA ? "active" : "noot"}
                             onClick={() => setSwitchA(!switchA)}
                             size="small"
-                            title="Logout"
+                            
                           >
                             <BarChartIcon />
                           </IconButton>
@@ -362,7 +370,7 @@ export default function Bar({ userRecords }) {
                           <IconButton
                             onClick={() => setSwitchA(!switchA)}
                             size="small"
-                            title="Logout"
+                            
                           >
                             <SsidChartIcon />
                           </IconButton>
@@ -405,7 +413,7 @@ export default function Bar({ userRecords }) {
                 );
               case "respiratory rate":
                 return value ? (
-                  <Accordion defaultExpanded={false}>
+                  <Accordion key={`${sensorPurpose}-${id}`} defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
                         <ValueWidget name={sensorPurpose} value={value} />
@@ -439,7 +447,7 @@ export default function Bar({ userRecords }) {
                             className={switchB ? "active" : "noot"}
                             onClick={() => setSwitchB(!switchB)}
                             size="small"
-                            title="Logout"
+                            
                           >
                             <BarChartIcon />
                           </IconButton>
@@ -448,7 +456,7 @@ export default function Bar({ userRecords }) {
                           <IconButton
                             onClick={() => setSwitchB(!switchB)}
                             size="small"
-                            title="Logout"
+                            
                           >
                             <SsidChartIcon />
                           </IconButton>
@@ -491,7 +499,7 @@ export default function Bar({ userRecords }) {
                 );
               case "temperature":
                 return value ? (
-                  <Accordion defaultExpanded={false}>
+                  <Accordion key={`${sensorPurpose}-${id}`} defaultExpanded={false}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="accordion-summary">
                         <ValueWidget name={sensorPurpose} value={value} />
@@ -524,7 +532,7 @@ export default function Bar({ userRecords }) {
                             className={switchC ? "active" : "noot"}
                             onClick={() => setSwitchC(!switchC)}
                             size="small"
-                            title="Logout"
+                            
                           >
                             <BarChartIcon />
                           </IconButton>
@@ -533,7 +541,7 @@ export default function Bar({ userRecords }) {
                           <IconButton
                             onClick={() => setSwitchC(!switchC)}
                             size="small"
-                            title="Logout"
+                            
                           >
                             <SsidChartIcon />
                           </IconButton>

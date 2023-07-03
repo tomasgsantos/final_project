@@ -31,7 +31,7 @@ export default function Profile({ userData }) {
     e.preventDefault();
     try {
       updateProfile(profileData)
-      console.log("success")
+
     }catch(err){
     console.log(err)
   };
