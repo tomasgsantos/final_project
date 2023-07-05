@@ -1,4 +1,15 @@
 # COPD Dashboard app
+Hi Welcome to the COPD Dashboard application. To boot up the application open up the terminal and run the following command:
+
+cd client
+npm --force install
+
+cd server
+npm install
+
+npm start
+
+
 
 ### Done tasks
 
@@ -24,14 +35,6 @@
 [x] Css
 [x] Settings
 [x] Landing Page 
-
-
-
-### Working on it
-
-
-### Todo list
-
 
 #### Side Ideas 
 - Different access roles [10%]
