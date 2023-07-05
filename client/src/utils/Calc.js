@@ -7,20 +7,23 @@
 */
 
 
+
 export const calcSitWvStand = (sitStand) => {
+
+  console.log(sitStand)
   const sitStandResults = sitStand[0];
   const sitStandCalibration = sitStand[1];
 
-  const calPulsation =
+  const calPulsation = sitStand[1] ?
     (sitStandCalibration.initialpulsation +
       sitStandCalibration.finalpulsation) /
-    2;
-  const resPulsation =
-    (sitStandResults.initialpulsation + sitStandResults.finalpulsation) / 2;
+    2 : 0;
+  const resPulsation = sitStand[0] ? 
+    (sitStandResults.initialpulsation + sitStandResults.finalpulsation) / 2: 0;
 
   const finalPulsation = (calPulsation - resPulsation) * 2;
-  const finalCount =
-    (sitStandCalibration.countcycles - sitStandResults.countcycles) * 5;
+  const finalCount = sitStand[1] ?
+    (sitStandCalibration.countcycles - sitStandResults.countcycles) * 5 : 0;
 
   let testResults = 50 + finalCount + finalPulsation;
   
@@ -33,15 +36,16 @@ export const calcSitWvStand = (sitStand) => {
 };
 
 export const calcWalkWvResults = (walkResults) => {
+  
   const calibration = walkResults[0];
   const current = walkResults[1];
 
 
-  const calPulsation = (calibration.initialpulsation + calibration.finalpulsation) / 2;
-  const resPulsation = (current.initialpulsation + current.finalpulsation) / 2;
+  const calPulsation = walkResults[0] ? (calibration.initialpulsation + calibration.finalpulsation) / 2: 0;
+  const resPulsation = walkResults[1] ? (current.initialpulsation + current.finalpulsation) / 2 : 0;
 
   const finalPulsation = (calPulsation - resPulsation) * 2;
-  const finalSteps = (current.numbersteps - calibration.numbersteps) * 5;
+  const finalSteps = walkResults[1] ? (current.numbersteps - calibration.numbersteps) * 5 : 0;
 
   let testResults = 50 + finalSteps + finalPulsation;
 
@@ -53,7 +57,10 @@ export const calcWalkWvResults = (walkResults) => {
   return testResults;
 };
 
+
+
 export const calcVarResults = (userRecords) => {
+  
   let pao2Impact = 0;
   let paco2Impact = 0;
   let temperatureImpact = 0;
@@ -102,6 +109,9 @@ export const calcVarResults = (userRecords) => {
 };
 
 export const calcCatResults = (cat) => {
+  if(!cat){
+   return
+  }
   const { cough, phlegm, chest, breathless, activity, energy, sleep, house } =
     cat;
 

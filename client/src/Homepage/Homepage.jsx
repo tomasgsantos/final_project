@@ -32,6 +32,52 @@ export default function Homepage() {
   const [cat, setCat]= useState(null); 
   const [catResults, setCatResults]= useState(null);
 
+
+  const defaultSitStand = [
+    {
+      initialpulsation: 0,
+      finalpulsation: 0,
+      countcycles: 0,
+    },
+    {
+      initialpulsation: 0,
+      finalpulsation: 0,
+      countcycles: 0,
+    },
+  ];
+
+  const defaultWalk = [
+    {
+      initialpulsation: 0,
+      finalpulsation: 0,
+      numbersteps: 0,
+    },
+    {
+      initialpulsation: 0,
+      finalpulsation: 0,
+      numbersteps: 0,
+    },
+  ];
+
+  const defaultSensors = [
+    {
+      sensorPurpose: "pao2",
+      value: 0,
+    },
+    {
+      sensorPurpose: "paco2",
+      value: 0,
+    },
+    {
+      sensorPurpose: "temperature",
+      value: 0,
+    },
+    {
+      sensorPurpose: "respiratoryFrequency",
+      value: 0,
+    },
+  ];
+
   useEffect(() => { 
     setIsLoggedIn(isAutenticado);
     const fetchData = async () => {
@@ -64,6 +110,10 @@ export default function Homepage() {
       try{
         const data = await getSitWvStand();
         setSitWvStand(data);
+        if(!data){
+          console.log("no data")
+        }
+        
       }catch(err){
         console.error(err.message);
       }
@@ -95,10 +145,13 @@ export default function Homepage() {
   }, []);
 
   useEffect(()=>{
-    if(sitWvStand){
+    if (!sitWvStand) {
+      const data = calcSitWvStand(defaultSitStand);
+    }else{
       const data = calcSitWvStand(sitWvStand);
       setSitWvTestResults(data);
     }
+    
   }, [sitWvStand]);
 
   useEffect(()=>{
@@ -106,6 +159,7 @@ export default function Homepage() {
       const data = calcWalkWvResults(walkWvResults);
       setWalkWvTestResults(data);
     }
+    
   }, [walkWvResults]);
 
   useEffect(()=>{
@@ -113,12 +167,18 @@ export default function Homepage() {
       const data = calcVarResults(userRecords);
       setVarResults(data.allVariablesImpact);
     }
+    if(!userRecords){
+      setVarResults(0)
+    }
   },[userRecords]);
 
   useEffect(()=>{
     if(cat){
       const data = calcCatResults(cat);
       setCatResults(data)
+    }
+    if(!cat){
+      setCatResults(0)
     }
   },[cat]);
 

@@ -79,21 +79,13 @@ export default function Dashboard({
 
     
   const handleWVClick = async () => {
-    try {
-      const prevValue = prevWv.value;
-      const change = Math.abs(prevValue - wellnessValue);
-      if (change > 2 || change < -2) {
         try {
           postWv(wellnessValue);
           alert("Wellness Value Submmited")
         } catch (error) {
           console.error(error);
         }
-      }
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+      };
 
   const wvHistory = {
     labels: wvChartData ? wvChartData.map((data) => data.date) : [],
