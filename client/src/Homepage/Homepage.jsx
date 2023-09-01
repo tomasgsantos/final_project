@@ -20,7 +20,7 @@ import LandingPage from "../components/LandingPage";
 
 export default function Homepage() {
   const [userData, setUserData] = useState(null);
-  const [faq , setFaq] = useState(null);
+  const [faq, setFaq] = useState(null);
   const isAutenticado = isAuthenticated();
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [userRecords, setUserRecords] = useState(null);
@@ -29,9 +29,8 @@ export default function Homepage() {
   const [sitWvTestResults, setSitWvTestResults] = useState(null);
   const [walkWvResults, setWalkWvResults] = useState(null);
   const [walkWvTestResults, setWalkWvTestResults] = useState(null);
-  const [cat, setCat]= useState(null); 
-  const [catResults, setCatResults]= useState(null);
-
+  const [cat, setCat] = useState(null);
+  const [catResults, setCatResults] = useState(null);
 
   const defaultSitStand = [
     {
@@ -46,6 +45,7 @@ export default function Homepage() {
     },
   ];
 
+  // eslint-disable-next-line
   const defaultWalk = [
     {
       initialpulsation: 0,
@@ -59,6 +59,7 @@ export default function Homepage() {
     },
   ];
 
+  // eslint-disable-next-line
   const defaultSensors = [
     {
       sensorPurpose: "pao2",
@@ -78,7 +79,7 @@ export default function Homepage() {
     },
   ];
 
-  useEffect(() => { 
+  useEffect(() => {
     setIsLoggedIn(isAutenticado);
     const fetchData = async () => {
       try {
@@ -88,53 +89,51 @@ export default function Homepage() {
       } catch (error) {
         console.error(error.message);
       }
-    }
-    const fetchRecords = async () =>{
-      try{
+    };
+    const fetchRecords = async () => {
+      try {
         const data = await getRecord();
         const convertedRecords = convertRecords(data);
         setUserRecords(convertedRecords);
-      }catch (error){
+      } catch (error) {
         console.error(error.message);
       }
-    }
-    const fetchFaq = async () =>{
-      try{
+    };
+    const fetchFaq = async () => {
+      try {
         const data = await getFaq();
         setFaq(data);
-      }catch(err){
+      } catch (err) {
         console.error(err.message);
       }
-    }
-    const fetchSitWvStand = async () =>{
-      try{
+    };
+    const fetchSitWvStand = async () => {
+      try {
         const data = await getSitWvStand();
         setSitWvStand(data);
-        if(!data){
-          console.log("no data")
+        if (!data) {
+          console.log("no data");
         }
-        
-      }catch(err){
+      } catch (err) {
         console.error(err.message);
       }
-    }
-    const fetchWalkWvTest = async () =>{
-      try{
+    };
+    const fetchWalkWvTest = async () => {
+      try {
         const data = await getWalkWvTest();
         setWalkWvResults(data);
-      }catch(err){
+      } catch (err) {
         console.error(err.message);
       }
-    } 
+    };
     const fetchCat = async () => {
-      try{
+      try {
         const data = await getCat();
         setCat(data);
-
-      }catch(err){
+      } catch (err) {
         console.error(err.message);
       }
-    }
+    };
 
     fetchData();
     fetchRecords();
@@ -144,45 +143,43 @@ export default function Homepage() {
     fetchCat();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (!sitWvStand) {
+      // eslint-disable-next-line
       const data = calcSitWvStand(defaultSitStand);
-    }else{
+    } else {
       const data = calcSitWvStand(sitWvStand);
       setSitWvTestResults(data);
     }
-    
   }, [sitWvStand]);
 
-  useEffect(()=>{
-    if(walkWvResults){
+  useEffect(() => {
+    if (walkWvResults) {
       const data = calcWalkWvResults(walkWvResults);
       setWalkWvTestResults(data);
     }
-    
   }, [walkWvResults]);
 
-  useEffect(()=>{
-    if(userRecords){
+  useEffect(() => {
+    if (userRecords) {
       const data = calcVarResults(userRecords);
       setVarResults(data.allVariablesImpact);
     }
-    if(!userRecords){
-      setVarResults(0)
+    if (!userRecords) {
+      setVarResults(0);
     }
-  },[userRecords]);
+  }, [userRecords]);
 
-  useEffect(()=>{
-    if(cat){
+  useEffect(() => {
+    if (cat) {
       const data = calcCatResults(cat);
-      setCatResults(data)
+      setCatResults(data);
     }
-    if(!cat){
-      setCatResults(0)
+    if (!cat) {
+      setCatResults(0);
     }
-  },[cat]);
+  }, [cat]);
 
-  
   return (
     <div className="app">
       <Sidebar userData={userData} />
@@ -204,7 +201,7 @@ export default function Homepage() {
             />
           ) : (
             <Route path="/" element={<LandingPage />} />
-            )}
+          )}
           {!isLoggedIn && <Route path="/*" element={<LandingPage />} />}
           {isLoggedIn && <Route path="/vitals" element={<Vitals />} />}
           {isLoggedIn && <Route path="/education" element={<Education />} />}

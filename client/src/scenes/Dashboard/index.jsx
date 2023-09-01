@@ -24,6 +24,7 @@ export default function Dashboard({
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
   const [wellnessValue, setWellnessValue] = useState(null);
+  // eslint-disable-next-line
   const [prevWv, setPrevWv] = useState(null);
   const [wvChartData, setWvChartData] = useState(null);
 
@@ -76,16 +77,14 @@ export default function Dashboard({
     }
   }, [wellnessValue]);
 
-
-    
   const handleWVClick = async () => {
-        try {
-          postWv(wellnessValue);
-          alert("Wellness Value Submmited")
-        } catch (error) {
-          console.error(error);
-        }
-      };
+    try {
+      postWv(wellnessValue);
+      alert("Wellness Value Submmited");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const wvHistory = {
     labels: wvChartData ? wvChartData.map((data) => data.date) : [],
@@ -146,13 +145,10 @@ export default function Dashboard({
             store the current value.
           </p>
           <div className="d-col gap-8">
-            <Button
-              variant="contained"
-              onClick={() => navigate("/cat")}
-            >
+            <Button variant="contained" onClick={() => navigate("/cat")}>
               Perform a CAT
             </Button>
-            
+
             <Button
               variant="contained"
               onClick={handleWVClick}
