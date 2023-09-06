@@ -1,0 +1,8 @@
+{
+  "short_name": "COPD App",
+  "name": "COPD Management App",
+  "start_url": ".",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
