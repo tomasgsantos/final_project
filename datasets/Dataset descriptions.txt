@@ -1,0 +1,19 @@
+Dataset1 description
+
+MWT1-The 1st minute Walking Test is a measure of the distance a person with COPD can walk in six minutes.
+
+MWT2-The 2nd minute Walking Test is another measure of the distance a person with COPD can walk in six 
+minutes.
+
+FEV1-Forced Expiratory Volume in 1 second is a lung function test that measures the amount of air a person 
+can exhale forcefully in one second.
+
+FVC-Forced Vital Capacity is a lung function test that measures the amount of air a person can exhale forcefully after taking a deep breath.
+
+CAT-COPD Assessment Test is a tool used to assess the impact of COPD on a person's life by measuring their symptoms and functional status.
+
+HAD- Hospital Anxiety and Depression scale is a tool used to assess a person's level of anxiety and depression.
+
+SGRQ- St. George's Respiratory Questionnaire is a tool used to assess a person's quality of life related to respiratory problems.
+
+AGE quartiles- refer to the division of a population into four groups based on their age, with each group representing one-fourth (or 25%) of the population. 
